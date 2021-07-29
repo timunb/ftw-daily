@@ -1,5 +1,4 @@
 @import '../assets/sanitize.css';
-@import './customMediaQueries.css';
 @import './propertySets.css';
 
 /* ================ Custom Properties aka CSS variables ================ */
@@ -17,7 +16,7 @@
 :root {
   /* ================ Colors ================ */
 
-  --marketplaceColor: #c0392b;
+  --marketplaceColor: #a7d0e1;
   --marketplaceColorLight: #ff4c38;
   --marketplaceColorDark: #8c291e;
 
@@ -161,6 +160,14 @@
   --ProfileSettingsForm_avatarSize: 96px;
   --ProfileSettingsForm_avatarSizeDesktop: 240px;
 }
+
+/* ================ Custom media queries ================ */
+
+@custom-media --viewportSmall (min-width: 550px);
+@custom-media --viewportMedium (min-width: 768px);
+@custom-media --viewportLarge (min-width: 1024px);
+@custom-media --viewportLargeWithPaddings (min-width: 1128px);
+@custom-media --viewportXLarge (min-width: 1921px);
 
 /* ================ Global element styles ================ */
 
