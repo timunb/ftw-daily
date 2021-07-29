@@ -142,12 +142,14 @@ const TopbarDesktop = props => {
         />
       </NamedLink>
       {search}
+
+      {inboxLink}
+      <a class="TopbarDesktop_inboxLink__3XhSx" href="http://www.film-locations.co.uk" target="_blank"><span class="TopbarDesktop_inbox__2IvVe"><span>Main Site</span></span></a>
       <NamedLink className={css.createListingLink} name="NewListingPage">
         <span className={css.createListing}>
           <FormattedMessage id="TopbarDesktop.createListing" />
         </span>
       </NamedLink>
-      {inboxLink}
       {profileMenu}
       {signupLink}
       {loginLink}

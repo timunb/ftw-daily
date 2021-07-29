@@ -68,7 +68,42 @@ const Footer = props => {
               <NamedLink name="LandingPage" className={css.logoLink}>
                 <Logo format="desktop" className={css.logo} />
               </NamedLink>
+              <div className={css.organizationInfo}>
+                <p className={css.organizationDescription}>
+                  <div>© 2021 Film Locations. All Rights Reserved Website by <a title="Unbranded Manchester" href="http://www.unbrandedmanchester.com/web-design-manchester" target="_blank" class="unbrandedmanchester" rel="noopener">Unbranded Manchester</a></div>
+                </p>
+                <p className={css.organizationCopyright}>
+                  <NamedLink name="LandingPage" className={css.copyrightLink}>
+                    VAT No. 466410158 • CR Number - 05983518
+                  </NamedLink>
+                </p>
+              </div>
+            </div>
+            <div className={css.infoLinks}>
+              <h3 class="woohoo">Community</h3>
+              <nav class="footer-nav--pages"><ul id="menu-community-1" class="nav"><li class="menu-item menu-for-hosts"><a href="https://www.film-locations.co.uk/become-a-host/">For Hosts</a></li><li class="menu-item menu-for-producers"><a href="https://www.film-locations.co.uk/hire-a-space/">For Producers</a></li></ul></nav>
+            </div>
 
+            <div className={css.infoLinks}>
+              <h3 class="woohoo">Personal</h3>
+              <nav class="footer-nav--pages"><ul id="menu-personal-1" class="nav"><li class="menu-item menu-become-a-host"><a href="https://www.film-locations.co.uk/become-a-host">Become A Host</a></li><li class="menu-item menu-log-in"><a href="https://www.film-locations.co.uk/my-account">Log in</a></li><li class="menu-item menu-my-account"><a href="https://www.film-locations.co.uk/my-account">My Account</a></li></ul></nav>
+            </div>
+            <div className={css.infoLinks}>
+              <h3 class="woohoo">About Us</h3>
+              <nav class="footer-nav--pages"><ul id="menu-about-1" class="nav"><li class="menu-item menu-how-it-works"><a href="https://www.film-locations.co.uk/how-it-works/">How It Works</a></li><li class="menu-item menu-pricing"><a href="https://www.film-locations.co.uk/pricing/">Pricing</a></li></ul></nav>
+            </div>
+          </div>
+          <div className={css.copyrightAndTermsMobile}>
+            <NamedLink name="LandingPage" className={css.organizationCopyrightMobile}>
+              <FormattedMessage id="Footer.copyright" />
+            </NamedLink>
+            <div className={css.tosAndPrivacyMobile}>
+              <NamedLink name="PrivacyPolicyPage" className={css.privacy}>
+                <FormattedMessage id="Footer.privacy" />
+              </NamedLink>
+              <NamedLink name="TermsOfServicePage" className={css.terms}>
+                <FormattedMessage id="Footer.terms" />
+              </NamedLink>
             </div>
           </div>
         </div>

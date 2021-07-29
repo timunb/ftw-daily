@@ -58,10 +58,10 @@ export const LandingPageComponent = props => {
           <TopbarContainer />
         </LayoutWrapperTopbar>
         <LayoutWrapperMain>
-        <div class="home-message">
-          <h1>This is the admin portal for film-locations.co.uk</h1>
-          <a href="/signup" class="Button_primaryButtonRoot__1kd3J Button_primaryButton__1r13o">Signup</a>
-        </div>
+          <div className={css.heroContainer}>
+            <SectionHero className={css.hero} history={history} location={location} />
+          </div>
+          
         </LayoutWrapperMain>
         <LayoutWrapperFooter>
           <Footer />
