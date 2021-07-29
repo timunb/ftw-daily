@@ -1,0 +1,19 @@
+
+@font-face {
+  font-family: 'GT Walsheim';
+  src: url('../fonts/gt-walsheim-regular-webfont.woff2') format('woff2'),
+       url('../fonts/gt-walsheim-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Thin';
+    src: url('../fonts/gt-walsheim-thin-webfont.woff2') format('woff2'),
+         url('../fonts/gt-walsheim-thin-webfont.woff') format('woff'),
+         url('../fonts/gt-walsheim-thin-webfont.ttf') format('truetype'),
+         url('../fonts/gt-walsheim-thin-webfont.svg#gt_walsheimthin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+
+}

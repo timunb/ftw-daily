@@ -43,7 +43,7 @@
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
   /* ================ Font ================ */
-  --fontFamily: 'poppins', Helvetica, Arial, sans-serif;
+  --fontFamily: 'GT Walsheim', Helvetica, Arial, sans-serif;
 
   --fontWeightRegular: 400;
   --fontWeightMedium: 500;
@@ -287,9 +287,9 @@ textarea {
 
 .fontsLoaded {
   & body {
-    font-family: 'poppins', Helvetica, Arial, sans-serif;
+    font-family: 'GT Walsheim', Helvetica, Arial, sans-serif;
   }
   & button {
-    font-family: 'poppins', Helvetica, Arial, sans-serif;
+    font-family: 'GT Walsheim', Helvetica, Arial, sans-serif;
   }
 }

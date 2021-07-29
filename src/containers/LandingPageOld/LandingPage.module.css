@@ -66,11 +66,6 @@
   }
 }
 
-.home-message {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .sectionContent {
   margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
 

@@ -49,44 +49,9 @@ class TopbarSearchFormComponent extends Component {
               onSubmit={preventFormSubmit}
               enforcePagePreloadFor="SearchPage"
             >
-              <Field
-                name="location"
-                format={identity}
-                render={({ input, meta }) => {
-                  const { onChange, ...restInput } = input;
 
-                  // Merge the standard onChange function with custom behaviur. A better solution would
-                  // be to use the FormSpy component from Final Form and pass this.onChange to the
-                  // onChange prop but that breaks due to insufficient subscription handling.
-                  // See: https://github.com/final-form/react-final-form/issues/159
-                  const searchOnChange = value => {
-                    onChange(value);
-                    this.onChange(value);
-                  };
 
-                  const searchInput = { ...restInput, onChange: searchOnChange };
-                  return (
-                    <LocationAutocompleteInput
-                      className={isMobile ? css.mobileInputRoot : desktopInputRootClass}
-                      iconClassName={isMobile ? css.mobileIcon : css.desktopIcon}
-                      inputClassName={isMobile ? css.mobileInput : css.desktopInput}
-                      predictionsClassName={
-                        isMobile ? css.mobilePredictions : css.desktopPredictions
-                      }
-                      predictionsAttributionClassName={
-                        isMobile ? css.mobilePredictionsAttribution : null
-                      }
-                      placeholder={intl.formatMessage({ id: 'TopbarSearchForm.placeholder' })}
-                      closeOnBlur={!isMobile}
-                      inputRef={node => {
-                        this.searchInput = node;
-                      }}
-                      input={searchInput}
-                      meta={meta}
-                    />
-                  );
-                }}
-              />
+
             </Form>
           );
         }}
