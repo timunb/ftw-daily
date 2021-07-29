@@ -85,10 +85,12 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'smoke', label: 'Smoke' },
-        { key: 'electric', label: 'Electric' },
-        { key: 'wood', label: 'Wood' },
-        { key: 'other', label: 'Other' },
+        { key: 'studios', label: 'Studios' },
+        { key: 'new_locations', label: 'New Locations' },
+        { key: 'manor_houses', label: 'Manor Houses' },
+        { key: 'large_locations', label: 'Large Locations' },
+        { key: 'modern_mansions', label: 'Modern Mansions' },
+        { key: 'beach_houses', label: 'Beach Houses' },
       ],
     },
   },
@@ -109,36 +111,36 @@ export const filters = [
       // to make filter customizations a bit easier.
       options: [
         {
-          key: 'towels',
-          label: 'Towels',
+          key: 'distressed_walls',
+          label: 'Distressed Walls',
         },
         {
-          key: 'bathroom',
-          label: 'Bathroom',
+          key: 'shabby_chic',
+          label: 'Shabby Chic',
         },
         {
-          key: 'swimming_pool',
-          label: 'Swimming pool',
+          key: 'derelict_buildings',
+          label: 'Deralict Buildings',
         },
         {
-          key: 'own_drinks',
-          label: 'Own drinks allowed',
+          key: 'boho_chic',
+          label: 'Boho Chic',
         },
         {
-          key: 'jacuzzi',
-          label: 'Jacuzzi',
+          key: 'loft_style',
+          label: 'Loft Style',
         },
         {
-          key: 'audiovisual_entertainment',
-          label: 'Audiovisual entertainment',
+          key: 'industrial',
+          label: 'Industrial',
         },
         {
-          key: 'barbeque',
-          label: 'Barbeque',
+          key: 'wood_panelled_rooms',
+          label: 'Wood Panelled Rooms',
         },
         {
-          key: 'own_food_allowed',
-          label: 'Own food allowed',
+          key: 'architecural',
+          label: 'Architectual',
         },
       ],
     },
