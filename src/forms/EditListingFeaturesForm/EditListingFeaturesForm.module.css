@@ -38,3 +38,8 @@
     margin-top: 100px;
   }
 }
+
+.sub-cat {
+  width: 33.333333%;
+  float: left;
+}

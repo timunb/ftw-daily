@@ -50,13 +50,26 @@ const EditListingFeaturesFormComponent = props => (
       ) : null;
 
       const options = findOptionsForSelectFilter('amenities', filterConfig);
+      const types = findOptionsForSelectFilter('types', filterConfig);
+      const areas = findOptionsForSelectFilter('areas', filterConfig);
+
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}
           {errorMessageShowListing}
+          <div class="sub-cat styles">
+            <h2>Style</h2>
+            <FieldCheckboxGroup className={css.features} id={name} name={name} options={options} />
+          </div>
+          <div class="sub-cat types">
+            <h2>Type</h2>
+            <FieldCheckboxGroup className={css.features} id={name} name={name} options={types} />
+          </div>
 
-          <FieldCheckboxGroup className={css.features} id={name} name={name} options={options} />
-
+          <div class="sub-cat area">
+            <h2>Area</h2>
+            <FieldCheckboxGroup className={css.features} id={name} name={name} options={areas} />
+          </div>
           <Button
             className={css.submitButton}
             type="submit"

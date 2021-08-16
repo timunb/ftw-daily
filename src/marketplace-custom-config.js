@@ -85,12 +85,8 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'studios', label: 'Studios' },
-        { key: 'new_locations', label: 'New Locations' },
-        { key: 'manor_houses', label: 'Manor Houses' },
-        { key: 'large_locations', label: 'Large Locations' },
-        { key: 'modern_mansions', label: 'Modern Mansions' },
-        { key: 'beach_houses', label: 'Beach Houses' },
+        { key: 'location', label: 'Location' },
+        { key: 'vehicle', label: 'Vehicle' }
       ],
     },
   },
@@ -142,6 +138,156 @@ export const filters = [
           key: 'architecural',
           label: 'Architectual',
         },
+
+        {
+          key: 'victorian',
+          label: 'Victorian',
+        },
+        {
+          key: 'brutalist_architecture',
+          label: 'Brutalist Architecture',
+        },
+        {
+          key: 'scandinavian_style',
+          label: 'Scandinavian Style',
+        },
+        {
+          key: 'spanish_locations',
+          label: 'Spanish Locations',
+        },
+        {
+          key: 'elizabethan',
+          label: 'Elizabethan',
+        },
+
+        {
+          key: 'concrete',
+          label: 'Concrete',
+        },
+        {
+          key: 'midcentury_modern',
+          label: 'Midcentury Modern',
+        },
+        {
+          key: 'feminine',
+          label: 'Feminine',
+        },
+        {
+          key: 'georgian',
+          label: 'Georgian',
+        },
+        {
+          key: 'driveways',
+          label: 'Driveways',
+        },
+        {
+          key: 'offices',
+          label: 'Offices',
+        },
+
+
+        {
+          key: 'botanical',
+          label: 'Botanical',
+        },
+        {
+          key: 'faded_grandeur',
+          label: 'Faded Grandeur',
+        },
+        {
+          key: 'art_deco',
+          label: 'Art Deco',
+        },
+        {
+          key: 'moroccan_style_locations',
+          label: 'Moroccan Style Locations',
+        },
+        {
+          key: 'retro',
+          label: 'Retro',
+        },
+        {
+          key: 'north_american_style_in_uk',
+          label: 'North American Style In UK',
+        },
+        {
+          key: 'kitchens',
+          label: 'Kitchens',
+        },
+        {
+          key: 'modern',
+          label: 'Modern',
+        },
+      ],
+    },
+  },
+  {
+    id: 'types',
+    label: 'Types',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_types'],
+    config: {
+      // Optional modes: 'has_all', 'has_any'
+      // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
+      searchMode: 'has_all',
+
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for this web app's UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'studios', label: 'Studios' },
+        { key: 'new_locations', label: 'New Locations' },
+        { key: 'manor_houses', label: 'Manor Houses' },
+        { key: 'large_locations', label: 'Large Locations' },
+        { key: 'modern_mansions', label: 'Modern Mansions' },
+        { key: 'beach_houses', label: 'Beach Houses' },
+        { key: 'country_locations', label: 'Country Locations' },
+        { key: 'europe_locations', label: 'Europe Locations' },
+        { key: 'apartments', label: 'Apartments' },
+        { key: 'vehicles', label: 'Vehicles' },
+        { key: 'exclusives', label: 'Exclusives' },
+        { key: 'houses', label: 'Houses' },
+        { key: 'everyday_homes', label: 'Everyday Homes' },
+        { key: 'warehouse', label: 'Warehouse' },
+        { key: 'Venues', label: 'Venues' },
+      ],
+    },
+  },
+
+  {
+    id: 'areas',
+    label: 'Areas',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_areas'],
+    config: {
+      // Optional modes: 'has_all', 'has_any'
+      // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
+      searchMode: 'has_all',
+
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for this web app's UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'london', label: 'London' },
+        { key: 'greater_london', label: 'Greater London' },
+        { key: 'south_west', label: 'South West' },
+        { key: 'west_midlands', label: 'West Midlands' },
+        { key: 'east_midlands', label: 'East Midlands' },
+        { key: 'east_england', label: 'East England' },
+        { key: 'east_yorkshire', label: 'East Yorkshire' },
+        { key: 'north_east', label: 'North East' },
+        { key: 'northern_ireland', label: 'Northern Ireland' },
+        { key: 'south_east', label: 'South East' },
+        { key: 'north_west', label: 'North West' },
+        { key: 'wales', label: 'Wales' },
+        { key: 'east_of_england', label: 'East Of England' },
+        { key: 'oxford', label: 'Oxford' },
+        { key: 'international', label: 'International' },
+        { key: 'scotland', label: 'Scotland' },
       ],
     },
   },
