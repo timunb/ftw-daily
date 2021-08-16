@@ -293,3 +293,24 @@ textarea {
     font-family: 'GT Walsheim', Helvetica, Arial, sans-serif;
   }
 }
+
+.EditListingFeaturesForm_submitButton__3MRzo {
+  float: left;
+  clear: both;
+}
+
+.EditListingFeaturesForm_root__3X5z7 {
+  display: block;
+}
+
+.EditListingFeaturesForm_root__3X5z7:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.sub-cat {
+  width: 33.333333%;
+  float: left;
+}
