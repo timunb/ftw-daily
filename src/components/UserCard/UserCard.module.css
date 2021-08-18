@@ -85,9 +85,6 @@
 }
 
 .headingRow {
-  display: flex;
-  flex-direction: column;
-
   @media (--viewportMedium) {
     flex-direction: row;
     justify-content: space-between;

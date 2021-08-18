@@ -314,3 +314,14 @@ textarea {
   width: 33.333333%;
   float: left;
 }
+
+
+/* Booking / Listing Page */
+
+/* .pli-fields {
+  display: none;
+} */
+
+.pli-fields.show {
+  display: block;
+}

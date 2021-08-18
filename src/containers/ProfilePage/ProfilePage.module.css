@@ -103,7 +103,7 @@
   border-top: 1px solid var(--matterColorNegative);
   border-bottom: 1px solid var(--matterColorNegative);
   padding-bottom: 23px;
-
+  display: none;
   @media (--viewportMedium) {
     padding-bottom: 22px;
   }

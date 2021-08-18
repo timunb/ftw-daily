@@ -9,7 +9,7 @@ import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { required, bookingDatesRequired, composeValidators } from '../../util/validators';
 import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
-import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput } from '../../components';
+import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 
 import css from './BookingDatesForm.module.css';
@@ -30,6 +30,10 @@ export class BookingDatesFormComponent extends Component {
   // focused input changes.
   onFocusedInputChange(focusedInput) {
     this.setState({ focusedInput });
+  }
+
+  togglePli(e) {
+    alert('hello');
   }
 
   // In case start or end date for the booking is missing
@@ -235,11 +239,170 @@ export class BookingDatesFormComponent extends Component {
                   }
                 />
               </p>
+
+              <h2>Additional Information</h2>
+              <div class="additional-details">
+                <FieldSelect
+                  id="arrivalTime"
+                  name="arrival-time"
+                  label="Arrival Time"
+                >
+                  <option disabled value="">
+                    Pick a time
+                  </option>
+                  <option value="before-9-am">
+                    Before 9am
+                  </option>
+                  <option value="9-10">
+                    9am-10am
+                  </option>
+                  <option value="10-11">
+                    10am-11am
+                  </option>
+                  <option value="11-12">
+                    11am-12pm
+                  </option>
+                  <option value="12-1">
+                    12pm-1pm
+                  </option>
+                  <option value="1-2">
+                    1pm-2pm
+                  </option>
+                  <option value="2-3">
+                    2pm-3pm
+                  </option>
+                  <option value="3-4">
+                    3pm-4pm
+                  </option>
+                  <option value="4-5">
+                    4pm-5pm
+                  </option>
+                  <option value="after-5-pm">
+                    After 5pm
+                  </option>
+                </FieldSelect>
+
+                <FieldSelect
+                  id="departureTime"
+                  name="departure-time"
+                  label="Departure Time"
+                >
+                  <option disabled value="">
+                    Pick a time
+                  </option>
+                  <option value="before-9-am">
+                    Before 9am
+                  </option>
+                  <option value="9-10">
+                    9am-10am
+                  </option>
+                  <option value="10-11">
+                    10am-11am
+                  </option>
+                  <option value="11-12">
+                    11am-12pm
+                  </option>
+                  <option value="12-1">
+                    12pm-1pm
+                  </option>
+                  <option value="1-2">
+                    1pm-2pm
+                  </option>
+                  <option value="2-3">
+                    2pm-3pm
+                  </option>
+                  <option value="3-4">
+                    3pm-4pm
+                  </option>
+                  <option value="4-5">
+                    4pm-5pm
+                  </option>
+                  <option value="after-5-pm">
+                    After 5pm
+                  </option>
+                </FieldSelect>
+
+                <FieldSelect
+                  id="numberOfPeople"
+                  name="number-of-people"
+                  label="Number of people"
+                >
+                  <option disabled value="">
+                    Pick a number
+                  </option>
+                  <option value="1">
+                    1
+                  </option>
+                  <option value="2">
+                    2
+                  </option>
+                  <option value="3">
+                    3
+                  </option>
+                  <option value="4">
+                    4
+                  </option>
+                  <option value="5">
+                    5
+                  </option>
+                  <option value="6">
+                    6
+                  </option>
+
+                  <option value="7">
+                    7
+                  </option>
+                  <option value="8">
+                    8
+                  </option>
+                  <option value="9">
+                    9
+                  </option>
+                  <option value="10">
+                    10
+                  </option>
+                  <option value="10+">
+                    10+
+                  </option>
+
+                </FieldSelect>
+
+                <FieldSelect
+                  id="shootType"
+                  name="shoot-type"
+                  label="Type of Shoot"
+                >
+                  <option disabled value="">
+                    Pick a type
+                  </option>
+
+                  <option value="video">
+                    Video
+                  </option>
+
+                  <option value="film">
+                    Film
+                  </option>
+
+                  <option value="event">
+                    Event
+                  </option>
+
+                  <option value="other">
+                    Other
+                  </option>
+
+                </FieldSelect>
+              </div>
+
+              <h2>PLI information</h2>
               <FieldCheckbox
                 id="pliConfirm"
                 name="pli-confirm"
                 label="I confirm that I have Public Liability Insurance (PLI) for this shoot."
                 value="pli-confirm"
+                checked={this.state.active}
+                onClick={this.togglePli}
               />
               <div class="pli-fields">
                 <FieldTextInput type="text" id="insuranceProvider" name="insuranceProvider" label="Insurance Provider name:" />

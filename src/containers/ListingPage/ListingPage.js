@@ -441,7 +441,6 @@ export class ListingPageComponent extends Component {
                     currentUser={currentUser}
                     onManageDisableScrolling={onManageDisableScrolling}
                   />
-
               </div>
             </div>
           </LayoutWrapperMain>
