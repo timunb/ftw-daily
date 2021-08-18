@@ -9,7 +9,7 @@ import { propTypes, LISTING_STATE_CLOSED, LINE_ITEM_NIGHT, LINE_ITEM_DAY } from 
 import { formatMoney } from '../../util/currency';
 import { parse, stringify } from '../../util/urlHelpers';
 import config from '../../config';
-import { ModalInMobile, Button } from '../../components';
+import { ModalInMobile, Button, FieldCheckbox } from '../../components';
 import { BookingDatesForm } from '../../forms';
 
 import css from './BookingPanel.module.css';
@@ -116,8 +116,10 @@ const BookingPanel = props => {
 
         <div className={css.bookingHeading}>
           <h2 className={titleClasses}>{title}</h2>
+
           {subTitleText ? <div className={css.bookingHelp}>{subTitleText}</div> : null}
         </div>
+
         {showBookingDatesForm ? (
           <BookingDatesForm
             className={css.bookingForm}

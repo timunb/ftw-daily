@@ -9,7 +9,7 @@ import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { required, bookingDatesRequired, composeValidators } from '../../util/validators';
 import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
-import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput } from '../../components';
+import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 
 import css from './BookingDatesForm.module.css';
@@ -235,6 +235,22 @@ export class BookingDatesFormComponent extends Component {
                   }
                 />
               </p>
+              <FieldCheckbox
+                id="pliConfirm"
+                name="pli-confirm"
+                label="I confirm that I have Public Liability Insurance (PLI) for this shoot."
+                value="pli-confirm"
+              />
+              <div class="pli-fields">
+                <FieldTextInput type="text" id="insuranceProvider" name="insuranceProvider" label="Insurance Provider name:" />
+
+                <FieldTextInput type="text" id="policyNumber" name="policyNumber" label="Policy number:" />
+
+                <FieldTextInput type="text" id="expiryDate" name="expiryDate" label="Expiry date:" />
+
+                <FieldTextInput type="text" id="liabilityValue" name="liabilityValue" label="Value of public liability:" />
+              </div>
+              <br />
               <div className={submitButtonClasses}>
                 <PrimaryButton type="submit">
                   <FormattedMessage id="BookingDatesForm.requestToBook" />
