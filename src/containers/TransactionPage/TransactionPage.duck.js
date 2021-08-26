@@ -307,6 +307,7 @@ export const fetchTransaction = (id, txRole) => (dispatch, getState, sdk) => {
     .then(response => {
       txResponse = response;
       const listingId = listingRelationship(response).id;
+      const protectedData = {pli_confirmed: true, arrival_time: '9am - 10am'};
       const entities = updatedEntities({}, response.data);
       const listingRef = { id: listingId, type: 'listing' };
       const transactionRef = { id, type: 'transaction' };
