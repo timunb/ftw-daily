@@ -181,6 +181,7 @@ export class CheckoutPageComponent extends Component {
 
     if (shouldFetchSpeculatedTransaction) {
       const listingId = pageData.listing.id;
+      const protectedData = {arrival_time:"9am - 10am", pli_confirmed:true};
       const transactionId = tx ? tx.id : null;
       const { bookingStart, bookingEnd } = pageData.bookingDates;
 
@@ -195,6 +196,7 @@ export class CheckoutPageComponent extends Component {
       fetchSpeculatedTransaction(
         {
           listingId,
+          protectedData,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
         },
