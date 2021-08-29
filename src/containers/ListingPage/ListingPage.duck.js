@@ -242,7 +242,7 @@ export const fetchTimeSlots = listingId => (dispatch, getState, sdk) => {
     .startOf('day')
     .add(timeSlotsRange, 'days')
     .toDate();
-  const params = { listingId, start, end };
+  const params = { listingId, start, end, };
 
   return dispatch(timeSlotsRequest(params))
     .then(timeSlots => {
@@ -271,12 +271,17 @@ export const fetchTimeSlots = listingId => (dispatch, getState, sdk) => {
     });
 };
 
-export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => {
+export const sendEnquiry = (listingId, message, protectedData) => (dispatch, getState, sdk) => {
   dispatch(sendEnquiryRequest());
   const bodyParams = {
     transition: TRANSITION_ENQUIRE,
     processAlias: config.bookingProcessAlias,
     params: { listingId },
+    protectedData: {
+      arrivalTime: "9am-10am",
+      pliConfirmed: true
+    }
+
   };
   return sdk.transactions
     .initiate(bodyParams)

@@ -157,8 +157,12 @@ export class ListingPageComponent extends Component {
     const routes = routeConfiguration();
     const listingId = new UUID(params.id);
     const { message } = values;
+    const protectedData = {
+      arrivalTime: "9am-10am",
+      pliConfirmed: true
+    };
 
-    onSendEnquiry(listingId, message.trim())
+    onSendEnquiry(listingId, message.trim(), protectedData)
       .then(txId => {
         this.setState({ enquiryModalOpen: false });
 
