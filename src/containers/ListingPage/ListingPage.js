@@ -196,6 +196,7 @@ export class ListingPageComponent extends Component {
       lineItems,
       fetchLineItemsInProgress,
       fetchLineItemsError,
+      protectedData
     } = this.props;
 
     const listingId = new UUID(rawParams.id);
@@ -466,6 +467,10 @@ ListingPageComponent.defaultProps = {
   filterConfig: config.custom.filters,
   lineItems: null,
   fetchLineItemsError: null,
+  protectedData: {
+    arrivalTime: "9am-10am",
+    pliConfirmed: true
+  }
 };
 
 ListingPageComponent.propTypes = {
