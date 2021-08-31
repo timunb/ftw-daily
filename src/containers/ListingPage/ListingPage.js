@@ -202,7 +202,7 @@ export class ListingPageComponent extends Component {
     const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
     const isDraftVariant = rawParams.variant === LISTING_PAGE_DRAFT_VARIANT;
     const protectedData = {
-      arrivalTime: "9am-10am",
+      arrivalTime: "9am-10am none duck",
       pliConfirmed: true
     };
     const currentListing =
@@ -561,6 +561,7 @@ const mapStateToProps = state => {
     fetchLineItemsError,
     sendEnquiryInProgress,
     sendEnquiryError,
+    protectedData,
   };
 };
 
@@ -571,7 +572,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setInitialValues(values, saveToSessionStorage)),
   onFetchTransactionLineItems: (bookingData, listingId, isOwnListing) =>
     dispatch(fetchTransactionLineItems(bookingData, listingId, isOwnListing)),
-  onSendEnquiry: (listingId, message) => dispatch(sendEnquiry(listingId, message)),
+  onSendEnquiry: (listingId, message, protectedData) => dispatch(sendEnquiry(listingId, message, protectedData)),
   onInitializeCardPaymentData: () => dispatch(initializeCardPaymentData()),
 });
 

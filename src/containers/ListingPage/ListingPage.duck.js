@@ -274,7 +274,7 @@ export const fetchTimeSlots = listingId => (dispatch, getState, sdk) => {
 export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => {
   dispatch(sendEnquiryRequest());
   const protectedData = {
-    arrivalTime: "9am-10am",
+    arrivalTime: "9am-10am duck",
     pliConfirmed: true
   };
   const bodyParams = {
