@@ -560,8 +560,7 @@ const mapStateToProps = state => {
     fetchLineItemsInProgress,
     fetchLineItemsError,
     sendEnquiryInProgress,
-    sendEnquiryError,
-    protectedData,
+    sendEnquiryError
   };
 };
 
