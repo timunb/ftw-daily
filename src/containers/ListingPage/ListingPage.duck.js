@@ -271,17 +271,16 @@ export const fetchTimeSlots = listingId => (dispatch, getState, sdk) => {
     });
 };
 
-export const sendEnquiry = (listingId, message, protectedData) => (dispatch, getState, sdk) => {
+export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => {
   dispatch(sendEnquiryRequest());
+  const protectedData = {
+    arrivalTime: "9am-10am",
+    pliConfirmed: true
+  };
   const bodyParams = {
     transition: TRANSITION_ENQUIRE,
     processAlias: config.bookingProcessAlias,
-    params: { listingId },
-    protectedData: {
-      arrivalTime: "9am-10am",
-      pliConfirmed: true
-    }
-
+    params: { listingId, protectedData }
   };
   return sdk.transactions
     .initiate(bodyParams)
