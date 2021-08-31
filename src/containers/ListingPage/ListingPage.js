@@ -157,12 +157,8 @@ export class ListingPageComponent extends Component {
     const routes = routeConfiguration();
     const listingId = new UUID(params.id);
     const { message } = values;
-    const protectedData = {
-      arrivalTime: "9am-10am",
-      pliConfirmed: true
-    };
 
-    onSendEnquiry(listingId, message.trim(), protectedData)
+    onSendEnquiry(listingId, message.trim())
       .then(txId => {
         this.setState({ enquiryModalOpen: false });
 
@@ -200,19 +196,22 @@ export class ListingPageComponent extends Component {
       lineItems,
       fetchLineItemsInProgress,
       fetchLineItemsError,
-      protectedData
     } = this.props;
 
     const listingId = new UUID(rawParams.id);
     const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
     const isDraftVariant = rawParams.variant === LISTING_PAGE_DRAFT_VARIANT;
+    const protectedData = {
+      arrivalTime: "9am-10am",
+      pliConfirmed: true
+    };
     const currentListing =
       isPendingApprovalVariant || isDraftVariant
         ? ensureOwnListing(getOwnListing(listingId))
         : ensureListing(getListing(listingId));
 
     const listingSlug = rawParams.slug || createSlug(currentListing.attributes.title || '');
-    const params = { slug: listingSlug, ...rawParams };
+    const params = { slug: listingSlug, protectedData, ...rawParams };
 
     const listingType = isDraftVariant
       ? LISTING_PAGE_PARAM_TYPE_DRAFT
@@ -470,11 +469,7 @@ ListingPageComponent.defaultProps = {
   sendEnquiryError: null,
   filterConfig: config.custom.filters,
   lineItems: null,
-  fetchLineItemsError: null,
-  protectedData: {
-    arrivalTime: "9am-10am",
-    pliConfirmed: true
-  }
+  fetchLineItemsError: null
 };
 
 ListingPageComponent.propTypes = {
