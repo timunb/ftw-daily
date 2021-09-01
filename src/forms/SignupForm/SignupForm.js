@@ -131,6 +131,7 @@ const SignupFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
+        
           <div>
             <FieldTextInput
               type="email"
@@ -177,13 +178,10 @@ const SignupFormComponent = props => (
 
           <div className={css.bottomWrapper}>
             <p className={css.bottomWrapperText}>
-              <span className={css.termsText}>
-                <FormattedMessage
-                  id="SignupForm.termsAndConditionsAcceptText"
-                  values={{ termsLink }}
-                />
-              </span>
+              <span class="SignupForm_termsText__1vEFM"><span>By signing up you accept the <span class="SignupForm_termsLink__3yzaD" role="button" tabindex="0"><a href="https://www.film-locations.co.uk/terms/" target="_blank">terms and conditions</a></span></span></span>
             </p>
+            <div class="g-recaptcha" data-sitekey="6LdiajscAAAAAB2_yYK6tRuKHAzCotiXeQnPOhSx
+"></div>
             <PrimaryButton type="submit" inProgress={submitInProgress} disabled={submitDisabled}>
               <FormattedMessage id="SignupForm.signUp" />
             </PrimaryButton>
