@@ -387,7 +387,7 @@ export class CheckoutPageComponent extends Component {
       protectedData: {
         arrivalTime: "9am-10am none checkout.js",
         pliConfirmed: true
-      };
+      },
       ...optionalPaymentParams,
     };
 
