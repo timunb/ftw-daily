@@ -183,6 +183,10 @@ export class CheckoutPageComponent extends Component {
       const listingId = pageData.listing.id;
       const transactionId = tx ? tx.id : null;
       const { bookingStart, bookingEnd } = pageData.bookingDates;
+      const protectedData = {
+        arrivalTime: "9am-10am none duck",
+        pliConfirmed: true
+      };
 
       // Convert picked date to date that will be converted on the API as
       // a noon of correct year-month-date combo in UTC
@@ -195,6 +199,7 @@ export class CheckoutPageComponent extends Component {
       fetchSpeculatedTransaction(
         {
           listingId,
+          protectedData,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
         },

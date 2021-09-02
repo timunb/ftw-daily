@@ -29,6 +29,12 @@ const bookingData = (unitType, tx, isOrder, intl) => {
   const isUnits = unitType === LINE_ITEM_UNITS;
   const isSingleDay = !isNightly && daysBetween(startDate, endDateRaw) <= 1;
   const bookingStart = formatDateToText(intl, startDate);
+
+  const protectedData = {
+    arrivalTime: "9am-10am none duck",
+    pliConfirmed: true
+  };
+
   // Shift the exclusive API end date with daily bookings
   const endDate =
     isDaily || isUnits
