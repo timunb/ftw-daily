@@ -24,7 +24,6 @@ export class BookingDatesFormComponent extends Component {
     this.onFocusedInputChange = this.onFocusedInputChange.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.storeField = this.storeField.bind(this);
-    this.togglePli = this.togglePli.bind(this);
   }
 
   // Function that can be passed to nested components
@@ -35,11 +34,6 @@ export class BookingDatesFormComponent extends Component {
   }
 
   storeField(e) {
-    console.log(e.target.value);
-  }
-
-  togglePli(e) {
-    alert('toggled');
     console.log(e.target.value);
   }
 
@@ -85,6 +79,46 @@ export class BookingDatesFormComponent extends Component {
   setDepartureTime(value, id) {
     localStorage.setItem('departureTime', value);
   }
+
+  setNumberOfPeople(value, id) {
+    localStorage.setItem('numberOfPeople', value);
+  }
+
+  setShootType(value, id) {
+    localStorage.setItem('shootType', value);
+  }
+
+  setInsuranceProvider(value, id) {
+    localStorage.setItem('insuranceProvider', value);
+  }
+
+  setPolicyNumber(value, id) {
+    localStorage.setItem('policyNumber', value);
+  }
+
+  setExpiryDate(value, id) {
+    localStorage.setItem('expiryDate', value);
+  }
+
+  setLiabilityValue(value, id) {
+    localStorage.setItem('liabilityValue', value);
+  }
+
+  confirmPli(name) {
+    const state = name.target.value;
+    const element = document.getElementById('pliFields')
+
+    if (state === true) {
+      element.classList.add('show');
+      localStorage.setItem('pliConfirmed', true);
+    } else {
+      element.classList.remove('show')
+      localStorage.setItem('pliConfirmed', false);
+    }
+  }
+
+
+
 
   render() {
     const { rootClassName, className, price: unitPrice, ...rest } = this.props;
@@ -331,95 +365,130 @@ export class BookingDatesFormComponent extends Component {
                 </option>
               </select>
 
-                <FieldSelect
-                  id="numberOfPeople"
-                  name="number-of-people"
-                  label="Number of people"
-                >
-                  <option disabled value="">
-                    Pick a number
-                  </option>
-                  <option value="1">
-                    1
-                  </option>
-                  <option value="2">
-                    2
-                  </option>
-                  <option value="3">
-                    3
-                  </option>
-                  <option value="4">
-                    4
-                  </option>
-                  <option value="5">
-                    5
-                  </option>
-                  <option value="6">
-                    6
-                  </option>
 
-                  <option value="7">
-                    7
-                  </option>
-                  <option value="8">
-                    8
-                  </option>
-                  <option value="9">
-                    9
-                  </option>
-                  <option value="10">
-                    10
-                  </option>
-                  <option value="10+">
-                    10+
-                  </option>
 
-                </FieldSelect>
+              <label for="numberOfPeople">Number of People</label>
+              <select id="numberOfPeople" name="numberOfPeople" onChange={e => this.setNumberOfPeople(e.target.value)}>
+                <option disabled selected value="">
+                  Pick a number
+                </option>
+                <option value="1">
+                  1
+                </option>
+                <option value="2">
+                  2
+                </option>
+                <option value="3">
+                  3
+                </option>
+                <option value="4">
+                  4
+                </option>
+                <option value="5">
+                  5
+                </option>
+                <option value="6">
+                  6
+                </option>
 
-                <FieldSelect
-                  id="shootType"
-                  name="shoot-type"
-                  label="Type of Shoot"
-                >
-                  <option disabled value="">
-                    Pick a type
-                  </option>
+                <option value="7">
+                  7
+                </option>
+                <option value="8">
+                  8
+                </option>
+                <option value="9">
+                  9
+                </option>
+                <option value="10">
+                  10
+                </option>
+                <option value="10+">
+                  10+
+                </option>
+              </select>
 
-                  <option value="video">
-                    Video
-                  </option>
+              <label for="shootType">Type of Shoot</label>
+              <select id="shootType" name="shootType" onChange={e => this.setShootType(e.target.value)}>
+              <option disabled selected value="">
+                Pick a type
+              </option>
 
-                  <option value="film">
-                    Film
-                  </option>
+              <option value="video">
+                Video
+              </option>
 
-                  <option value="event">
-                    Event
-                  </option>
+              <option value="film">
+                Film
+              </option>
 
-                  <option value="other">
-                    Other
-                  </option>
+              <option value="event">
+                Event
+              </option>
 
-                </FieldSelect>
+              <option value="other">
+                Other
+              </option>
+              </select>
               </div>
 
               <h2>PLI information</h2>
-              <FieldCheckbox
-                id="pliConfirm"
-                name="pli-confirm"
-                label="I confirm that I have Public Liability Insurance (PLI) for this shoot."
-                value="pli-confirm"
-                onChange={this.togglePli}
-              />
-              <div class="pli-fields">
-                <FieldTextInput type="text" id="insuranceProvider" name="insuranceProvider" label="Insurance Provider name:" onChange={this.storeField}/>
 
-                <FieldTextInput type="text" id="policyNumber" name="policyNumber" label="Policy number:" />
+              <span class="FieldCheckbox_root__3zj8N">
+              <input id="pliConfirm"
+              class="FieldCheckbox_input__mLqZ5"
+              type="checkbox"
+              checked={this.state.check}
+              onChange={(e) => {
+                this.confirmPli({
+                  target: {
+                    name: e.target.name,
+                    value: e.target.checked,
+                  },
+                });
+              }}/>
+              <label for="pliConfirm" class="FieldCheckbox_label__IMcLm">
+              <span class="FieldCheckbox_checkboxWrapper__1s98A">
+                <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g transform="translate(2 2)"><path class="FieldCheckbox_checked__cE7fY" d="M9.9992985 1.5048549l-.0194517 6.9993137C9.977549 9.3309651 9.3066522 10 8.4798526 10H1.5001008c-.8284271 0-1.5-.6715729-1.5-1.5l-.000121-7c0-.8284271.6715728-1.5 1.5-1.5h.000121l6.9993246.0006862c.8284272.000067 1.4999458.671694 1.499879 1.5001211a1.5002208 1.5002208 0 0 1-.0000059.0040476z"></path><path class="FieldCheckbox_box__2sdbR" stroke-width="2" d="M10.9992947 1.507634l-.0194518 6.9993137C10.9760133 9.8849417 9.8578519 11 8.4798526 11H1.5001008c-1.3807119 0-2.5-1.1192881-2.5-2.4999827L-1.0000202 1.5c0-1.3807119 1.119288-2.5 2.500098-2.5l6.9994284.0006862c1.3807118.0001115 2.4999096 1.11949 2.4997981 2.5002019-.0000018.003373-.0000018.003373-.0000096.0067458z"></path></g><path d="M5.636621 10.7824771L3.3573694 8.6447948c-.4764924-.4739011-.4764924-1.2418639 0-1.7181952.4777142-.473901 1.251098-.473901 1.7288122 0l1.260291 1.1254782 2.8256927-4.5462307c.3934117-.5431636 1.1545778-.6695372 1.7055985-.278265.5473554.3912721.6731983 1.150729.2797866 1.6951077l-3.6650524 5.709111c-.2199195.306213-.5803433.5067097-.9920816.5067097-.3225487 0-.6328797-.1263736-.8637952-.3560334z" fill="#FFF"></path></g></svg>
+              </span>
 
-                <FieldTextInput type="text" id="expiryDate" name="expiryDate" label="Expiry date:" />
+              <span class="FieldCheckbox_text__1f3zE FieldCheckbox_textRoot__1FOIz">I confirm that I have Public Liability Insurance (PLI) for this shoot</span>
+              </label>
+              </span>
 
-                <FieldTextInput type="text" id="liabilityValue" name="liabilityValue" label="Value of public liability:" />
+
+              <div id="pliFields" class="pli-fields">
+                <label for="insuranceProvider">Insurance Provider name:</label>
+                <input
+                  id="insuranceProvider"
+                  type="text"
+                  value={this.state.name}
+                  onChange={e => this.setInsuranceProvider(e.target.value)}
+                />
+
+                <label for="policyNumber">Policy Number:</label>
+                <input
+                  id="policyNumber"
+                  type="text"
+                  value={this.state.name}
+                  onChange={e => this.setPolicyNumber(e.target.value)}
+                />
+
+                <label for="expiryDate">Expiry date:</label>
+                <input
+                  id="expiryDate"
+                  type="text"
+                  value={this.state.name}
+                  onChange={e => this.setExpiryDate(e.target.value)}
+                />
+
+                <label for="liabilityValue">Value of public liability:</label>
+                <input
+                  id="liabilityValue"
+                  type="text"
+                  value={this.state.name}
+                  onChange={e => this.setLiabilityValue(e.target.value)}
+                />
               </div>
               <br />
               <div className={submitButtonClasses}>

@@ -318,9 +318,9 @@ textarea {
 
 /* Booking / Listing Page */
 
-/* .pli-fields {
+.pli-fields {
   display: none;
-} */
+}
 
 .pli-fields.show {
   display: block;

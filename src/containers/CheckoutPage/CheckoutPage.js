@@ -386,7 +386,14 @@ export class CheckoutPageComponent extends Component {
       bookingEnd: tx.booking.attributes.end,
       protectedData: {
         arrivalTime: localStorage.getItem("arrivalTime"),
-        departureTime: localStorage.getItem("departureTime")
+        departureTime: localStorage.getItem("departureTime"),
+        numberOfPeople: localStorage.getItem("numberOfPeople"),
+        shootType: localStorage.getItem("shootType"),
+        pliConfirmed: localStorage.getItem("pliConfirmed"),
+        insuranceProvder: localStorage.getItem("insuranceProvider"),
+        policyNumber: localStorage.getItem("policyNumber"),
+        liabilityValue: localStorage.getItem("liabilityValue"),
+        expiryDate: localStorage.getItem("expiryDate"),
       },
       ...optionalPaymentParams,
     };
