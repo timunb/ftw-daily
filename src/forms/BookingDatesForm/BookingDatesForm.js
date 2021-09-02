@@ -23,6 +23,8 @@ export class BookingDatesFormComponent extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.onFocusedInputChange = this.onFocusedInputChange.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.storeField = this.storeField.bind(this);
+    this.togglePli = this.togglePli.bind(this);
   }
 
   // Function that can be passed to nested components
@@ -32,8 +34,13 @@ export class BookingDatesFormComponent extends Component {
     this.setState({ focusedInput });
   }
 
+  storeField(e) {
+    console.log(e.target.value);
+  }
+
   togglePli(e) {
-    alert('hello');
+    alert('toggled');
+    console.log(e.target.value);
   }
 
   // In case start or end date for the booking is missing
@@ -69,6 +76,14 @@ export class BookingDatesFormComponent extends Component {
         isOwnListing,
       });
     }
+  }
+
+  setArrivalTime(value, id) {
+    localStorage.setItem('arrivalTime', value);
+  }
+
+  setDepartureTime(value, id) {
+    localStorage.setItem('departureTime', value);
   }
 
   render() {
@@ -242,85 +257,79 @@ export class BookingDatesFormComponent extends Component {
 
               <h2>Additional Information</h2>
               <div class="additional-details">
-                <FieldSelect
-                  id="arrivalTime"
-                  name="arrival-time"
-                  label="Arrival Time"
-                >
-                  <option disabled value="">
-                    Pick a time
-                  </option>
-                  <option value="before-9-am">
-                    Before 9am
-                  </option>
-                  <option value="9-10">
-                    9am-10am
-                  </option>
-                  <option value="10-11">
-                    10am-11am
-                  </option>
-                  <option value="11-12">
-                    11am-12pm
-                  </option>
-                  <option value="12-1">
-                    12pm-1pm
-                  </option>
-                  <option value="1-2">
-                    1pm-2pm
-                  </option>
-                  <option value="2-3">
-                    2pm-3pm
-                  </option>
-                  <option value="3-4">
-                    3pm-4pm
-                  </option>
-                  <option value="4-5">
-                    4pm-5pm
-                  </option>
-                  <option value="after-5-pm">
-                    After 5pm
-                  </option>
-                </FieldSelect>
+              <label for="arrivalTime">Arrival Time</label>
+              <select id="arrivalTime" name="arrival-time" onChange={e => this.setArrivalTime(e.target.value)}>
+                <option disabled selected value="">
+                  Pick a time
+                </option>
+                <option value="Before 9am">
+                  Before 9am
+                </option>
+                <option value="9am-10am">
+                  9am-10am
+                </option>
+                <option value="10am-11am">
+                  10am-11am
+                </option>
+                <option value="11am-12pm">
+                  11am-12pm
+                </option>
+                <option value="12pm-1pm">
+                  12pm-1pm
+                </option>
+                <option value="1pm-2pm">
+                  1pm-2pm
+                </option>
+                <option value="2pm-3pm">
+                  2pm-3pm
+                </option>
+                <option value="3pm-4pm">
+                  3pm-4pm
+                </option>
+                <option value="4pm-5pm">
+                  4pm-5pm
+                </option>
+                <option value="After 5pm">
+                  After 5pm
+                </option>
+              </select>
 
-                <FieldSelect
-                  id="departureTime"
-                  name="departure-time"
-                  label="Departure Time"
-                >
-                  <option disabled value="">
-                    Pick a time
-                  </option>
-                  <option value="before-9-am">
-                    Before 9am
-                  </option>
-                  <option value="9-10">
-                    9am-10am
-                  </option>
-                  <option value="10-11">
-                    10am-11am
-                  </option>
-                  <option value="11-12">
-                    11am-12pm
-                  </option>
-                  <option value="12-1">
-                    12pm-1pm
-                  </option>
-                  <option value="1-2">
-                    1pm-2pm
-                  </option>
-                  <option value="2-3">
-                    2pm-3pm
-                  </option>
-                  <option value="3-4">
-                    3pm-4pm
-                  </option>
-                  <option value="4-5">
-                    4pm-5pm
-                  </option>
-                  <option value="after-5-pm">
-                    After 5pm
-                  </option>
-                </FieldSelect>
+              <label for="departureTime">Departure Time</label>
+              <select id="departureTime" name="departure-time" onChange={e => this.setDepartureTime(e.target.value)}>
+                <option disabled selected value="">
+                  Pick a time
+                </option>
+                <option value="Before 9am">
+                  Before 9am
+                </option>
+                <option value="9am-10am">
+                  9am-10am
+                </option>
+                <option value="10am-11am">
+                  10am-11am
+                </option>
+                <option value="11am-12pm">
+                  11am-12pm
+                </option>
+                <option value="12pm-1pm">
+                  12pm-1pm
+                </option>
+                <option value="1pm-2pm">
+                  1pm-2pm
+                </option>
+                <option value="2pm-3pm">
+                  2pm-3pm
+                </option>
+                <option value="3pm-4pm">
+                  3pm-4pm
+                </option>
+                <option value="4pm-5pm">
+                  4pm-5pm
+                </option>
+                <option value="After 5pm">
+                  After 5pm
+                </option>
+              </select>
 
                 <FieldSelect
                   id="numberOfPeople"
@@ -401,11 +410,10 @@ export class BookingDatesFormComponent extends Component {
                 name="pli-confirm"
                 label="I confirm that I have Public Liability Insurance (PLI) for this shoot."
                 value="pli-confirm"
-                checked={this.state.active}
-                onClick={this.togglePli}
+                onChange={this.togglePli}
               />
               <div class="pli-fields">
-                <FieldTextInput type="text" id="insuranceProvider" name="insuranceProvider" label="Insurance Provider name:" />
+                <FieldTextInput type="text" id="insuranceProvider" name="insuranceProvider" label="Insurance Provider name:" onChange={this.storeField}/>
 
                 <FieldTextInput type="text" id="policyNumber" name="policyNumber" label="Policy number:" />
 

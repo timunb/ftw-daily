@@ -385,8 +385,8 @@ export class CheckoutPageComponent extends Component {
       bookingStart: tx.booking.attributes.start,
       bookingEnd: tx.booking.attributes.end,
       protectedData: {
-        arrivalTime: "9am-10am none checkout.js",
-        pliConfirmed: true
+        arrivalTime: localStorage.getItem("arrivalTime"),
+        departureTime: localStorage.getItem("departureTime")
       },
       ...optionalPaymentParams,
     };
