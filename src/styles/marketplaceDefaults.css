@@ -325,3 +325,8 @@ textarea {
 .pli-fields.show {
   display: block;
 }
+
+/* Enquiry Page */
+.additional-details {
+  margin: 0 48px 47px 48px;
+}

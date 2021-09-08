@@ -193,6 +193,7 @@ export class TransactionPanelComponent extends Component {
       nextTransitions,
       onFetchTransactionLineItems,
       lineItems,
+      protectedData,
       fetchLineItemsInProgress,
       fetchLineItemsError,
     } = this.props;
@@ -459,6 +460,23 @@ export class TransactionPanelComponent extends Component {
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
               />
+              <div class="additional-details">
+                <h2>Pli Information</h2>
+                <ul>
+                  <li>Pli Confirmed: {protectedData.pliConfirmed}</li>
+                  <li>Policy Number: {protectedData.policyNumber}</li>
+                  <li>Expiry Date: {protectedData.expiryDate}</li>
+                  <li>Value of PLI: {protectedData.liabilityValue}</li>
+                </ul>
+
+                <h2>Additional Information</h2>
+                <ul>
+                  <li>Arrival Time: {protectedData.arrivalTime}</li>
+                  <li>Departure Time: {protectedData.departureTime}</li>
+                  <li>Number of People: {protectedData.numberOfPeople}</li>
+                  <li>Shoot Type: {protectedData.shootType}</li>
+                </ul>
+              </div>
 
               {stateData.showSaleButtons ? (
                 <div className={css.desktopActionButtons}>{saleButtons}</div>

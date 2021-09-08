@@ -213,6 +213,8 @@ export const TransactionPageComponent = props => {
     initialMessageFailedToTransaction.uuid === currentTransaction.id.uuid
   );
 
+  console.log(currentTransaction.attributes.protectedData);
+
   // TransactionPanel is presentational component
   // that currently handles showing everything inside layout's main view area.
   const panel = isDataAvailable ? (
@@ -250,6 +252,7 @@ export const TransactionPageComponent = props => {
       lineItems={lineItems}
       fetchLineItemsInProgress={fetchLineItemsInProgress}
       fetchLineItemsError={fetchLineItemsError}
+      protectedData={currentTransaction.attributes.protectedData}
     />
   ) : (
     loadingOrFailedFetching
