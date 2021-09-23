@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, FieldSelect } from '../../components';
 
 import css from './SignupForm.module.css';
 
@@ -41,6 +41,26 @@ const SignupFormComponent = props => (
         id: 'SignupForm.emailInvalid',
       });
       const emailValid = validators.emailFormatValid(emailInvalidMessage);
+
+      // user type
+      const userTypeLabel = intl.formatMessage({
+        id: 'SignupForm.userTypeLabel',
+      });
+      const userTypePlaceholder = intl.formatMessage({
+        id: 'SignupForm.userTypePlaceholder',
+      });
+
+      const userTypeBooker = intl.formatMessage({
+        id: 'SignupForm.userTypeBooker',
+      });
+
+      const userTypeOwner = intl.formatMessage({
+        id: 'SignupForm.userTypeOwner',
+      });
+      const userTypeRequiredMessage = intl.formatMessage({
+        id: 'SignupForm.userTypeRequired',
+      });
+      const userTypeRequired = validators.required(userTypeRequiredMessage);
 
       // password
       const passwordLabel = intl.formatMessage({
@@ -131,7 +151,7 @@ const SignupFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
-        
+
           <div>
             <FieldTextInput
               type="email"
@@ -174,6 +194,27 @@ const SignupFormComponent = props => (
               placeholder={passwordPlaceholder}
               validate={passwordValidators}
             />
+
+            <FieldSelect
+              id={formId ? `${formId}.type` : 'type'}
+              name="userType"
+              className={css.usertype}
+              label={userTypeLabel}
+              validate={userTypeRequired}
+            >
+              <option disabled value="">
+                {userTypePlaceholder}
+              </option>
+
+              <option key="booker" value="booker">
+                {userTypeBooker}
+              </option>
+
+              <option key="owner" value="owner">
+                {userTypeOwner}
+              </option>
+
+            </FieldSelect>
           </div>
 
           <div className={css.bottomWrapper}>

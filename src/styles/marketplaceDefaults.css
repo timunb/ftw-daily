@@ -18,13 +18,14 @@
 
   --marketplaceColor: #a7d0e1;
   --marketplaceColorLight: #ff4c38;
-  --marketplaceColorDark: #8c291e;
+  --marketplaceColorDark: #2e3180;
 
   /* Used with inline CSS SVGs */
   --marketplaceColorEncoded: %23c0392b;
 
+  --buttonColor: #54febd;
   --successColor: #2ecc71;
-  --successColorDark: #239954;
+  --successColorDark: #3e7bbd;
   --successColorLight: #f0fff6;
   --failColor: #ff0000;
   --failColorLight: #fff0f0;

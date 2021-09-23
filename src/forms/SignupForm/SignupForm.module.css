@@ -32,6 +32,10 @@
   @apply --marketplaceModalPasswordMargins;
 }
 
+.usertype {
+  @apply --marketplaceModalPasswordMargins;
+}
+
 .bottomWrapper {
   @apply --marketplaceModalBottomWrapper;
 }
