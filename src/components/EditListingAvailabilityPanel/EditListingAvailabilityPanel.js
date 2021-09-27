@@ -54,6 +54,7 @@ const EditListingAvailabilityPanel = props => {
           <FormattedMessage id="EditListingAvailabilityPanel.createListingTitle" />
         )}
       </h1>
+      <p>Every future date is set to be available by default. Please click specific dates to set them to be 'Not available'</p>
       <EditListingAvailabilityForm
         className={css.form}
         listingId={currentListing.id}

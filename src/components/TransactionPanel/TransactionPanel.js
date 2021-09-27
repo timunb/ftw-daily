@@ -474,7 +474,7 @@ export class TransactionPanelComponent extends Component {
                   <li>Arrival Time: {protectedData.arrivalTime}</li>
                   <li>Departure Time: {protectedData.departureTime}</li>
                   <li>Number of People: {protectedData.numberOfPeople}</li>
-                  <li>Shoot Type: {protectedData.shootType}</li>
+                  <li>Type of Shoot: {protectedData.shootType}</li>
                 </ul>
               </div>
 

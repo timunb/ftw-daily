@@ -114,6 +114,16 @@
 
 .contact {
   @apply --marketplaceLinkStyles;
-  @apply --marketplaceH4FontStyles;
+  background: #54febd;
+  padding: 10px;
+  color: #2e3180;
+  width: 100%;
   margin: 0;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    background: #2e3180;
+    color: white;
+    text-decoration: none !important;
+  }
 }

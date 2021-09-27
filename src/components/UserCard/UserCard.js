@@ -85,12 +85,17 @@ const UserCard = props => {
 
   const separator = isCurrentUser ? null : <span className={css.linkSeparator}>•</span>;
 
+  const message = (
+    <p>Want to enquire about availability? Click 'contact' to speak directly with the owner.</p>
+  );
+
   const contact = (
     <InlineTextButton
       rootClassName={css.contact}
       onClick={handleContactUserClick}
       enforcePagePreloadFor="SignupPage"
     >
+
       <FormattedMessage id="UserCard.contactUser" />
     </InlineTextButton>
   );
@@ -115,7 +120,8 @@ const UserCard = props => {
       <NamedLink className={css.link} name="ProfilePage" params={{ id: ensuredUser.id.uuid }}>
         <FormattedMessage id="UserCard.viewProfileLink" />
       </NamedLink>
-      {separator}
+
+      {isCurrentUser ? editProfileMobile : message}
       {isCurrentUser ? editProfileMobile : contact}
     </p>
   ) : null;
