@@ -85,8 +85,9 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'location', label: 'Location' },
-        { key: 'vehicle', label: 'Vehicle' }
+        { key: 'residential', label: 'Residential (i.e. homes, apartments, estates, private outdoor spaces)' },
+        { key: 'non-residential', label: 'Non-residential (i.e. venues, commercial spaces, offices, exterior locations)' },
+        { key: 'transport', label: 'Transport (i.e. vehicles, aircraft) ' },
       ],
     },
   },
@@ -107,117 +108,136 @@ export const filters = [
       // to make filter customizations a bit easier.
       options: [
         {
-          key: 'distressed_walls',
-          label: 'Distressed Walls',
-        },
-        {
-          key: 'shabby_chic',
-          label: 'Shabby Chic',
-        },
-        {
-          key: 'derelict_buildings',
-          label: 'Deralict Buildings',
-        },
-        {
-          key: 'boho_chic',
-          label: 'Boho Chic',
-        },
-        {
-          key: 'loft_style',
-          label: 'Loft Style',
-        },
-        {
-          key: 'industrial',
-          label: 'Industrial',
-        },
-        {
-          key: 'wood_panelled_rooms',
-          label: 'Wood Panelled Rooms',
-        },
-        {
           key: 'architecural',
           label: 'Architectual',
-        },
-
-        {
-          key: 'victorian',
-          label: 'Victorian',
-        },
-        {
-          key: 'brutalist_architecture',
-          label: 'Brutalist Architecture',
-        },
-        {
-          key: 'scandinavian_style',
-          label: 'Scandinavian Style',
-        },
-        {
-          key: 'spanish_locations',
-          label: 'Spanish Locations',
-        },
-        {
-          key: 'elizabethan',
-          label: 'Elizabethan',
-        },
-
-        {
-          key: 'concrete',
-          label: 'Concrete',
-        },
-        {
-          key: 'midcentury_modern',
-          label: 'Midcentury Modern',
-        },
-        {
-          key: 'feminine',
-          label: 'Feminine',
-        },
-        {
-          key: 'georgian',
-          label: 'Georgian',
-        },
-        {
-          key: 'driveways',
-          label: 'Driveways',
-        },
-        {
-          key: 'offices',
-          label: 'Offices',
-        },
-
-
-        {
-          key: 'botanical',
-          label: 'Botanical',
-        },
-        {
-          key: 'faded_grandeur',
-          label: 'Faded Grandeur',
         },
         {
           key: 'art_deco',
           label: 'Art Deco',
         },
         {
-          key: 'moroccan_style_locations',
-          label: 'Moroccan Style Locations',
+          key: 'boho_chic',
+          label: 'Boho Chic',
         },
         {
-          key: 'retro',
-          label: 'Retro',
+          key: 'botanical',
+          label: 'Botanical',
+        },
+
+        {
+          key: 'brutalist_architecture',
+          label: 'Brutalist Architecture',
+        },
+
+        {
+          key: 'concrete',
+          label: 'Concrete',
+        },
+
+        {
+          key: 'derelict_buildings',
+          label: 'Derelict Buildings',
+        },
+
+        {
+          key: 'distressed_walls',
+          label: 'Distressed Walls',
         },
         {
-          key: 'north_american_style_in_uk',
-          label: 'North American Style In UK',
+          key: 'driveways',
+          label: 'Driveways',
         },
+
+        {
+          key: 'elizabethan',
+          label: 'Elizabethan',
+        },
+
+        {
+          key: 'faded_grandeur',
+          label: 'Faded Grandeur',
+        },
+
+        {
+          key: 'feminine',
+          label: 'Feminine',
+        },
+
+        {
+          key: 'georgian',
+          label: 'Georgian',
+        },
+
+        {
+          key: 'industrial',
+          label: 'Industrial',
+        },
+
         {
           key: 'kitchens',
           label: 'Kitchens',
         },
+
+        {
+          key: 'loft_style',
+          label: 'Loft Style',
+        },
+
+        {
+          key: 'midcentury_modern',
+          label: 'Midcentury Modern',
+        },
+
         {
           key: 'modern',
           label: 'Modern',
         },
+
+        {
+          key: 'moroccan_style_locations',
+          label: 'Moroccan Style Locations',
+        },
+
+        {
+          key: 'north_american_style_in_uk',
+          label: 'North American Style In UK',
+        },
+
+        {
+          key: 'offices',
+          label: 'Offices',
+        },
+
+        {
+          key: 'retro',
+          label: 'Retro',
+        },
+
+        {
+          key: 'rooftop',
+          label: 'Rooftop',
+        },
+
+        {
+          key: 'scandinavian_style',
+          label: 'Scandinavian Style',
+        },
+
+        {
+          key: 'shabby_chic',
+          label: 'Shabby Chic',
+        },
+
+        {
+          key: 'victorian',
+          label: 'Victorian',
+        },
+
+        {
+          key: 'wood_panelled_rooms',
+          label: 'Wood Panelled Rooms',
+        },
+
       ],
     },
   },
@@ -236,22 +256,21 @@ export const filters = [
       // "label" is set here for this web app's UI only.
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
+
       options: [
-        { key: 'studios', label: 'Studios' },
-        { key: 'new_locations', label: 'New Locations' },
-        { key: 'manor_houses', label: 'Manor Houses' },
-        { key: 'large_locations', label: 'Large Locations' },
-        { key: 'modern_mansions', label: 'Modern Mansions' },
-        { key: 'beach_houses', label: 'Beach Houses' },
-        { key: 'country_locations', label: 'Country Locations' },
-        { key: 'europe_locations', label: 'Europe Locations' },
-        { key: 'apartments', label: 'Apartments' },
-        { key: 'vehicles', label: 'Vehicles' },
-        { key: 'exclusives', label: 'Exclusives' },
         { key: 'houses', label: 'Houses' },
+        { key: 'apartments', label: 'Apartments' },
         { key: 'everyday_homes', label: 'Everyday Homes' },
-        { key: 'warehouse', label: 'Warehouse' },
-        { key: 'Venues', label: 'Venues' },
+        { key: 'studios', label: 'Studios' },
+        { key: 'venues', label: 'Venues' },
+        { key: 'warehouse', label: 'Warehouses' },
+        { key: 'manor_houses', label: 'Manor Houses' },
+        { key: 'modern_mansions', label: 'Modern Mansions' },
+        { key: 'country_locations', label: 'Country Locations' },
+        { key: 'beach_houses', label: 'Beach Houses' },
+        { key: 'vehicles_and_aircraft', label: 'Vehicles and Aircraft' },
+        { key: 'european_locations', label: 'European Locations' },
+        { key: 'international_locations', label: 'International Locations' },
       ],
     },
   },
@@ -273,6 +292,10 @@ export const filters = [
       // to make filter customizations a bit easier.
       options: [
         { key: 'london', label: 'London' },
+        { key: 'north_london', label: 'North London' },
+        { key: 'south_london', label: 'South London' },
+        { key: 'east_london', label: 'East London' },
+        { key: 'west_london', label: 'West London' },
         { key: 'greater_london', label: 'Greater London' },
         { key: 'south_west', label: 'South West' },
         { key: 'west_midlands', label: 'West Midlands' },
@@ -286,8 +309,10 @@ export const filters = [
         { key: 'wales', label: 'Wales' },
         { key: 'east_of_england', label: 'East Of England' },
         { key: 'oxford', label: 'Oxford' },
-        { key: 'international', label: 'International' },
         { key: 'scotland', label: 'Scotland' },
+        { key: 'europe', label: 'Europe' },
+        { key: 'international', label: 'International' },
+
       ],
     },
   },
