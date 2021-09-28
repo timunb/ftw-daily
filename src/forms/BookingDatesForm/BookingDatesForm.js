@@ -260,11 +260,14 @@ export class BookingDatesFormComponent extends Component {
           const queryParams = new URLSearchParams(useLocation().search);
           const start_date = queryParams.get('start_date');
           const end_date = queryParams.get('end_date');
+          var queryDates = null;
 
-          const queryDates = {
-            startDate: start_date,
-            endDate: end_date
-          };
+          if (start_date && end_date) {
+            queryDates = {
+              startDate: start_date,
+              endDate: end_date
+            };
+          }
 
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
