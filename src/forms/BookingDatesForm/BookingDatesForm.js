@@ -257,7 +257,12 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
-          const queryParams = new URLSearchParams(window.location.search);
+          if (typeof(window) !== 'undefined') {
+            var timer = setTimeout(function() {
+                const queryParams = new URLSearchParams(window.location.search);
+            }, 200);
+          }
+
           const start_date = queryParams.get('start_date');
           const end_date = queryParams.get('end_date');
 
