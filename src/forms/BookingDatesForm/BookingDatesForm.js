@@ -277,6 +277,11 @@ export class BookingDatesFormComponent extends Component {
           //   };
           // }
 
+          const queryDates = {
+            startDate: '2021-11-18',
+            endDate: '2021-11-21'
+          };
+
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
@@ -289,7 +294,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={initialDates}
+                initialDates={queryDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
