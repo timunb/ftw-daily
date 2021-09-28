@@ -121,7 +121,7 @@ export class BookingDatesFormComponent extends Component {
 
 
   render() {
-    const { rootClassName, queryParamNames, initialValues, className, price: unitPrice, ...rest } = this.props;
+    const { rootClassName, className, price: unitPrice, ...rest } = this.props;
     const classes = classNames(rootClassName || css.root, className);
 
     if (!unitPrice) {
@@ -201,13 +201,6 @@ export class BookingDatesFormComponent extends Component {
               ? queryParamNames
               : 'dates';
           };
-
-          const datesQueryParamName = getDatesQueryParamName(queryParamNames);
-          const initialDates =
-            initialValues && initialValues[datesQueryParamName]
-              ? parseValue(initialValues[datesQueryParamName])
-              : { dates: null };
-
 
           // Get dates from query string parameters
             function getParameterByName(name, url) {
@@ -599,21 +592,16 @@ BookingDatesFormComponent.defaultProps = {
   timeSlots: null,
   lineItems: null,
   fetchLineItemsError: null,
-  queryParamNames: arrayOf(string),
-  initialValues: null
 };
 
 BookingDatesFormComponent.propTypes = {
   rootClassName: string,
   className: string,
   submitButtonWrapperClassName: string,
-  queryParamNames: arrayOf(string),
-
   unitType: propTypes.bookingUnitType.isRequired,
   price: propTypes.money,
   isOwnListing: bool,
   timeSlots: arrayOf(propTypes.timeSlot),
-
   onFetchTransactionLineItems: func.isRequired,
   lineItems: array,
   fetchLineItemsInProgress: bool.isRequired,
