@@ -273,6 +273,15 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
+          var queryDates = null;
+
+          if (getParameterByName("start_date") && getParameterByName("end_date")) {
+            queryDates = {
+              startDate: getParameterByName("start_date"),
+              endDate: getParameterByName("end_date")
+            };
+          }
+
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
@@ -285,7 +294,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={initalDates}
+                initialDates={queryDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
