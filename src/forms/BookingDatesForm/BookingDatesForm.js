@@ -110,14 +110,12 @@ export class BookingDatesFormComponent extends Component {
 
     if (state === true) {
       element.classList.add('show');
-      localStorage.setItem('pliConfirmed', true);
+      localStorage.setItem('pliConfirmed', 'Yes');
     } else {
       element.classList.remove('show')
-      localStorage.setItem('pliConfirmed', false);
+      localStorage.setItem('pliConfirmed', 'No');
     }
   }
-
-
 
 
   render() {
@@ -259,15 +257,6 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
-          var queryDates = null;
-
-          if (getParameterByName("start_date") && getParameterByName("end_date")) {
-            queryDates = {
-              startDate: getParameterByName("start_date"),
-              endDate: getParameterByName("end_date")
-            };
-          }
-
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
@@ -280,7 +269,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={queryDates}
+                initialDates={initialDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
