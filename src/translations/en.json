@@ -358,7 +358,7 @@
   "ListingCard.perUnit": "per unit",
   "ListingCard.unsupportedPrice": "({currency})",
   "ListingCard.unsupportedPriceTitle": "Unsupported currency ({currency})",
-  "ListingPage.bookingSubTitle": "Start by choosing your dates.",
+  "ListingPage.bookingSubTitle": "Start by confirming your dates.",
   "ListingPage.bookingTitle": "Book {title}",
   "ListingPage.closedListing": "This listing has been closed and can't be booked.",
   "ListingPage.contactUser": "Contact",
