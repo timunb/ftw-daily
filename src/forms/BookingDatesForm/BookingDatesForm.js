@@ -257,29 +257,13 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
-          // Get dates from query string parameters
-            function getParameterByName(name, url) {
-               if (!url) url = window.location.href;
-               name = name.replace(/[\[\]]/g, "\\$&");
-               var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                   results = regex.exec(url);
-               if (!results) return null;
-               if (!results[2]) return '';
-               return decodeURIComponent(results[2].replace(/\+/g, " "));
-           }
-
-          // const queryDates = null;
-          //
-          // if (getParameterByName("start_date") && getParameterByName("end_date")) {
-          //   const queryDates = {
-          //     startDate: getParameterByName("start_date"),
-          //     endDate: getParameterByName("end_date")
-          //   };
-          // }
+          const queryParams = new URLSearchParams(window.location.search);
+          const start_date = queryParams.get('start_date');
+          const end_date = queryParams.get('end_date');
 
           const queryDates = {
-            startDate: '2021-11-18',
-            endDate: '2021-11-21'
+            startDate: start_date,
+            endDate: end_date
           };
 
           return (
