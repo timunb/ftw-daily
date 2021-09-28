@@ -257,6 +257,22 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
+          // Get dates from query string parameters
+            function getParameterByName(name, url) {
+               if (!url) url = window.location.href;
+               name = name.replace(/[\[\]]/g, "\\$&");
+               var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                   results = regex.exec(url);
+               if (!results) return null;
+               if (!results[2]) return '';
+               return decodeURIComponent(results[2].replace(/\+/g, " "));
+           }
+
+           const queryDates = {
+             startDate: getParameterByName("start_date"),
+             endDate: getParameterByName("end_date")
+           };
+
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
@@ -269,7 +285,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={initialDates}
+                initialDates={queryDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
