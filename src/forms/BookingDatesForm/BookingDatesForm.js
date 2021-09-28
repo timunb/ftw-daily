@@ -24,7 +24,6 @@ export class BookingDatesFormComponent extends Component {
     this.onFocusedInputChange = this.onFocusedInputChange.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.storeField = this.storeField.bind(this);
-    this.queryDates = null;
   }
 
   // Function that can be passed to nested components
@@ -262,12 +261,10 @@ export class BookingDatesFormComponent extends Component {
           const start_date = queryParams.get('start_date');
           const end_date = queryParams.get('end_date');
 
-          if (start_date && end_date) {
-            this.queryDates = {
-              startDate: start_date,
-              endDate: end_date
-            };
-          }
+          const queryDates = {
+            startDate: start_date,
+            endDate: end_date
+          };
 
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
@@ -281,7 +278,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={this.queryDates}
+                initialDates={queryDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
