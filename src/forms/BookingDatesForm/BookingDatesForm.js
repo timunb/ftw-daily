@@ -11,6 +11,7 @@ import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
+import { useLocation } from 'react-router-dom';
 
 import css from './BookingDatesForm.module.css';
 
@@ -200,7 +201,6 @@ export class BookingDatesFormComponent extends Component {
               : 'dates';
           };
 
-          const datesQueryParamName = getDatesQueryParamName(queryParamNames);
           const initialDates =
             initialValues && initialValues[datesQueryParamName]
               ? parseValue(initialValues[datesQueryParamName])
@@ -257,12 +257,7 @@ export class BookingDatesFormComponent extends Component {
             submitButtonWrapperClassName || css.submitButtonWrapper
           );
 
-          if (typeof(window) !== 'undefined') {
-            var timer = setTimeout(function() {
-                const queryParams = new URLSearchParams(window.location.search);
-            }, 200);
-          }
-
+          const queryParams = new URLSearchParams(useLocation().search);
           const start_date = queryParams.get('start_date');
           const end_date = queryParams.get('end_date');
 
