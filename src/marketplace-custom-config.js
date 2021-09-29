@@ -268,6 +268,7 @@ export const filters = [
         { key: 'modern_mansions', label: 'Modern Mansions' },
         { key: 'country_locations', label: 'Country Locations' },
         { key: 'beach_houses', label: 'Beach Houses' },
+        { key: 'outdoor_locations', label: 'Outdoor Locations' },
         { key: 'vehicles_and_aircraft', label: 'Vehicles and Aircraft' },
         { key: 'european_locations', label: 'European Locations' },
         { key: 'international_locations', label: 'International Locations' },
