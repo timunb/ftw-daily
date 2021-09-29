@@ -455,12 +455,13 @@
   --marketplaceButtonStylesPrimary {
     @apply --marketplaceButtonStyles;
 
-    background-color: var(--successColor);
-    color: var(--matterColorLight);
+    background-color: var(--buttonColor);
+    color: var(--successColorDark);
 
     &:hover,
     &:focus {
       background-color: var(--successColorDark);
+      color: var(--matterColorLight);
     }
     &:disabled {
       background-color: var(--matterColorNegative);

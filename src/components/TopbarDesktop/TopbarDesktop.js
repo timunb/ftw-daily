@@ -134,13 +134,7 @@ const TopbarDesktop = props => {
 
   return (
     <nav className={classes}>
-      <NamedLink className={css.logoLink} name="LandingPage">
-        <Logo
-          format="desktop"
-          className={css.logo}
-          alt={intl.formatMessage({ id: 'TopbarDesktop.logo' })}
-        />
-      </NamedLink>
+      <a class="TopbarDesktop_logoLink__GcD1t" href="https://film-locations.co.uk"><img class="TopbarDesktop_logo__3GzUZ" src="/static/media/fl-logo.74500edc.png" alt="Film Locations" /></a>
       {search}
 
       {inboxLink}
