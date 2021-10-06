@@ -138,7 +138,8 @@ const TopbarDesktop = props => {
       {search}
 
       {inboxLink}
-      <a className="TopbarDesktop_inboxLink__3XhSx" href="http://www.film-locations.co.uk" target="_blank"><span className="TopbarDesktop_inbox__2IvVe"><span>Main Site</span></span></a>
+
+      <a className="TopbarDesktop_inboxLink__3XhSx" href="http://www.film-locations.co.uk/locations" target="_blank"><span className="TopbarDesktop_inbox__2IvVe"><span>Browse Locations</span></span></a>
       <NamedLink className={css.createListingLink} name="NewListingPage">
         <span className={css.createListing}>
           <FormattedMessage id="TopbarDesktop.createListing" />
