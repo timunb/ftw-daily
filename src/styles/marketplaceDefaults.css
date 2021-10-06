@@ -331,3 +331,7 @@ textarea {
 .additional-details {
   margin: 0 48px 47px 48px;
 }
+
+.white-text {
+  color: white;
+}

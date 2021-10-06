@@ -134,11 +134,11 @@ const TopbarDesktop = props => {
 
   return (
     <nav className={classes}>
-      <a class="TopbarDesktop_logoLink__GcD1t" href="https://film-locations.co.uk"><img class="TopbarDesktop_logo__3GzUZ" src="/static/media/fl-logo.74500edc.png" alt="Film Locations" /></a>
+      <a className="TopbarDesktop_logoLink__GcD1t" href="https://film-locations.co.uk"><img className="TopbarDesktop_logo__3GzUZ" src="/static/media/fl-logo.74500edc.png" alt="Film Locations" /></a>
       {search}
 
       {inboxLink}
-      <a class="TopbarDesktop_inboxLink__3XhSx" href="http://www.film-locations.co.uk" target="_blank"><span class="TopbarDesktop_inbox__2IvVe"><span>Main Site</span></span></a>
+      <a className="TopbarDesktop_inboxLink__3XhSx" href="http://www.film-locations.co.uk" target="_blank"><span className="TopbarDesktop_inbox__2IvVe"><span>Main Site</span></span></a>
       <NamedLink className={css.createListingLink} name="NewListingPage">
         <span className={css.createListing}>
           <FormattedMessage id="TopbarDesktop.createListing" />

@@ -70,7 +70,7 @@ const Footer = props => {
               </NamedLink>
               <div className={css.organizationInfo}>
                 <p className={css.organizationDescription}>
-                  <div>© 2021 Film Locations. All Rights Reserved Website by <a title="Unbranded Manchester" href="http://www.unbrandedmanchester.com/web-design-manchester" target="_blank" class="unbrandedmanchester" rel="noopener">Unbranded Manchester</a></div>
+                  © 2021 Film Locations. All Rights Reserved Website by <a title="Unbranded Manchester" href="http://www.unbrandedmanchester.com/web-design-manchester" target="_blank" className="unbrandedmanchester" rel="noopener">Unbranded Manchester</a>
                 </p>
                 <p className={css.organizationCopyright}>
                   <NamedLink name="LandingPage" className={css.copyrightLink}>
@@ -80,17 +80,17 @@ const Footer = props => {
               </div>
             </div>
             <div className={css.infoLinks}>
-              <h3 class="woohoo">Community</h3>
-              <nav class="footer-nav--pages"><ul id="menu-community-1" class="nav"><li class="menu-item menu-for-hosts"><a href="https://www.film-locations.co.uk/become-a-host/">For Hosts</a></li><li class="menu-item menu-for-producers"><a href="https://www.film-locations.co.uk/hire-a-space/">For Producers</a></li></ul></nav>
+              <h3 className="woohoo">Community</h3>
+              <nav className="footer-nav--pages"><ul id="menu-community-1" className="nav"><li className="menu-item menu-for-hosts"><a href="https://www.film-locations.co.uk/become-a-host/">For Hosts</a></li><li className="menu-item menu-for-producers"><a href="https://www.film-locations.co.uk/hire-a-space/">For Producers</a></li></ul></nav>
             </div>
 
             <div className={css.infoLinks}>
-              <h3 class="woohoo">Personal</h3>
-              <nav class="footer-nav--pages"><ul id="menu-personal-1" class="nav"><li class="menu-item menu-become-a-host"><a href="https://www.film-locations.co.uk/become-a-host">Become A Host</a></li><li class="menu-item menu-log-in"><a href="https://www.film-locations.co.uk/my-account">Log in</a></li><li class="menu-item menu-my-account"><a href="https://www.film-locations.co.uk/my-account">My Account</a></li></ul></nav>
+              <h3 className="woohoo">Personal</h3>
+              <nav className="footer-nav--pages"><ul id="menu-personal-1" className="nav"><li className="menu-item menu-become-a-host"><a href="https://www.film-locations.co.uk/become-a-host">Become A Host</a></li><li className="menu-item menu-log-in"><a href="https://www.film-locations.co.uk/my-account">Log in</a></li><li className="menu-item menu-my-account"><a href="https://www.film-locations.co.uk/my-account">My Account</a></li></ul></nav>
             </div>
             <div className={css.infoLinks}>
-              <h3 class="woohoo">About Us</h3>
-              <nav class="footer-nav--pages"><ul id="menu-about-1" class="nav"><li class="menu-item menu-how-it-works"><a href="https://www.film-locations.co.uk/how-it-works/">How It Works</a></li><li class="menu-item menu-pricing"><a href="https://www.film-locations.co.uk/pricing/">Pricing</a></li></ul></nav>
+              <h3 className="woohoo">About Us</h3>
+              <nav className="footer-nav--pages"><ul id="menu-about-1" className="nav"><li className="menu-item menu-how-it-works"><a href="https://www.film-locations.co.uk/how-it-works/">How It Works</a></li><li className="menu-item menu-pricing"><a href="https://www.film-locations.co.uk/pricing/">Pricing</a></li></ul></nav>
             </div>
           </div>
           <div className={css.copyrightAndTermsMobile}>
