@@ -236,7 +236,10 @@
   @media (--viewportLarge) {
     display: block;
     margin-top: 79px;
-    margin-right: 60px;
+    padding-left: 60px;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: var(--matterColorNegative);
 
 
     /* The calendar needs 312px */
@@ -498,27 +501,25 @@
   padding: 0 24px;
   margin-bottom: 5px;
 
-  border-left-style: solid;
-  border-left-width: 1px;
-  border-left-color: var(--matterColorNegative);
-  padding-left: 60px;
-  margin-top: 40px;
+  margin-top: -30px;
+  margin-right: 60px;
   @media (--viewportLarge) {
     margin-bottom: 3px;
   }
 }
 
 .yourHostHeading {
-  @apply --marketplaceH3FontStyles;
-  color: var(--matterColorAnti);
-
-  margin: 54px 0 23px 0;
+  /* @apply --marketplaceModalTitleStyles; */
+  color: var(--matterColor);
+  margin-top: 0;
+  margin-bottom: 2px;
+  font-size: 21px;
 
   @media (--viewportMedium) {
-    margin: 53px 0 27px 0;
+    margin: 60px 0 27px 0;
   }
   @media (--viewportLarge) {
-    margin: 53px 0 27px 0;
+    margin: 60px 0 27px 0;
   }
 }
 

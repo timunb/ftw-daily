@@ -418,37 +418,38 @@ export class ListingPageComponent extends Component {
 
               <div className={css.contentContainer}>
                 <div className={css.mainContent}>
-                  <BookingPanel
-                    className={css.bookingPanel}
-                    listing={currentListing}
-                    isOwnListing={isOwnListing}
-                    unitType={unitType}
-                    onSubmit={handleBookingSubmit}
-                    title={bookingTitle}
-                    subTitle={bookingSubTitle}
-                    authorDisplayName={authorDisplayName}
-                    onManageDisableScrolling={onManageDisableScrolling}
-                    timeSlots={timeSlots}
-                    fetchTimeSlotsError={fetchTimeSlotsError}
-                    onFetchTransactionLineItems={onFetchTransactionLineItems}
-                    lineItems={lineItems}
-                    fetchLineItemsInProgress={fetchLineItemsInProgress}
-                    fetchLineItemsError={fetchLineItemsError}
-                  />
+                <SectionHostMaybe
+                  title={title}
+                  listing={currentListing}
+                  authorDisplayName={authorDisplayName}
+                  onContactUser={this.onContactUser}
+                  isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
+                  onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
+                  sendEnquiryError={sendEnquiryError}
+                  sendEnquiryInProgress={sendEnquiryInProgress}
+                  onSubmitEnquiry={this.onSubmitEnquiry}
+                  currentUser={currentUser}
+                  onManageDisableScrolling={onManageDisableScrolling}
+                />
                 </div>
-                  <SectionHostMaybe
-                    title={title}
-                    listing={currentListing}
-                    authorDisplayName={authorDisplayName}
-                    onContactUser={this.onContactUser}
-                    isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
-                    onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
-                    sendEnquiryError={sendEnquiryError}
-                    sendEnquiryInProgress={sendEnquiryInProgress}
-                    onSubmitEnquiry={this.onSubmitEnquiry}
-                    currentUser={currentUser}
-                    onManageDisableScrolling={onManageDisableScrolling}
-                  />
+                <BookingPanel
+                  className={css.bookingPanel}
+                  listing={currentListing}
+                  isOwnListing={isOwnListing}
+                  unitType={unitType}
+                  onSubmit={handleBookingSubmit}
+                  title={bookingTitle}
+                  subTitle={bookingSubTitle}
+                  authorDisplayName={authorDisplayName}
+                  onManageDisableScrolling={onManageDisableScrolling}
+                  timeSlots={timeSlots}
+                  fetchTimeSlotsError={fetchTimeSlotsError}
+                  onFetchTransactionLineItems={onFetchTransactionLineItems}
+                  lineItems={lineItems}
+                  fetchLineItemsInProgress={fetchLineItemsInProgress}
+                  fetchLineItemsError={fetchLineItemsError}
+                />
+
               </div>
             </div>
           </LayoutWrapperMain>
