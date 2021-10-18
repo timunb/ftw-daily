@@ -389,6 +389,8 @@ export class CheckoutPageComponent extends Component {
         departureTime: localStorage.getItem("departureTime"),
         numberOfPeople: localStorage.getItem("numberOfPeople"),
         shootType: localStorage.getItem("shootType"),
+        companyName: localStorage.getItem("companyName"),
+        companyAddress: localStorage.getItem("companyAddress"),
         pliConfirmed: localStorage.getItem("pliConfirmed"),
         insuranceProvder: localStorage.getItem("insuranceProvider"),
         policyNumber: localStorage.getItem("policyNumber"),

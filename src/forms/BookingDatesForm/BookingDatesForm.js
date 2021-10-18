@@ -105,6 +105,14 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('liabilityValue', value);
   }
 
+  setCompanyName(value, id) {
+    localStorage.setItem('companyName', value);
+  }
+
+  setCompanyAddress(value, id) {
+    localStorage.setItem('companyAddress', value);
+  }
+
   confirmPli(name) {
     const state = name.target.value;
     const element = document.getElementById('pliFields')
@@ -503,6 +511,23 @@ export class BookingDatesFormComponent extends Component {
               </option>
 
               </select>
+
+              <label for="companyName">Company Name</label>
+              <input
+                id="companyName"
+                type="text"
+                value={this.state.name}
+                onChange={e => this.setCompanyName(e.target.value)}
+              />
+
+              <label for="companyAddress">Company Address</label>
+              <input
+                id="companyAddress"
+                type="text"
+                value={this.state.name}
+                onChange={e => this.setCompanyAddress(e.target.value)}
+              />
+
               </div>
 
               <h2>PLI information</h2>
