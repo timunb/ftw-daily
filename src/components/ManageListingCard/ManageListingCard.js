@@ -189,7 +189,7 @@ export const ManageListingCardComponent = props => {
           // NOTE: It might be better to absolute-position those buttons over a card-links.
           // (So, that they have no parent-child relationship - like '<a>bla<a>blaa</a></a>')
 
-          history.push(createListingURL(routeConfiguration(), listing));
+          // history.push(createListingURL(routeConfiguration(), listing));
         }}
         onMouseOver={onOverListingLink}
         onTouchStart={onOverListingLink}
@@ -329,7 +329,7 @@ export const ManageListingCardComponent = props => {
             <NamedLink
               className={css.manageLink}
               name="EditListingPage"
-              params={{ id, slug, type: editListingLinkType, tab: 'availability' }}
+              params={{ id, slug, type: editListingLinkType, tab: 'description' }}
             >
               {formatTitle(title, MAX_LENGTH_FOR_WORDS_IN_TITLE)}
             </NamedLink>
