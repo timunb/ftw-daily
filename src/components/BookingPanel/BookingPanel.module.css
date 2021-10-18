@@ -2,9 +2,11 @@
 
 /* Booking form inside modalContainer needs special handling */
 /* since "inMobile" breakpoint is actually --viewportLarge */
-.modalContainer {
-  @apply --marketplaceModalInMobileBaseStyles;
 
+.ModalInMobile_modalHidden__RxosJ {
+  display: block !important;
+}
+.modalContainer {
   height: 100vh;
 
   @media (--viewportMedium) {

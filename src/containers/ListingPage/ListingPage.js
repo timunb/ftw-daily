@@ -7,8 +7,9 @@ import { withRouter } from 'react-router-dom';
 import config from '../../config';
 import routeConfiguration from '../../routeConfiguration';
 import { findOptionsForSelectFilter } from '../../util/search';
-import { LISTING_STATE_PENDING_APPROVAL, LISTING_STATE_CLOSED, propTypes } from '../../util/types';
+import { LISTING_STATE_PENDING_APPROVAL, LISTING_STATE_CLOSED, LOCATION_TYPE_ENQUIRY, LOCATION_TYPE_BOOKING, propTypes } from '../../util/types';
 import { types as sdkTypes } from '../../util/sdkLoader';
+import { useLocation } from 'react-router-dom';
 import {
   LISTING_PAGE_DRAFT_VARIANT,
   LISTING_PAGE_PENDING_APPROVAL_VARIANT,
@@ -38,6 +39,7 @@ import {
   LayoutWrapperFooter,
   Footer,
   BookingPanel,
+  ButtonTabNavHorizontal
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
 
@@ -88,6 +90,28 @@ export class ListingPageComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onContactUser = this.onContactUser.bind(this);
     this.onSubmitEnquiry = this.onSubmitEnquiry.bind(this);
+
+    this.state = {
+      // keep track of which tab to show in desktop viewport
+      showEnquiryType: LOCATION_TYPE_ENQUIRY,
+    };
+
+    this.showOfEnquiryType = this.showOfEnquiryType.bind(this);
+    this.showOfBookingType = this.showOfBookingType.bind(this);
+  }
+
+
+
+  showOfEnquiryType() {
+    this.setState({
+      showEnquiryType: LOCATION_TYPE_ENQUIRY,
+    });
+  }
+
+  showOfBookingType() {
+    this.setState({
+      showEnquiryType: LOCATION_TYPE_BOOKING,
+    });
   }
 
   handleSubmit(values) {
@@ -394,6 +418,27 @@ export class ListingPageComponent extends Component {
         </span>
       ) : null;
 
+    const desktopTypeTabs = [
+      {
+        text: (
+          <h3 className={css.desktopReviewsTitle}>
+            Enquire
+          </h3>
+        ),
+        selected: this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY,
+        onClick: this.showOfEnquiryType,
+      },
+      {
+        text: (
+          <h3 className={css.desktopReviewsTitle}>
+            Book
+          </h3>
+        ),
+        selected: this.state.showEnquiryType === LOCATION_TYPE_BOOKING,
+        onClick: this.showOfBookingType,
+      },
+    ];
+
     return (
       <Page
         title={schemaTitle}
@@ -416,8 +461,11 @@ export class ListingPageComponent extends Component {
           <LayoutWrapperMain>
             <div>
 
-              <div className={css.contentContainer}>
-                <div className={css.mainContent}>
+            <div className={css.contentContainer}>
+              <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopTypeTabs} />
+
+
+              {this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY ? (
                 <SectionHostMaybe
                   title={title}
                   listing={currentListing}
@@ -431,7 +479,7 @@ export class ListingPageComponent extends Component {
                   currentUser={currentUser}
                   onManageDisableScrolling={onManageDisableScrolling}
                 />
-                </div>
+              ) : (
                 <BookingPanel
                   className={css.bookingPanel}
                   listing={currentListing}
@@ -449,8 +497,10 @@ export class ListingPageComponent extends Component {
                   fetchLineItemsInProgress={fetchLineItemsInProgress}
                   fetchLineItemsError={fetchLineItemsError}
                 />
+              )}
+            </div>
 
-              </div>
+
             </div>
           </LayoutWrapperMain>
           <LayoutWrapperFooter>

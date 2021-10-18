@@ -288,6 +288,9 @@ export const REVIEW_RATINGS = [1, 2, 3, 4, 5];
 export const REVIEW_TYPE_OF_PROVIDER = 'ofProvider';
 export const REVIEW_TYPE_OF_CUSTOMER = 'ofCustomer';
 
+export const LOCATION_TYPE_ENQUIRY = 'ofEnquiry';
+export const LOCATION_TYPE_BOOKING = 'ofBooking';
+
 // A review on a user
 propTypes.review = shape({
   id: propTypes.uuid.isRequired,

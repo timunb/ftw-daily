@@ -6,9 +6,9 @@
 }
 
 /* Content is hidden in Mobile layout */
-.modalHidden {
+/* .modalHidden {
   display: none;
-}
+} */
 
 .modalContainer {
   @apply --marketplaceModalInMobileBaseStyles;
