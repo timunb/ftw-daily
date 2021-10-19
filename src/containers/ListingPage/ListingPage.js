@@ -421,21 +421,23 @@ export class ListingPageComponent extends Component {
     const desktopTypeTabs = [
       {
         text: (
-          <h3 className={css.desktopReviewsTitle}>
+          <h3 className={css.desktopReviewsTitle} id="enquireButton">
             Enquire
           </h3>
         ),
         selected: this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY,
         onClick: this.showOfEnquiryType,
+        id: 'enquireButton'
       },
       {
         text: (
-          <h3 className={css.desktopReviewsTitle}>
+          <h3 className={css.desktopReviewsTitle} id="bookButton">
             Book
           </h3>
         ),
         selected: this.state.showEnquiryType === LOCATION_TYPE_BOOKING,
         onClick: this.showOfBookingType,
+        id: 'bookButton'
       },
     ];
 
@@ -462,8 +464,7 @@ export class ListingPageComponent extends Component {
             <div>
 
             <div className={css.contentContainer}>
-              <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopTypeTabs} />
-
+              <ButtonTabNavHorizontal className="booking-page-tabs" tabs={desktopTypeTabs} />
 
               {this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY ? (
                 <SectionHostMaybe

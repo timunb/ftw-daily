@@ -27,7 +27,7 @@
 }
 
 .modalHeading {
-  margin-top: 89px;
+  margin-top: 20px;
   margin-bottom: 36px;
   padding: 0 24px;
 
@@ -81,8 +81,7 @@
   /* Font */
   color: var(--matterColor);
 
-  margin-top: 0;
-  margin-bottom: 2px;
+  margin: 20px 0 27px 0;
 }
 
 .bookingHelp {

@@ -15,7 +15,7 @@ import { BookingDatesForm } from '../../forms';
 import css from './BookingPanel.module.css';
 
 // This defines when ModalInMobile shows content as Modal
-const MODAL_BREAKPOINT = 1023;
+const MODAL_BREAKPOINT = 0;
 
 const priceData = (price, intl) => {
   if (price && price.currency === config.currency) {
