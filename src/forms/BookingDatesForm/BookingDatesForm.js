@@ -268,6 +268,44 @@ export class BookingDatesFormComponent extends Component {
           const queryParams = new URLSearchParams(useLocation().search);
           const start_date = queryParams.get('start_date');
           const end_date = queryParams.get('end_date');
+
+          const arrival_time = queryParams.get('arrival_time');
+          const departure_time = queryParams.get('departure_time');
+          const people = queryParams.get('people');
+          const shoot_type = queryParams.get('shoot_type');
+          const company_name = queryParams.get('company_name');
+          const company_address = queryParams.get('company_address');
+
+          var defaultCompany = '';
+          var defaultCompanyAddress = '';
+
+          if (company_name) {
+            defaultCompany = company_name;
+          }
+
+          if (company_address) {
+            defaultCompanyAddress = company_address;
+          }
+
+          setTimeout(function() {
+            if (shoot_type) {
+              document.getElementById('shootType').value = shoot_type;
+            }
+
+            if (people) {
+              document.getElementById('numberOfPeople').value = people;
+            }
+
+            if (arrival_time) {
+              document.getElementById('arrivalTime').value = arrival_time;
+            }
+
+            if (departure_time) {
+              document.getElementById('departureTime').value = departure_time;
+            }
+          }, 1000);
+
+
           var queryDates = null;
 
           if (start_date && end_date) {
@@ -330,54 +368,53 @@ export class BookingDatesFormComponent extends Component {
                 <option disabled selected value="">
                   Pick a time
                 </option>
-                <option value="00:00">00:00
-                </option><option value="00:30">00:30
-                </option><option value="01:00">01:00
-                </option><option value="01:30">01:30
-                </option><option value="02:00">02:00
-                </option><option value="02:30">02:30
-                </option><option value="03:00">03:00
-                </option><option value="03:30">03:30
-                </option><option value="04:00">04:00
-                </option><option value="04:30">04:30
-                </option><option value="05:00">05:00
-                </option><option value="05:30">05:30
-                </option><option value="06:00">06:00
-                </option><option value="06:30">06:30
-                </option><option value="07:00">07:00
-                </option><option value="07:30">07:30
-                </option><option value="08:00">08:00
-                </option><option value="08:30">08:30
-                </option><option value="09:00">09:00
-                </option><option value="09:30">09:30
-                </option><option value="10:00">10:00
-                </option><option value="10:30">10:30
-                </option><option value="11:00">11:00
-                </option><option value="11:30">11:30
-                </option><option value="12:00">12:00
-                </option><option value="12:30">12:30
-                </option><option value="13:00">13:00
-                </option><option value="13:30">13:30
-                </option><option value="14:00">14:00
-                </option><option value="14:30">14:30
-                </option><option value="15:00">15:00
-                </option><option value="15:30">15:30
-                </option><option value="16:00">16:00
-                </option><option value="16:30">16:30
-                </option><option value="17:00">17:00
-                </option><option value="17:30">17:30
-                </option><option value="18:00">18:00
-                </option><option value="18:30">18:30
-                </option><option value="19:00">19:00
-                </option><option value="19:30">19:30
-                </option><option value="20:00">20:00
-                </option><option value="20:30">20:30
-                </option><option value="21:00">21:00
-                </option><option value="21:30">21:30
-                </option><option value="22:00">22:00
-                </option><option value="22:30">22:30
-                </option><option value="23:00">23:00
-                </option><option value="23:30">23:30
+                <option value="12:00 AM">12:00 AM
+                </option><option value="12:30 AM">12:30 AM
+                </option><option value="1:00 AM">1:00 AM
+                </option><option value="1:30 AM">1:30 AM
+                </option><option value="2:00 AM">2:00 AM
+                </option><option value="2:30 AM">2:30 AM
+                </option><option value="3:00 AM">3:00 AM
+                </option><option value="3:30 AM">3:30 AM
+                </option><option value="4:00 AM">4:00 AM
+                </option><option value="4:30 AM">4:30 AM
+                </option><option value="5:00 AM">5:00 AM
+                </option><option value="5:30 AM">5:30 AM
+                </option><option value="6:00 AM">6:00 AM
+                </option><option value="6:30 AM">6:30 AM
+                </option><option value="7:00 AM">7:00 AM
+                </option><option value="7:30 AM">7:30 AM
+                </option><option value="8:00 AM">8:00 AM
+                </option><option value="8:30 AM">8:30 AM
+                </option><option value="9:00 AM">9:00 AM
+                </option><option value="9:30 AM">9:30 AM
+                </option><option value="10:00 AM">10:00 AM
+                </option><option value="10:30 AM">10:30 AM
+                </option><option value="11:00 AM">11:00 AM
+                </option><option value="11:30 AM">11:30 AM
+                </option><option value="12:30 PM">12:30 PM
+                </option><option value="1:00 PM">1:00 PM
+                </option><option value="1:30 PM">1:30 PM
+                </option><option value="2:00 PM">2:00 PM
+                </option><option value="2:30 PM">2:30 PM
+                </option><option value="3:00 PM">3:00 PM
+                </option><option value="3:30 PM">3:30 PM
+                </option><option value="4:00 PM">4:00 PM
+                </option><option value="4:30 PM">4:30 PM
+                </option><option value="5:00 PM">5:00 PM
+                </option><option value="5:30 PM">5:30 PM
+                </option><option value="6:00 PM">6:00 PM
+                </option><option value="6:30 PM">6:30 PM
+                </option><option value="7:00 PM">7:00 PM
+                </option><option value="7:30 PM">7:30 PM
+                </option><option value="8:00 PM">8:00 PM
+                </option><option value="8:30 PM">8:30 PM
+                </option><option value="9:00 PM">9:00 PM
+                </option><option value="9:30 PM">9:30 PM
+                </option><option value="10:00 PM">10:00 PM
+                </option><option value="10:30 PM">10:30 PM
+                </option><option value="11:00 PM">11:00 PM
+                </option><option value="11:30 PM">11:30 PM
                 </option>
               </select>
 
@@ -386,54 +423,53 @@ export class BookingDatesFormComponent extends Component {
                 <option disabled selected value="">
                   Pick a time
                 </option>
-                <option value="00:00">00:00
-                </option><option value="00:30">00:30
-                </option><option value="01:00">01:00
-                </option><option value="01:30">01:30
-                </option><option value="02:00">02:00
-                </option><option value="02:30">02:30
-                </option><option value="03:00">03:00
-                </option><option value="03:30">03:30
-                </option><option value="04:00">04:00
-                </option><option value="04:30">04:30
-                </option><option value="05:00">05:00
-                </option><option value="05:30">05:30
-                </option><option value="06:00">06:00
-                </option><option value="06:30">06:30
-                </option><option value="07:00">07:00
-                </option><option value="07:30">07:30
-                </option><option value="08:00">08:00
-                </option><option value="08:30">08:30
-                </option><option value="09:00">09:00
-                </option><option value="09:30">09:30
-                </option><option value="10:00">10:00
-                </option><option value="10:30">10:30
-                </option><option value="11:00">11:00
-                </option><option value="11:30">11:30
-                </option><option value="12:00">12:00
-                </option><option value="12:30">12:30
-                </option><option value="13:00">13:00
-                </option><option value="13:30">13:30
-                </option><option value="14:00">14:00
-                </option><option value="14:30">14:30
-                </option><option value="15:00">15:00
-                </option><option value="15:30">15:30
-                </option><option value="16:00">16:00
-                </option><option value="16:30">16:30
-                </option><option value="17:00">17:00
-                </option><option value="17:30">17:30
-                </option><option value="18:00">18:00
-                </option><option value="18:30">18:30
-                </option><option value="19:00">19:00
-                </option><option value="19:30">19:30
-                </option><option value="20:00">20:00
-                </option><option value="20:30">20:30
-                </option><option value="21:00">21:00
-                </option><option value="21:30">21:30
-                </option><option value="22:00">22:00
-                </option><option value="22:30">22:30
-                </option><option value="23:00">23:00
-                </option><option value="23:30">23:30
+                <option value="12:00 AM">12:00 AM
+                </option><option value="12:30 AM">12:30 AM
+                </option><option value="1:00 AM">1:00 AM
+                </option><option value="1:30 AM">1:30 AM
+                </option><option value="2:00 AM">2:00 AM
+                </option><option value="2:30 AM">2:30 AM
+                </option><option value="3:00 AM">3:00 AM
+                </option><option value="3:30 AM">3:30 AM
+                </option><option value="4:00 AM">4:00 AM
+                </option><option value="4:30 AM">4:30 AM
+                </option><option value="5:00 AM">5:00 AM
+                </option><option value="5:30 AM">5:30 AM
+                </option><option value="6:00 AM">6:00 AM
+                </option><option value="6:30 AM">6:30 AM
+                </option><option value="7:00 AM">7:00 AM
+                </option><option value="7:30 AM">7:30 AM
+                </option><option value="8:00 AM">8:00 AM
+                </option><option value="8:30 AM">8:30 AM
+                </option><option value="9:00 AM">9:00 AM
+                </option><option value="9:30 AM">9:30 AM
+                </option><option value="10:00 AM">10:00 AM
+                </option><option value="10:30 AM">10:30 AM
+                </option><option value="11:00 AM">11:00 AM
+                </option><option value="11:30 AM">11:30 AM
+                </option><option value="12:30 PM">12:30 PM
+                </option><option value="1:00 PM">1:00 PM
+                </option><option value="1:30 PM">1:30 PM
+                </option><option value="2:00 PM">2:00 PM
+                </option><option value="2:30 PM">2:30 PM
+                </option><option value="3:00 PM">3:00 PM
+                </option><option value="3:30 PM">3:30 PM
+                </option><option value="4:00 PM">4:00 PM
+                </option><option value="4:30 PM">4:30 PM
+                </option><option value="5:00 PM">5:00 PM
+                </option><option value="5:30 PM">5:30 PM
+                </option><option value="6:00 PM">6:00 PM
+                </option><option value="6:30 PM">6:30 PM
+                </option><option value="7:00 PM">7:00 PM
+                </option><option value="7:30 PM">7:30 PM
+                </option><option value="8:00 PM">8:00 PM
+                </option><option value="8:30 PM">8:30 PM
+                </option><option value="9:00 PM">9:00 PM
+                </option><option value="9:30 PM">9:30 PM
+                </option><option value="10:00 PM">10:00 PM
+                </option><option value="10:30 PM">10:30 PM
+                </option><option value="11:00 PM">11:00 PM
+                </option><option value="11:30 PM">11:30 PM
                 </option>
               </select>
 
@@ -502,7 +538,7 @@ export class BookingDatesFormComponent extends Component {
                 Filming
               </option>
 
-              <option value="film">
+              <option value="photography">
                 Still Photography Only
               </option>
 
@@ -517,6 +553,7 @@ export class BookingDatesFormComponent extends Component {
                 id="companyName"
                 type="text"
                 value={this.state.name}
+                defaultValue={defaultCompany}
                 onChange={e => this.setCompanyName(e.target.value)}
               />
 
@@ -525,6 +562,7 @@ export class BookingDatesFormComponent extends Component {
                 id="companyAddress"
                 type="text"
                 value={this.state.name}
+                defaultValue={defaultCompanyAddress}
                 onChange={e => this.setCompanyAddress(e.target.value)}
               />
 
