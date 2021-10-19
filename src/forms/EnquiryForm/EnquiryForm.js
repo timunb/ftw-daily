@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Form, PrimaryButton, FieldTextInput, IconEnquiry } from '../../components';
 import * as validators from '../../util/validators';
 import { propTypes } from '../../util/types';
+import { useLocation } from 'react-router-dom';
 
 import css from './EnquiryForm.module.css';
 
@@ -48,6 +49,52 @@ const EnquiryFormComponent = props => (
       const submitInProgress = inProgress;
       const submitDisabled = submitInProgress;
 
+      const queryParams = new URLSearchParams(useLocation().search);
+      const start_date = queryParams.get('start_date');
+      const end_date = queryParams.get('end_date');
+      const arrival_time = queryParams.get('arrival_time');
+      const departure_time = queryParams.get('departure_time');
+      const people = queryParams.get('people');
+      const shoot_type = queryParams.get('shoot_type');
+      const company_name = queryParams.get('company_name');
+      const company_address = queryParams.get('company_address');
+
+      const messageIntro = 'Hi, I am interested in hiring your location ' + listingTitle + '\n\n';
+
+      var messageDates = '';
+      var messageTimes = '';
+      var peopleMessage = '';
+      var shootType = '';
+      var companyName = '';
+      var companyAddress = '';
+
+      if (start_date && end_date) {
+        messageDates = 'I am interested in the following dates: ' + start_date + ' and ' + end_date + '. ';
+      }
+
+      if (arrival_time && departure_time) {
+        messageTimes = 'I would like to hire the location between the hours of ' + arrival_time + ' and ' + departure_time + '.\n\n';
+      }
+
+      const otherInfo = 'Some additional information regarding my enquiry: \n\n';
+
+      if (people) {
+        peopleMessage = 'Number of people: ' + people + '\n';
+      }
+
+      if (shoot_type) {
+        shootType = 'Shoot type: ' + shoot_type + '\n';
+      }
+
+      if (company_name) {
+        companyName = 'Company Name: ' + company_name + '\n';
+      }
+
+      if (company_address) {
+        companyAddress = 'Company Address: ' + company_address + '\n';
+      }
+
+
       return (
         <Form className={classes} onSubmit={handleSubmit} enforcePagePreloadFor="OrderDetailsPage">
           <IconEnquiry className={css.icon} />
@@ -58,6 +105,7 @@ const EnquiryFormComponent = props => (
             className={css.field}
             type="textarea"
             name="message"
+            defaultValue={messageIntro + messageDates + messageTimes + otherInfo + peopleMessage + shootType + companyName + companyAddress}
             id={formId ? `${formId}.message` : 'message'}
             label={messageLabel}
             placeholder={messagePlaceholder}

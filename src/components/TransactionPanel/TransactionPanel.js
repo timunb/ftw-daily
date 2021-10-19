@@ -460,7 +460,7 @@ export class TransactionPanelComponent extends Component {
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
               />
-              <div class="additional-details">
+              <div class="additional-details additional-details-transaction">
                 <h2>Pli Information</h2>
                 <ul>
                   <li>Pli Confirmed: {protectedData.pliConfirmed}</li>
