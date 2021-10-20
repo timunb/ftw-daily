@@ -64,14 +64,6 @@
   position: relative;
 }
 
-.threeToTwoWrapper .manageLink {
-  /* z-index: 11;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%; */
-}
-
 .threeToTwoWrapper {
   /* Layout */
   display: block;
@@ -316,10 +308,6 @@
 
 .draftLive {
   background-color: transparent;
-}
-
-.live-overlay .Overlay_overlay__3tgQ3 {
-  opacity: 0!important;
 }
 
 .edit {
