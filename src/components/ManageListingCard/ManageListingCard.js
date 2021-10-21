@@ -259,20 +259,19 @@ export const ManageListingCardComponent = props => {
         </div>
         {isLive ? (
           <React.Fragment>
-            <div class="live-overlay">
-            <div className={classNames({ [css.draftNoImage]: !firstImage })} />
+            <div className="live-overlay">
             <Overlay
-              message=""
+
             >
               <NamedLink
                 className={css.finishListingDraftLink}
                 name="EditListingPage"
-                params={{ id, slug, type: editListingLinkType, tab: 'description' }}
+                params={{ id, slug, type: LISTING_PAGE_PARAM_TYPE_DRAFT, tab: 'photos' }}
               >
                 Edit Listing
               </NamedLink>
             </Overlay>
-            </div>
+          </div>
           </React.Fragment>
         ) : null}
 
