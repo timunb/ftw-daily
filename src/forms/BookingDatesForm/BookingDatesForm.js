@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { string, bool, arrayOf, array, func } from 'prop-types';
 import { compose } from 'redux';
 import { Form as FinalForm, FormSpy } from 'react-final-form';
@@ -12,6 +12,8 @@ import { propTypes } from '../../util/types';
 import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 import { useLocation } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import css from './BookingDatesForm.module.css';
 
@@ -97,8 +99,12 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('policyNumber', value);
   }
 
-  setExpiryDate(value, id) {
-    localStorage.setItem('expiryDate', value);
+  setExpiryDate(startingDate) {
+    setTimeout(function() {
+      var newExpiryDate = document.getElementById("expiryDate").value;
+      localStorage.setItem('expiryDate', newExpiryDate);
+    }, 200);
+
   }
 
   setLiabilityValue(value, id) {
@@ -288,6 +294,8 @@ export class BookingDatesFormComponent extends Component {
           const shoot_type = queryParams.get('shoot_type');
           const company_name = queryParams.get('company_name');
           const company_address = queryParams.get('company_address');
+
+          const [startingDate, setStartDate] = useState(new Date());
 
           var defaultCompany = '';
           var defaultCompanyAddress = '';
@@ -624,12 +632,14 @@ export class BookingDatesFormComponent extends Component {
                 />
 
                 <label htmlFor="expiryDate">Expiry date:</label>
-                <input
+                <DatePicker
                   id="expiryDate"
-                  type="text"
-                  value={this.state.name}
-                  onChange={e => this.setExpiryDate(e.target.value)}
+                  selected={startingDate}
+                  onChange={(date) => setStartDate(date)}
+                  minDate={new Date()}
+                  onCalendarClose={(startingDate) => this.setExpiryDate(startingDate)}
                 />
+
 
                 <label htmlFor="liabilityValue">Value of public liability:</label>
                 <input
