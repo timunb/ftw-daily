@@ -86,7 +86,7 @@ const UserCard = props => {
   const separator = isCurrentUser ? null : <span className={css.linkSeparator}>•</span>;
 
   const message = (
-    <p>Want to enquire about availability? Click 'Enquire Now' to speak directly with the owner.</p>
+    <span className="new-line">Want to enquire about availability? Click 'Enquire Now' to speak directly with the owner.</span>
   );
 
   const contact = (

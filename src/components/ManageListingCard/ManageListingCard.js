@@ -259,7 +259,7 @@ export const ManageListingCardComponent = props => {
         </div>
         {isLive ? (
           <React.Fragment>
-            <div class="live-overlay">
+            <div className="live-overlay">
             <div className={classNames({ [css.draftNoImage]: !firstImage })} />
             <Overlay
               message=""

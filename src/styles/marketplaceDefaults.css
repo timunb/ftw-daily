@@ -343,3 +343,8 @@ textarea {
 #buttonWrapper {
   display: none;
 }
+
+.new-line {
+  display: block;
+  margin: 10px 0;
+}
