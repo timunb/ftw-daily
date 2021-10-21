@@ -11,6 +11,7 @@ import {
   LISTING_STATE_PENDING_APPROVAL,
   LISTING_STATE_CLOSED,
   LISTING_STATE_DRAFT,
+  LISTING_STATE_PUBLISHED,
   propTypes,
 } from '../../util/types';
 import { formatMoney } from '../../util/currency';
@@ -67,6 +68,7 @@ const createListingURL = (routes, listing) => {
   const slug = createSlug(listing.attributes.title);
   const isPendingApproval = listing.attributes.state === LISTING_STATE_PENDING_APPROVAL;
   const isDraft = listing.attributes.state === LISTING_STATE_DRAFT;
+  const isLive = listing.attributes.state === LISTING_STATE_PUBLISHED;
   const variant = isDraft
     ? LISTING_PAGE_DRAFT_VARIANT
     : isPendingApproval
@@ -133,6 +135,7 @@ export const ManageListingCardComponent = props => {
   const isPendingApproval = state === LISTING_STATE_PENDING_APPROVAL;
   const isClosed = state === LISTING_STATE_CLOSED;
   const isDraft = state === LISTING_STATE_DRAFT;
+  const isLive = state === LISTING_STATE_PUBLISHED;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
 
@@ -195,13 +198,19 @@ export const ManageListingCardComponent = props => {
         onTouchStart={onOverListingLink}
       >
         <div className={css.aspectWrapper}>
-          <ResponsiveImage
-            rootClassName={css.rootForImage}
-            alt={title}
-            image={firstImage}
-            variants={['landscape-crop', 'landscape-crop2x']}
-            sizes={renderSizes}
-          />
+          <NamedLink
+            className={css.manageLink}
+            name="EditListingPage"
+            params={{ id, slug, type: editListingLinkType, tab: 'description' }}
+          >
+            <ResponsiveImage
+              rootClassName={css.rootForImage}
+              alt={title}
+              image={firstImage}
+              variants={['landscape-crop', 'landscape-crop2x']}
+              sizes={renderSizes}
+            />
+          </NamedLink>
         </div>
         <div className={classNames(css.menuOverlayWrapper, { [css.menuOverlayOpen]: isMenuOpen })}>
           <div className={classNames(css.menuOverlay)} />
@@ -248,6 +257,24 @@ export const ManageListingCardComponent = props => {
             </Menu>
           </div>
         </div>
+        {isLive ? (
+          <React.Fragment>
+            <div className="live-overlay">
+            <Overlay
+
+            >
+              <NamedLink
+                className={css.finishListingDraftLink}
+                name="EditListingPage"
+                params={{ id, slug, type: LISTING_PAGE_PARAM_TYPE_DRAFT, tab: 'photos' }}
+              >
+                Edit Listing
+              </NamedLink>
+            </Overlay>
+          </div>
+          </React.Fragment>
+        ) : null}
+
         {isDraft ? (
           <React.Fragment>
             <div className={classNames({ [css.draftNoImage]: !firstImage })} />

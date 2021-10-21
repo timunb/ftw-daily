@@ -52,11 +52,16 @@
   margin-bottom: 0;
   opacity: 0;
 
+
   @media (--viewportMedium) {
     font-weight: var(--fontWeightSemiBold);
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.threeToTwoWrapper .aspectWrapper  {
+  position: relative;
 }
 
 .threeToTwoWrapper {
@@ -65,12 +70,13 @@
   width: 100%;
   position: relative;
   transition: var(--transitionStyleButton);
-  cursor: pointer;
+  /* cursor: pointer; */
 
   &:hover {
-    transform: scale(1.02);
+    /* transform: scale(1.02); */
     box-shadow: var(--boxShadowListingCard);
   }
+
 }
 
 /* Firefox doesn't support image aspect ratio inside flexbox */
@@ -94,6 +100,7 @@
   left: 0;
   width: 100%;
   height: 42px;
+  z-index: 10;
 }
 
 .menubarGradient {
@@ -297,6 +304,10 @@
   bottom: 0;
   left: 0;
   background-color: var(--matterColor);
+}
+
+.draftLive {
+  background-color: transparent;
 }
 
 .edit {
