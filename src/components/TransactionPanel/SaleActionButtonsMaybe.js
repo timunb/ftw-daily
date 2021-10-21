@@ -53,6 +53,7 @@ const SaleActionButtonsMaybe = props => {
           inProgress={acceptInProgress}
           disabled={buttonsDisabled}
           onClick={onAcceptSale}
+          id="acceptBooking"
         >
           <FormattedMessage id="TransactionPanel.acceptButton" />
         </PrimaryButton>
