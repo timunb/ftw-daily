@@ -658,6 +658,13 @@ export class BookingDatesFormComponent extends Component {
                   onChange={e => this.setPolicyNumber(e.target.value)}
                 />
 
+                <label htmlFor="expiryDate">Expiry date:</label>
+                <input selected={startingDate}
+                  onChange={(date) => setStartDate(date)}
+                  minDate={new Date()}
+                  onCalendarClose={(startingDate) => this.setExpiryDate(startingDate)}
+                />
+
                 <label htmlFor="liabilityValue">Value of public liability:</label>
                 <input
                   id="liabilityValue"
