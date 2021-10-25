@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
-import { isScrollingDisabled } from '../../ducks/UI.duck';
 import {
   LayoutSideNavigation,
   LayoutWrapperMain,
@@ -26,14 +25,13 @@ export const AccountActionsPage = props => {
     resetPasswordInProgress,
     resetPasswordError,
     passwordChanged,
-    scrollingDisabled,
     intl,
   } = props;
 
   const title = "Account Actions";
 
   return (
-    <Page title={title} scrollingDisabled={scrollingDisabled}>
+    <Page title={title}>
       <LayoutSideNavigation>
         <LayoutWrapperTopbar>
           <TopbarContainer
