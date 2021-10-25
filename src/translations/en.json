@@ -1040,7 +1040,7 @@
   "TransactionPanel.orderEnquiredTitle": "You enquired about {listingLink}",
   "TransactionPanel.orderPaymentExpiredTitle": "You did not confirm the payment in time",
   "TransactionPanel.orderPaymentPendingTitle": "You have not confirmed payment yet",
-  "TransactionPanel.orderPreauthorizedInfo": "{providerName} has been notified about the booking request. Sit back and relax.",
+  "TransactionPanel.orderPreauthorizedInfo": "{providerName} has been notified of your request. ﻿Please await their response and final acceptance of your shoot details before proceeding with booking their location.",
   "TransactionPanel.orderPreauthorizedSubtitle": "You have requested to book {listingLink}.",
   "TransactionPanel.orderPreauthorizedTitle": "Great success, {customerName}!",
   "TransactionPanel.paymentMethodsPageLink": "payment methods page",
