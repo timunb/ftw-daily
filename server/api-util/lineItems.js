@@ -29,7 +29,7 @@ const PROVIDER_COMMISSION_PERCENTAGE = -10;
  */
 exports.transactionLineItems = (listing, bookingData) => {
   const unitPrice = listing.attributes.price;
-  const { startDate, endDate, hasCleaningFee } = bookingData;
+  const { startDate, endDate, hasCleaningFee, hasParkingFee } = bookingData;
 
   /**
    * If you want to use pre-defined component and translations for printing the lineItems base price for booking,
@@ -72,14 +72,38 @@ exports.transactionLineItems = (listing, bookingData) => {
      ]
    : [];
 
+   const resolveParkingFeePrice = listing => {
+     const publicData = listing.attributes.publicData;
+     const parkingFee = publicData && publicData.parkingFee;
+     const { amount, currency } = parkingFee;
+
+     if (amount && currency) {
+       return new Money(amount, currency);
+     }
+
+     return null;
+   };
+
+   const cleaningParkingPrice = hasParkingFee ? resolveParkingFeePrice(listing) : null;
+   const parkingFee = parkingFeePrice
+    ? [
+        {
+          code: 'line-item/parking-fee',
+          unitPrice: parkingFeePrice,
+          quantity: 1,
+          includeFor: ['customer', 'provider'],
+        },
+      ]
+    : [];
+
   const providerCommission = {
     code: 'line-item/provider-commission',
-    unitPrice: calculateTotalFromLineItems([booking, ...cleaningFee]),
+    unitPrice: calculateTotalFromLineItems([booking, ...cleaningFee, parkingFee]),
     percentage: PROVIDER_COMMISSION_PERCENTAGE,
     includeFor: ['provider'],
   };
 
-  const lineItems = [booking, ...cleaningFee, providerCommission];
+  const lineItems = [booking, ...cleaningFee, parkingFee, providerCommission];
 
   return lineItems;
 };

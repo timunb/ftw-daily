@@ -101,6 +101,16 @@ export const EditListingPricingFormComponent = props => (
           />
 
           <FieldCurrencyInput
+            id="parkingFee"
+            name="parkingFee"
+            className={css.cleaningFeeInput}
+            autoFocus
+            label="Parking Fee"
+            placeholder="Enter your parking fee if applicable"
+            currencyConfig={config.currencyConfig}
+          />
+
+          <FieldCurrencyInput
             id="cleaningFee"
             name="cleaningFee"
             className={css.cleaningFeeInput}

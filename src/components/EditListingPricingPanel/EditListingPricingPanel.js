@@ -32,10 +32,12 @@ const EditListingPricingPanel = props => {
   const currentListing = ensureOwnListing(listing);
   const { price, publicData } = currentListing.attributes;
   const cleaningFee = publicData && publicData.cleaningFee ? publicData.cleaningFee : null;
+  const parkingFee = publicData && publicData.parkingFee ? publicData.parkingFee : null;
 
   const cleaningFeeAsMoney = cleaningFee ? new Money(cleaningFee.amount, cleaningFee.currency) : null;
+  const parkingFeeAsMoney = parkingFee ? new Money(parkingFee.amount, parkingFee.currency) : null;
 
-  const initialValues = { price, cleaningFee: cleaningFeeAsMoney };
+  const initialValues = { price, cleaningFee: cleaningFeeAsMoney, parkingFee: parkingFeeAsMoney };
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -53,12 +55,13 @@ const EditListingPricingPanel = props => {
       className={css.form}
       initialValues={initialValues}
       onSubmit={values => {
-        const { price, cleaningFee = null } = values;
+        const { price, cleaningFee = null, parkingFee = null } = values;
 
         const updatedValues = {
           price,
           publicData: {
             cleaningFee: { amount: cleaningFee.amount, currency: cleaningFee.currency },
+            parkingFee: { amount: parkingFee.amount, currency: parkingFee.currency },
           },
         };
         onSubmit(updatedValues);

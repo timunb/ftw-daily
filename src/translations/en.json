@@ -68,6 +68,7 @@
   "BookingBreakdown.refundProviderFee": "Refund Film Locations fee",
   "BookingBreakdown.subTotal": "Subtotal",
   "BookingBreakdown.total": "Total price",
+  "BookingDatesForm.parkingFeeLabel": "Parking fee: {fee}",
   "BookingDatesForm.cleaningFeeLabel": "Cleaning fee: {fee}",
   "BookingDatesForm.bookingEndTitle": "End date",
   "BookingDatesForm.bookingStartTitle": "Start date",

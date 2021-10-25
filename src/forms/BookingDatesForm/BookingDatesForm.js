@@ -67,12 +67,15 @@ export class BookingDatesFormComponent extends Component {
     const hasCleaningFee =
       formValues.values.cleaningFee && formValues.values.cleaningFee.length > 0;
 
+    const hasParkingFee =
+      formValues.values.parkingFee && formValues.values.parkingFee.length > 0;
+
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee },
         listingId,
         isOwnListing,
       });
@@ -195,6 +198,7 @@ export class BookingDatesFormComponent extends Component {
             fetchLineItemsInProgress,
             fetchLineItemsError,
             cleaningFee,
+            parkingFee,
           } = fieldRenderProps;
 
           const formattedCleaningFee = cleaningFee
@@ -204,10 +208,31 @@ export class BookingDatesFormComponent extends Component {
               )
             : null;
 
+          const formattedParkingFee = parkingFee
+            ? formatMoney(
+                intl,
+                new Money(parkingFee.amount, parkingFee.currency)
+              )
+            : null;
+
           const cleaningFeeLabel = intl.formatMessage(
             { id: 'BookingDatesForm.cleaningFeeLabel' },
             { fee: formattedCleaningFee }
           );
+
+          const parkingFeeLabel = intl.formatMessage(
+            { id: 'BookingDatesForm.parkingFeeLabel' },
+            { fee: formattedParkingFee }
+          );
+
+          const parkingFeeMaybe = parkingFee ? (
+            <FieldCheckbox
+              id="parkingFee"
+              name="parkingFee"
+              label={parkingFeeLabel}
+              value="parkingFee"
+            />
+          ) : null;
 
           const cleaningFeeMaybe = cleaningFee ? (
             <FieldCheckbox
@@ -394,6 +419,7 @@ export class BookingDatesFormComponent extends Component {
                 )}
                 disabled={fetchLineItemsInProgress}
               />
+              {parkingFeeMaybe}
               {cleaningFeeMaybe}
               {bookingInfoMaybe}
               {loadingSpinnerMaybe}
