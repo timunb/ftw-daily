@@ -121,6 +121,10 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('liabilityValue', value);
   }
 
+  setContactNumber(value, id) {
+    localStorage.setItem('contactNumber', value);
+  }
+
   setCompanyName(value, id) {
     localStorage.setItem('companyName', value);
   }
@@ -371,11 +375,17 @@ export class BookingDatesFormComponent extends Component {
           const shoot_type = queryParams.get('shoot_type');
           const company_name = queryParams.get('company_name');
           const company_address = queryParams.get('company_address');
+          const contact_number = queryParams.get('contact_number');
 
           const [startingDate, setStartDate] = useState(new Date());
 
+          var defaultContact = '';
           var defaultCompany = '';
           var defaultCompanyAddress = '';
+
+          if (contact_number) {
+            defaultContact = contact_number;
+          }
 
           if (company_name) {
             defaultCompany = company_name;
@@ -647,6 +657,15 @@ export class BookingDatesFormComponent extends Component {
               </option>
 
               </select>
+
+              <label htmlFor="contactNumber">Contact Number</label>
+              <input
+                id="contactNumber"
+                type="text"
+                value={this.state.name}
+                defaultValue={defaultContact}
+                onChange={e => this.setContactNumber(e.target.value)}
+              />
 
               <label htmlFor="companyName">Company Name</label>
               <input

@@ -488,6 +488,7 @@ export class TransactionPanelComponent extends Component {
                   <li>Departure Time: {protectedData.departureTime}</li>
                   <li>Number of People: {protectedData.numberOfPeople}</li>
                   <li>Type of Shoot: {protectedData.shootType}</li>
+                  <li>Contact Number: {protectedData.contactNumber}</li>
                   <li>Company Name: {protectedData.companyName}</li>
                   <li>Company Address: {protectedData.companyAddress}</li>
                 </ul>
