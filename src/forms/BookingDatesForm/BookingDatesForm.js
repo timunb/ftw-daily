@@ -14,7 +14,6 @@ import { types as sdkTypes } from '../../util/sdkLoader';
 import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 import { useLocation } from 'react-router-dom';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import css from './BookingDatesForm.module.css';
@@ -660,16 +659,6 @@ export class BookingDatesFormComponent extends Component {
                   value={this.state.name}
                   onChange={e => this.setPolicyNumber(e.target.value)}
                 />
-
-                <label htmlFor="expiryDate">Expiry date:</label>
-                <DatePicker
-                  id="expiryDate"
-                  selected={startingDate}
-                  onChange={(date) => setStartDate(date)}
-                  minDate={new Date()}
-                  onCalendarClose={(startingDate) => this.setExpiryDate(startingDate)}
-                />
-
 
                 <label htmlFor="liabilityValue">Value of public liability:</label>
                 <input
