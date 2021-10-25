@@ -70,12 +70,15 @@ export class BookingDatesFormComponent extends Component {
     const hasParkingFee =
       formValues.values.parkingFee && formValues.values.parkingFee.length > 0;
 
+    const hasSecurityFee =
+      formValues.values.securityFee && formValues.values.securityFee.length > 0;
+
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee },
         listingId,
         isOwnListing,
       });
@@ -199,7 +202,15 @@ export class BookingDatesFormComponent extends Component {
             fetchLineItemsError,
             parkingFee,
             cleaningFee,
+            securityFee,
           } = fieldRenderProps;
+
+          const formattedParkingFee = parkingFee
+            ? formatMoney(
+                intl,
+                new Money(parkingFee.amount, parkingFee.currency)
+              )
+            : null;
 
           const formattedCleaningFee = cleaningFee
             ? formatMoney(
@@ -208,10 +219,10 @@ export class BookingDatesFormComponent extends Component {
               )
             : null;
 
-          const formattedParkingFee = parkingFee
+          const formattedSecurityFee = securityFee
             ? formatMoney(
                 intl,
-                new Money(parkingFee.amount, parkingFee.currency)
+                new Money(securityFee.amount, securityFee.currency)
               )
             : null;
 
@@ -223,6 +234,11 @@ export class BookingDatesFormComponent extends Component {
           const parkingFeeLabel = intl.formatMessage(
             { id: 'BookingDatesForm.parkingFeeLabel' },
             { fee: formattedParkingFee }
+          );
+
+          const securityFeeLabel = intl.formatMessage(
+            { id: 'BookingDatesForm.securityFeeLabel' },
+            { fee: formattedSecurityFee }
           );
 
           const parkingFeeMaybe = parkingFee ? (
@@ -240,6 +256,15 @@ export class BookingDatesFormComponent extends Component {
               name="cleaningFee"
               label={cleaningFeeLabel}
               value="cleaningFee"
+            />
+          ) : null;
+
+          const securityFeeMaybe = securityFee ? (
+            <FieldCheckbox
+              id="securityFee"
+              name="securityFee"
+              label={securityFeeLabel}
+              value="securityFee"
             />
           ) : null;
 
@@ -421,6 +446,7 @@ export class BookingDatesFormComponent extends Component {
               />
               {parkingFeeMaybe}
               {cleaningFeeMaybe}
+              {securityFeeMaybe}
               {bookingInfoMaybe}
               {loadingSpinnerMaybe}
               {bookingInfoErrorMaybe}

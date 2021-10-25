@@ -70,6 +70,7 @@
   "BookingBreakdown.total": "Total price",
   "BookingDatesForm.parkingFeeLabel": "Parking fee: {fee}",
   "BookingDatesForm.cleaningFeeLabel": "Cleaning fee: {fee}",
+  "BookingDatesForm.securityFeeLabel": "Security fee: {fee}",
   "BookingDatesForm.bookingEndTitle": "End date",
   "BookingDatesForm.bookingStartTitle": "Start date",
   "BookingDatesForm.fetchLineItemsError": "Oops, something went wrong. Please refresh the page and try again.",

@@ -90,6 +90,12 @@ const BookingPanel = props => {
       ? listing.attributes.publicData.parkingFee
       : null;
 
+  const securityFee =
+    listing.attributes.publicData &&
+    listing.attributes.publicData.securityFee
+      ? listing.attributes.publicData.securityFee
+      : null;
+
   const subTitleText = !!subTitle
     ? subTitle
     : showClosedListingHelpText
@@ -147,8 +153,9 @@ const BookingPanel = props => {
             lineItems={lineItems}
             fetchLineItemsInProgress={fetchLineItemsInProgress}
             fetchLineItemsError={fetchLineItemsError}
-            cleaningFee={cleaningFee}
             parkingFee={parkingFee}
+            cleaningFee={cleaningFee}
+            securityFee={securityFee}
           />
         ) : null}
       </ModalInMobile>
