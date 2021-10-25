@@ -100,6 +100,16 @@ export const EditListingPricingFormComponent = props => (
             validate={priceValidators}
           />
 
+          <FieldCurrencyInput
+            id="cleaningFee"
+            name="cleaningFee"
+            className={css.cleaningFeeInput}
+            autoFocus
+            label="Cleaning Fee"
+            placeholder="Enter your cleaning fee if applicable"
+            currencyConfig={config.currencyConfig}
+          />
+
           <Button
             className={css.submitButton}
             type="submit"
