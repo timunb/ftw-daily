@@ -205,7 +205,7 @@
   "EditListingPage.loadingListingData": "Loading listing data…",
   "EditListingPage.titleCreateListing": "Create a listing",
   "EditListingPage.titleEditListing": "Edit listing",
-  "EditListingPhotosForm.addImagesTip": "Tip: Choose the top 2-3 photos of your location from different angles in a good light that really show the space.",
+  "EditListingPhotosForm.addImagesTip": "Tip: The order you add the images will be the order they are displayed.",
   "EditListingPhotosForm.bankAccountNumberRequired": "You need to add a bank account number.",
   "EditListingPhotosForm.chooseImage": "+ Choose an image…",
   "EditListingPhotosForm.imageRequired": "You need to add at least one image.",

@@ -25,6 +25,16 @@
       margin: 0 0 24px 0;
     }
   }
+  &:first-child {
+    &:after {
+      content: 'Featured Image';
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      background: white;
+    }
+  }
 }
 
 .addImageWrapper {
@@ -34,17 +44,27 @@
   margin: 24px 0 0 0;
   overflow: hidden;
 
-  &::after {
+  /* &::after {
     content: '.';
     visibility: hidden;
     display: block;
     height: 0;
     clear: both;
-  }
+  } */
 
   @media (--viewportLarge) {
     width: calc(50% - 12px);
     margin: 0 0 24px 0;
+  }
+
+  &:first-child {
+    &::after {
+      content: 'First image will be your featured image';
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      width: 100%;
+    }
   }
 }
 
