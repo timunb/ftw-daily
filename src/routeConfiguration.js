@@ -31,6 +31,7 @@ const SearchPage = loadable(() => import(/* webpackChunkName: "SearchPage" */ /*
 const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayoutPage" */ './containers/StripePayoutPage/StripePayoutPage'));
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ './containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ './containers/TransactionPage/TransactionPage'));
+const AccountActionsPage = loadable(() => import(/* webpackChunkName: "AccountActionsPage" */ './containers/AccountActionsPage/AccountActionsPage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ './containers/StyleguidePage/StyleguidePage'));
@@ -40,6 +41,7 @@ export const ACCOUNT_SETTINGS_PAGES = [
   'PasswordChangePage',
   'StripePayoutPage',
   'PaymentMethodsPage',
+  'AccountActionsPage'
 ];
 
 // https://en.wikipedia.org/wiki/Universally_unique_identifier#Nil_UUID
@@ -252,6 +254,16 @@ const routeConfiguration = () => {
       component: ContactDetailsPage,
       loadData: pageDataLoadingAPI.ContactDetailsPage.loadData,
     },
+
+    {
+      path: '/account/account-actions',
+      name: 'AccountActionsPage',
+      auth: true,
+      authPage: 'LoginPage',
+      component: AccountActionsPage,
+      loadData: pageDataLoadingAPI.ContactDetailsPage.loadData,
+    },
+
     {
       path: '/account/change-password',
       name: 'PasswordChangePage',
