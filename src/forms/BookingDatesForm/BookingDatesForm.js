@@ -197,8 +197,8 @@ export class BookingDatesFormComponent extends Component {
             lineItems,
             fetchLineItemsInProgress,
             fetchLineItemsError,
-            cleaningFee,
             parkingFee,
+            cleaningFee,
           } = fieldRenderProps;
 
           const formattedCleaningFee = cleaningFee

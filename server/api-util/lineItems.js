@@ -60,6 +60,18 @@ exports.transactionLineItems = (listing, bookingData) => {
     return null;
   };
 
+  const resolveParkingFeePrice = listing => {
+    const publicData = listing.attributes.publicData;
+    const parkingFee = publicData && publicData.parkingFee;
+    const { amount, currency } = parkingFee;
+
+    if (amount && currency) {
+      return new Money(amount, currency);
+    }
+
+    return null;
+  };
+
   const cleaningFeePrice = hasCleaningFee ? resolveCleaningFeePrice(listing) : null;
   const cleaningFee = cleaningFeePrice
    ? [
@@ -72,23 +84,11 @@ exports.transactionLineItems = (listing, bookingData) => {
      ]
    : [];
 
-   const resolveParkingFeePrice = listing => {
-     const publicData = listing.attributes.publicData;
-     const parkingFee = publicData && publicData.parkingFee;
-     const { amount, currency } = parkingFee;
-
-     if (amount && currency) {
-       return new Money(amount, currency);
-     }
-
-     return null;
-   };
-
-   const cleaningParkingPrice = hasParkingFee ? resolveParkingFeePrice(listing) : null;
+   const parkingFeePrice = hasParkingFee ? resolveParkingFeePrice(listing) : null;
    const parkingFee = parkingFeePrice
     ? [
         {
-          code: 'line-item/parking-fee',
+          code: 'line-item/cleaning-fee',
           unitPrice: parkingFeePrice,
           quantity: 1,
           includeFor: ['customer', 'provider'],
@@ -96,14 +96,15 @@ exports.transactionLineItems = (listing, bookingData) => {
       ]
     : [];
 
+
   const providerCommission = {
     code: 'line-item/provider-commission',
-    unitPrice: calculateTotalFromLineItems([booking, ...cleaningFee, parkingFee]),
+    unitPrice: calculateTotalFromLineItems([booking, ...cleaningFee, ...parkingFee]),
     percentage: PROVIDER_COMMISSION_PERCENTAGE,
     includeFor: ['provider'],
   };
 
-  const lineItems = [booking, ...cleaningFee, parkingFee, providerCommission];
+  const lineItems = [booking, ...cleaningFee, ...parkingFee, providerCommission];
 
   return lineItems;
 };
