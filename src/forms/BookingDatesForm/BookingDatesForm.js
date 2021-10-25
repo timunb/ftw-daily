@@ -14,8 +14,6 @@ import { types as sdkTypes } from '../../util/sdkLoader';
 import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 import { useLocation } from 'react-router-dom';
-import "react-datepicker/dist/react-datepicker.css";
-
 import css from './BookingDatesForm.module.css';
 
 const { Money } = sdkTypes;
