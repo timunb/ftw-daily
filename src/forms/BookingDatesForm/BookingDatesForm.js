@@ -15,6 +15,8 @@ import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, F
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 import { useLocation } from 'react-router-dom';
 import css from './BookingDatesForm.module.css';
+import { SingleDatePicker } from 'react-dates';
+
 
 const { Money } = sdkTypes;
 
@@ -730,11 +732,17 @@ export class BookingDatesFormComponent extends Component {
                 />
 
                 <label htmlFor="expiryDate">Expiry date:</label>
-                <input selected={startingDate}
-                  onChange={(date) => setStartDate(date)}
-                  minDate={new Date()}
-                  onCalendarClose={(startingDate) => this.setExpiryDate(startingDate)}
+
+                <SingleDatePicker
+                  date={this.state.date} // momentPropTypes.momentObj or null
+                  onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+                  focused={this.state.focused} // PropTypes.bool
+                  onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                  id="expiryDate" // PropTypes.string.isRequired,
+                  onClose={(date) => this.setExpiryDate(date)}
                 />
+
+
 
                 <label htmlFor="liabilityValue">Value of public liability:</label>
                 <input
