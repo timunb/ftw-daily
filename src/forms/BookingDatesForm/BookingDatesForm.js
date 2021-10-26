@@ -107,6 +107,10 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('insuranceProvider', value);
   }
 
+  setInsuranceProviderContact(value, id) {
+    localStorage.setItem('insuranceProviderContact', value);
+  }
+
   setPolicyNumber(value, id) {
     localStorage.setItem('policyNumber', value);
   }
@@ -721,6 +725,14 @@ export class BookingDatesFormComponent extends Component {
                   type="text"
                   value={this.state.name}
                   onChange={e => this.setInsuranceProvider(e.target.value)}
+                />
+
+                <label htmlFor="insuranceProvider">Insurance Provider Contact Details:</label>
+                <input
+                  id="insuranceProviderContact"
+                  type="text"
+                  value={this.state.name}
+                  onChange={e => this.setInsuranceProviderContact(e.target.value)}
                 />
 
                 <label htmlFor="policyNumber">Policy Number:</label>

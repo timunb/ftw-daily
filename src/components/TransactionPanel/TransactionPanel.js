@@ -479,6 +479,7 @@ export class TransactionPanelComponent extends Component {
                   <li>Pli Confirmed: {protectedData.pliConfirmed}</li>
                   <li>Policy Number: {protectedData.policyNumber}</li>
                   <li>Policy Provider: {protectedData.insuranceProvider}</li>
+                  <li>Policy Provider Contact Details: {protectedData.insuranceProviderContact}</li>
                   <li>Expiry Date: {protectedData.expiryDate}</li>
                   <li>Value of PLI: {protectedData.liabilityValue}</li>
                 </ul>
