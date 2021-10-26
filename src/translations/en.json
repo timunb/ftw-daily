@@ -195,7 +195,7 @@
   "EditListingLocationForm.addressNotRecognized": "We didn't recognize this location. Please try another location.",
   "EditListingLocationForm.addressPlaceholder": " ",
   "EditListingLocationForm.addressRequired": "You need to provide a location",
-  "EditListingLocationForm.building": "Please enter your full address to be shared with bookers",
+  "EditListingLocationForm.building": "Please enter your full address. This will be shared with productions once the shoot is confirmed and booked in.",
   "EditListingLocationForm.buildingPlaceholder": " ",
   "EditListingLocationForm.optionalText": "• optional",
   "EditListingLocationForm.showListingFailed": "Fetching listing data failed",
