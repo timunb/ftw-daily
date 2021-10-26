@@ -397,6 +397,7 @@ export class CheckoutPageComponent extends Component {
         policyNumber: localStorage.getItem("policyNumber"),
         liabilityValue: localStorage.getItem("liabilityValue"),
         expiryDate: localStorage.getItem("expiryDate"),
+        bookerEmail: ensureCurrentUser(currentUser).attributes.email,
       },
       ...optionalPaymentParams,
     };

@@ -20,7 +20,6 @@
       Location: {{listing.title}}<br />
       Owner: {{provider.first-name}} {{provider.last-name}} <br />
       Address: {{listing.public-data.location.building}} <br />
-      Email: {{provider.email-address}} <br />
       Contact Number: {{provider.protected-data.phoneNumber}} <br />
     </p>
 
@@ -28,6 +27,7 @@
       Booker: {{customer.display-name}}<br />
       Company: {{protected-data.companyName}}<br />
       Company Address: {{protected-data.companyAddress}}<br />
+      Email: {{protected-data.bookerEmail}} <br />
       Contact Number: {{protected-data.contactNumber}}<br />
       Start Date: {{> format-date date=booking.start}}<br />
       End Date: {{> format-date date=booking.end}}<br />
