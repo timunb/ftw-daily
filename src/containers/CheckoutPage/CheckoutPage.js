@@ -393,7 +393,7 @@ export class CheckoutPageComponent extends Component {
         companyName: localStorage.getItem("companyName"),
         companyAddress: localStorage.getItem("companyAddress"),
         pliConfirmed: localStorage.getItem("pliConfirmed"),
-        insuranceProvder: localStorage.getItem("insuranceProvider"),
+        insuranceProvider: localStorage.getItem("insuranceProvider"),
         policyNumber: localStorage.getItem("policyNumber"),
         liabilityValue: localStorage.getItem("liabilityValue"),
         expiryDate: localStorage.getItem("expiryDate"),

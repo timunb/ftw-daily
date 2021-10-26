@@ -9,75 +9,42 @@
 
 <html>
   <body>
-    <h1>Your booking request was accepted!</h1>
-
+    <h1>Hello, {{customer.display-name}}</h1>
+    <p>Congratulations - you have successfully booked your shoot!</p>
     {{#with transaction}}
-    <p>{{provider.display-name}} has accepted your booking request for {{listing.title}} from {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.</p>
+    <p>{{> format-date date=booking.start}} to {{> format-date date=booking.end}}.</p>
 
-    <p>We have charged {{> format-money money=payin-total}} from your credit card. Here's your receipt.</p>
+    <p>Here are the details:</p>
+    <p>
+      Location: {{listing.title}}<br />
+      Owner: {{provider.first-name}} {{provider.last-name}} <br />
+      Address: {{listing.public-data.location.building}} <br />
+      Email: {{provider.email}} <br />
+      Contact Number: {{provider.protected-data.phoneNumber}} <br />
+    </p>
 
-    <table>
-      <thead>
-        <tr>
-          <th style="text-align: left;">Payment</th>
-        </tr>
-      </thead>
-      <tbody>
-      {{#each tx-line-items}}
-        {{#contains include-for "customer"}}
-          {{#eq "line-item/day" code}}
-              <tr>
-                <td>Price per day</td>
-                <td style="text-align: right; padding-left: 20px">{{> format-money money=unit-price}}</td>
-              </tr>
-              {{#if seats}}
-              <tr>
-                <td>Days</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number units}}</td>
-              </tr>
-              <tr>
-                <td>Seats</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number seats}}</td>
-              </tr>
-              {{else}}
-              <tr>
-                <td>Days</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number quantity}}</td>
-              </tr>
-              {{/if}}
-          {{/eq}}
+    <p>
+      Booker: {{customer.display-name}}<br />
+      Company: {{protected-data.companyName}}<br />
+      Company Address: {{protected-data.companyAddress}}<br />
+      Email: {{customer.email}}<br />
+      Contact Number: {{protected-data.contactNumber}}<br />
+      Start Date: {{protected-data.startDate}}<br />
+      End Date: {{protected-data.endDate}}<br />
+      Arrival Time: {{protected-data.arrivalTime}}<br />
+      Departure Time: {{protected-data.departureTime}}<br />
+      Number of People: {{protected-data.numberOfPeople}}<br />
+      Type of Shoot: {{protected-data.shootType}}
+    </p>
+    <p><b>Total: {{> format-money money=payin-total}}</b><br />
+      Public Liability Insurance (PLI) provider: {{protected-data.insuranceProvider}}<br />
+      Policy Number: {{protected-data.policyNumber}}<br />
+      Expiry date: {{protected-data.expiryDate}}<br />
+      Value of public liability: {{protected-data.liabilityValue}}<br />
+    </p>
 
-          {{#eq "line-item/night" code}}
-            <tr>
-              <td>Price per night</td>
-              <td style="text-align: right; padding-left: 20px">{{> format-money money=unit-price}}</td>
-            </tr>
-            {{#if seats}}
-            <tr>
-              <td>Nights</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number units}}</td>
-            </tr>
-            <tr>
-              <td>Seats</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number seats}}</td>
-            </tr>
-            {{else}}
-            <tr>
-              <td>Nights</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number quantity}}</td>
-            </tr>
-            {{/if}}
-          {{/eq}}
-        {{/contains}}
-      {{/each}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th style="text-align: left;">Payment total</th>
-          <th style="text-align: left; padding-left: 20px;">{{> format-money money=payin-total}}</th>
-        </tr>
-      </tfoot>
-    </table>
+    <p>Happy Shooting!</p>
+    <p>The Film Locations Team</p>
 
     {{/with}}
 
