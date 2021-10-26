@@ -9,17 +9,18 @@
 
 <html>
   <body>
+    <p style="text-align: center">
+    <img align="center" alt="" src="https://ci5.googleusercontent.com/proxy/78Rlfe4Xc3vlwao5IFjza66TYqZy181APAlx1Vlx7_G6nwaiACXbyo0b_sC5AXyb0AJ5xWNnlEwcbJaG0XSJMEBPodgLT4eFNGmA9sxW9i7i2depyVxo0nbGt2lGoJcyOj-arF4M6m2vX7bM_jh0hOAHsyxRBA=s0-d-e1-ft#https://mcusercontent.com/dae8e56f005972e677062fd98/images/9e0327b7-7e58-444f-9c50-2140b0582b52.png" width="293.28000000000003" style="max-width:600px;padding-bottom:0;display:inline!important;vertical-align:bottom;border:0;height:auto;outline:none;text-decoration:none" class="m_-7272968925854413336mcnImage CToWUd"></p>
+    {{#with transaction}}
     <h1>Hello, {{customer.display-name}}</h1>
     <p>Congratulations - you have successfully booked your shoot!</p>
-    {{#with transaction}}
-    <p>{{> format-date date=booking.start}} to {{> format-date date=booking.end}}.</p>
 
     <p>Here are the details:</p>
     <p>
       Location: {{listing.title}}<br />
       Owner: {{provider.first-name}} {{provider.last-name}} <br />
       Address: {{listing.public-data.location.building}} <br />
-      Email: {{provider.email}} <br />
+      Email: {{provider.email-address}} <br />
       Contact Number: {{provider.protected-data.phoneNumber}} <br />
     </p>
 
@@ -27,10 +28,9 @@
       Booker: {{customer.display-name}}<br />
       Company: {{protected-data.companyName}}<br />
       Company Address: {{protected-data.companyAddress}}<br />
-      Email: {{customer.email}}<br />
       Contact Number: {{protected-data.contactNumber}}<br />
-      Start Date: {{protected-data.startDate}}<br />
-      End Date: {{protected-data.endDate}}<br />
+      Start Date: {{> format-date date=booking.start}}<br />
+      End Date: {{> format-date date=booking.end}}<br />
       Arrival Time: {{protected-data.arrivalTime}}<br />
       Departure Time: {{protected-data.departureTime}}<br />
       Number of People: {{protected-data.numberOfPeople}}<br />
