@@ -55,7 +55,7 @@ export const format = value => {
     return `${zeros}${sliced}`;
   }
 
-  return sliceLocal(numbers);
+  return sliceInternational(numbers);
 };
 
 /**
