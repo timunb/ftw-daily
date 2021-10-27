@@ -88,7 +88,7 @@ exports.transactionLineItems = (listing, bookingData) => {
   const parkingFee = parkingFeePrice
    ? [
        {
-         code: 'line-item/cleaning-fee',
+         code: 'line-item/parking-fee',
          unitPrice: parkingFeePrice,
          quantity: 1,
          includeFor: ['customer', 'provider'],
