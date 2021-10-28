@@ -97,7 +97,6 @@ export class BookingDatesFormComponent extends Component {
 
   setShootType(value, id) {
     localStorage.setItem('shootType', value);
-    this.handleOnChange(value);
   }
 
   setInsuranceProvider(value, id) {
