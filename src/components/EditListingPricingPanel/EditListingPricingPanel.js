@@ -34,12 +34,14 @@ const EditListingPricingPanel = props => {
   const cleaningFee = publicData && publicData.cleaningFee ? publicData.cleaningFee : null;
   const parkingFee = publicData && publicData.parkingFee ? publicData.parkingFee : null;
   const securityFee = publicData && publicData.securityFee ? publicData.securityFee : null;
+  const largeShootFee = publicData && publicData.largeShootFee ? publicData.largeShootFee : null;
 
   const cleaningFeeAsMoney = cleaningFee ? new Money(cleaningFee.amount, cleaningFee.currency) : null;
   const parkingFeeAsMoney = parkingFee ? new Money(parkingFee.amount, parkingFee.currency) : null;
   const securityFeeAsMoney = securityFee ? new Money(securityFee.amount, securityFee.currency) : null;
+  const largeShootFeeAsMoney = largeShootFee ? new Money(largeShootFee.amount, largeShootFee.currency) : null;
 
-  const initialValues = { price, cleaningFee: cleaningFeeAsMoney, parkingFee: parkingFeeAsMoney, securityFee: securityFeeAsMoney };
+  const initialValues = { price, cleaningFee: cleaningFeeAsMoney, parkingFee: parkingFeeAsMoney, securityFee: securityFeeAsMoney, largeShootFee: largeShootFeeAsMoney };
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -57,7 +59,7 @@ const EditListingPricingPanel = props => {
       className={css.form}
       initialValues={initialValues}
       onSubmit={values => {
-        const { price, parkingFee = null, cleaningFee = null, securityFee = null } = values;
+        const { price, parkingFee = null, cleaningFee = null, securityFee = null, largeShootFee = null } = values;
 
         const updatedValues = {
           price,
@@ -65,9 +67,12 @@ const EditListingPricingPanel = props => {
             cleaningFee: { amount: cleaningFee.amount, currency: cleaningFee.currency },
             parkingFee: { amount: parkingFee.amount, currency: parkingFee.currency },
             securityFee: { amount: securityFee.amount, currency: securityFee.currency },
+            largeShootFee: { amount: largeShootFee.amount, currency: largeShootFee.currency },
           },
         };
         onSubmit(updatedValues);
+
+        console.log(updatedValues);
       }}
       onChange={onChange}
       saveActionMsg={submitButtonText}

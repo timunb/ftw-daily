@@ -96,6 +96,12 @@ const BookingPanel = props => {
       ? listing.attributes.publicData.securityFee
       : null;
 
+  const largeShootFee =
+    listing.attributes.publicData &&
+    listing.attributes.publicData.largeShootFee
+      ? listing.attributes.publicData.largeShootFee
+      : null;
+
   const subTitleText = !!subTitle
     ? subTitle
     : showClosedListingHelpText
@@ -156,6 +162,7 @@ const BookingPanel = props => {
             parkingFee={parkingFee}
             cleaningFee={cleaningFee}
             securityFee={securityFee}
+            largeShootFee={largeShootFee}
           />
         ) : null}
       </ModalInMobile>

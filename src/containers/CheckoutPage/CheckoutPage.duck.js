@@ -178,6 +178,7 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
     hasCleaningFee: orderParams.hasCleaningFee,
     hasParkingFee: orderParams.hasParkingFee,
     hasSecurityFee: orderParams.hasSecurityFee,
+    hasLargeShootFee: orderParams.hasLargeShootFee,
   };
 
   const bodyParams = isTransition
@@ -318,6 +319,7 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
     hasCleaningFee: orderParams.hasCleaningFee,
     hasParkingFee: orderParams.hasParkingFee,
     hasSecurityFee: orderParams.hasSecurityFee,
+    hasLargeShootFee: orderParams.hasLargeShootFee,
   };
 
   const params = {

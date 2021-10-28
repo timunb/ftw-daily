@@ -205,6 +205,7 @@ export class CheckoutPageComponent extends Component {
           hasCleaningFee: bookingData.cleaningFee?.length > 0,
           hasParkingFee: bookingData.parkingFee?.length > 0,
           hasSecurityFee: bookingData.securityFee?.length > 0,
+          hasLargeShootFee: bookingData.largeShootFee?.length > 0,
         },
         transactionId
       );
@@ -390,6 +391,7 @@ export class CheckoutPageComponent extends Component {
       hasCleaningFee: pageData.bookingData?.cleaningFee?.length > 0,
       hasParkingFee: pageData.bookingData?.parkingFee?.length > 0,
       hasSecurityFee: pageData.bookingData?.securityFee?.length > 0,
+      hasLargeShootFee: pageData.bookingData?.largeShootFee?.length > 0,
       protectedData: {
         arrivalTime: localStorage.getItem("arrivalTime"),
         departureTime: localStorage.getItem("departureTime"),

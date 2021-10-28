@@ -130,6 +130,16 @@ export const EditListingPricingFormComponent = props => (
             currencyConfig={config.currencyConfig}
           />
 
+          <FieldCurrencyInput
+            id="largeShootFee"
+            name="largeShootFee"
+            className={css.largeShootFeeInput}
+            autoFocus
+            label="Large Shoot Fee (Above 15 crew)"
+            placeholder="Enter your large shoot fee if applicable"
+            currencyConfig={config.currencyConfig}
+          />
+
           <Button
             className={css.submitButton}
             type="submit"

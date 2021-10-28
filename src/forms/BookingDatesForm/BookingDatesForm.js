@@ -63,24 +63,20 @@ export class BookingDatesFormComponent extends Component {
   // lineItems from FTW backend for the EstimatedTransactionMaybe
   // In case you add more fields to the form, make sure you add
   // the values here to the bookingData object.
-  handleOnChange(formValues) {
+  handleOnChange(formValues, cleaningFee) {
     const { startDate, endDate } =
       formValues.values && formValues.values.bookingDates ? formValues.values.bookingDates : {};
-    const hasCleaningFee =
-      formValues.values.cleaningFee && formValues.values.cleaningFee.length > 0;
-
-    const hasParkingFee =
-      formValues.values.parkingFee && formValues.values.parkingFee.length > 0;
-
-    const hasSecurityFee =
-      formValues.values.securityFee && formValues.values.securityFee.length > 0;
+    const hasCleaningFee = this.props.cleaningFee;
+    const hasParkingFee = this.props.parkingFee;
+    const hasSecurityFee = this.props.securityFee;
+    const hasLargeShootFee = this.props.largeShootFee;
 
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee },
         listingId,
         isOwnListing,
       });
@@ -101,6 +97,7 @@ export class BookingDatesFormComponent extends Component {
 
   setShootType(value, id) {
     localStorage.setItem('shootType', value);
+    this.handleOnChange(value);
   }
 
   setInsuranceProvider(value, id) {
@@ -213,6 +210,7 @@ export class BookingDatesFormComponent extends Component {
             parkingFee,
             cleaningFee,
             securityFee,
+            largeShootFee,
           } = fieldRenderProps;
 
           const formattedParkingFee = parkingFee
@@ -236,6 +234,13 @@ export class BookingDatesFormComponent extends Component {
               )
             : null;
 
+          const formattedLargeShootFee = largeShootFee
+            ? formatMoney(
+                intl,
+                new Money(largeShootFee.amount, largeShootFee.currency)
+              )
+            : null;
+
           const cleaningFeeLabel = intl.formatMessage(
             { id: 'BookingDatesForm.cleaningFeeLabel' },
             { fee: formattedCleaningFee }
@@ -249,6 +254,11 @@ export class BookingDatesFormComponent extends Component {
           const securityFeeLabel = intl.formatMessage(
             { id: 'BookingDatesForm.securityFeeLabel' },
             { fee: formattedSecurityFee }
+          );
+
+          const largeShootFeeLabel = intl.formatMessage(
+            { id: 'BookingDatesForm.largeShootFeeLabel' },
+            { fee: formattedLargeShootFee }
           );
 
           const parkingFeeMaybe = parkingFee ? (
@@ -275,6 +285,15 @@ export class BookingDatesFormComponent extends Component {
               name="securityFee"
               label={securityFeeLabel}
               value="securityFee"
+            />
+          ) : null;
+
+          const largeShootFeeMaybe = largeShootFee ? (
+            <FieldCheckbox
+              id="largeShootFee"
+              name="largeShootFee"
+              label={largeShootFeeLabel}
+              value="largeShootFee"
             />
           ) : null;
 
@@ -463,6 +482,7 @@ export class BookingDatesFormComponent extends Component {
               {parkingFeeMaybe}
               {cleaningFeeMaybe}
               {securityFeeMaybe}
+              {largeShootFeeMaybe}
               {bookingInfoMaybe}
               {loadingSpinnerMaybe}
               {bookingInfoErrorMaybe}
