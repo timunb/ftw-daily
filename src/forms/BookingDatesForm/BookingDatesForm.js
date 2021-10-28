@@ -260,40 +260,24 @@ export class BookingDatesFormComponent extends Component {
             { fee: formattedLargeShootFee }
           );
 
+          const additionalFeesMaybe = parkingFee || cleaningFee || securityFee || largeShootFee? (
+            <h2>Additional Fees:</h2>
+          ) : null;
+
           const parkingFeeMaybe = parkingFee ? (
-            <FieldCheckbox
-              id="parkingFee"
-              name="parkingFee"
-              label={parkingFeeLabel}
-              value="parkingFee"
-            />
+            <div>{parkingFeeLabel}</div>
           ) : null;
 
           const cleaningFeeMaybe = cleaningFee ? (
-            <FieldCheckbox
-              id="cleaningFee"
-              name="cleaningFee"
-              label={cleaningFeeLabel}
-              value="cleaningFee"
-            />
+            <div>{cleaningFeeLabel}</div>
           ) : null;
 
           const securityFeeMaybe = securityFee ? (
-            <FieldCheckbox
-              id="securityFee"
-              name="securityFee"
-              label={securityFeeLabel}
-              value="securityFee"
-            />
+            <div>{securityFeeLabel}</div>
           ) : null;
 
           const largeShootFeeMaybe = largeShootFee ? (
-            <FieldCheckbox
-              id="largeShootFee"
-              name="largeShootFee"
-              label={largeShootFeeLabel}
-              value="largeShootFee"
-            />
+            <div>{largeShootFeeLabel}</div>
           ) : null;
 
           const { startDate, endDate } = values && values.bookingDates ? values.bookingDates : {};
@@ -478,6 +462,7 @@ export class BookingDatesFormComponent extends Component {
                 )}
                 disabled={fetchLineItemsInProgress}
               />
+              {additionalFeesMaybe}
               {parkingFeeMaybe}
               {cleaningFeeMaybe}
               {securityFeeMaybe}
