@@ -196,16 +196,17 @@ export class CheckoutPageComponent extends Component {
       // Fetch speculated transaction for showing price in booking breakdown
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
+
       fetchSpeculatedTransaction(
         {
           listingId,
           protectedData,
           bookingStart: bookingStartForAPI,
           bookingEnd: bookingEndForAPI,
-          hasCleaningFee: bookingData.cleaningFee?.length > 0,
-          hasParkingFee: bookingData.parkingFee?.length > 0,
-          hasSecurityFee: bookingData.securityFee?.length > 0,
-          hasLargeShootFee: bookingData.largeShootFee?.length > 0,
+          hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
+          hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
+          hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
+          hasLargeShootFee: pageData.listing.attributes.publicData.largeShootFee,
         },
         transactionId
       );
@@ -388,10 +389,10 @@ export class CheckoutPageComponent extends Component {
       listingId: pageData.listing.id,
       bookingStart: tx.booking.attributes.start,
       bookingEnd: tx.booking.attributes.end,
-      hasCleaningFee: pageData.bookingData?.cleaningFee?.length > 0,
-      hasParkingFee: pageData.bookingData?.parkingFee?.length > 0,
-      hasSecurityFee: pageData.bookingData?.securityFee?.length > 0,
-      hasLargeShootFee: pageData.bookingData?.largeShootFee?.length > 0,
+      hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
+      hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
+      hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
+      hasLargeShootFee: pageData.listing.attributes.publicData.largeShootFee,
       protectedData: {
         arrivalTime: localStorage.getItem("arrivalTime"),
         departureTime: localStorage.getItem("departureTime"),

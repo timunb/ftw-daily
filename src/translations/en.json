@@ -172,7 +172,7 @@
   "EditListingAvailabilityForm.bookedDay": "Booked",
   "EditListingAvailabilityForm.updateFailed": "Failed to update listing. Please try again.",
   "EditListingAvailabilityPanel.title": "Edit the availability of {listingTitle}",
-  "EditListingAvailabilityPanel.createListingTitle": "Step 6: When is it available?",
+  "EditListingAvailabilityPanel.createListingTitle": "Step 6: When are you not available?",
   "EditListingDescriptionForm.categoryLabel": "Location type",
   "EditListingDescriptionForm.categoryPlaceholder": "Choose the type of your location…",
   "EditListingDescriptionForm.categoryRequired": "You need to select a category for your location.",

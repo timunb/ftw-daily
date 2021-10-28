@@ -70,6 +70,14 @@ export class BookingDatesFormComponent extends Component {
     const hasParkingFee = this.props.parkingFee;
     const hasSecurityFee = this.props.securityFee;
     const hasLargeShootFee = this.props.largeShootFee;
+    //
+    // console.log(localStorage.getItem('numberOfPeople'));
+    //
+    // var hasLargeShootFee = false;
+    //
+    // if (localStorage.getItem('numberOfPeople') == "15+" && this.props.largeShootFee) {
+    //   hasLargeShootFee = this.props.largeShootFee;
+    // }
 
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
