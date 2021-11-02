@@ -45,15 +45,16 @@ class TopbarSearchFormComponent extends Component {
 
           const queryParams = new URLSearchParams(useLocation().search);
 
-          setTimeout(function() {
-            const type = queryParams.get('type');
-
-            if (type) {
-              if (type === 'booking' && document.getElementById('bookButton')) {
-                document.getElementById('bookButton').click();
-              }
-            }
-          }, 500);
+          // setTimeout(function() {
+          //   const type = queryParams.get('type');
+          //
+          //   if (type) {
+          //     if (type === 'booking') {
+          //       console.log('this is a booking');
+          //       document.getElementById('bookButton').click();
+          //     }
+          //   }
+          // }, 100);
 
           return (
             <Form
