@@ -44,17 +44,16 @@ class TopbarSearchFormComponent extends Component {
           const preventFormSubmit = e => e.preventDefault();
 
           const queryParams = new URLSearchParams(useLocation().search);
-          
+
           setTimeout(function() {
             const type = queryParams.get('type');
 
             if (type) {
               if (type === 'booking') {
-                console.log('this is a booking');
                 document.getElementById('bookButton').click();
               }
             }
-          }, 100);
+          }, 500);
 
           return (
             <Form
