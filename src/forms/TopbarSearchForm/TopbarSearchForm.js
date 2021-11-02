@@ -49,7 +49,7 @@ class TopbarSearchFormComponent extends Component {
             const type = queryParams.get('type');
 
             if (type) {
-              if (type === 'booking') {
+              if (type === 'booking' && document.getElementById('bookButton')) {
                 document.getElementById('bookButton').click();
               }
             }
