@@ -182,7 +182,14 @@ export class BookingDatesFormComponent extends Component {
     }
   }
 
+  componentWillMount(){
+    localStorage.removeItem('numberOfPeople');
+  }
+
   componentDidMount() {
+
+    // localStorage.removeItem('numberOfPeople');
+
     if (!localStorage.getItem('departureOvertime')) {
       localStorage.setItem('departureOvertime', 0);
     }
