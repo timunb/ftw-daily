@@ -20,6 +20,9 @@ import { SingleDatePicker } from 'react-dates';
 
 const { Money } = sdkTypes;
 
+const minimumDate = '';
+const hasNotChangedDates = true;
+
 const identity = v => v;
 
 export class BookingDatesFormComponent extends Component {
@@ -74,6 +77,9 @@ export class BookingDatesFormComponent extends Component {
     var arrivalOvertimeHours = 0
     var departureOvertimeHours = 0;
     var totalOvertimeHours = 0;
+
+    this.minimumDate = startDate;
+
     // Calculate overtime from arrival time
     if (formValues.active == "arrivalTime" && formValues.values.arrivalTime && this.props.overtimeFee) {
       var arrTime = formValues.values.arrivalTime;
@@ -112,7 +118,6 @@ export class BookingDatesFormComponent extends Component {
       console.log(arrivalOvertime);
     }
 
-    console.log(formValues.active);
 
     // Calculate overtime from arrival time
     if (formValues.active == "departureTime" && formValues.values.departureTime && this.props.overtimeFee) {
@@ -174,6 +179,7 @@ export class BookingDatesFormComponent extends Component {
     const isOwnListing = this.props.isOwnListing;
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
+      this.hasNotChangedDates = false;
       this.props.onFetchTransactionLineItems({
         bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee },
         listingId,
@@ -182,13 +188,13 @@ export class BookingDatesFormComponent extends Component {
     }
   }
 
-  componentWillMount(){
+  componentWillMount() {
+    this.hasNotChangedDates = true;
     localStorage.removeItem('numberOfPeople');
+    localStorage.removeItem('shootType');
   }
 
   componentDidMount() {
-
-    // localStorage.removeItem('numberOfPeople');
 
     if (!localStorage.getItem('departureOvertime')) {
       localStorage.setItem('departureOvertime', 0);
@@ -197,10 +203,6 @@ export class BookingDatesFormComponent extends Component {
       localStorage.setItem('arrivalOvertime', 0);
     }
 
-  }
-
-  setNumberOfPeople(value, id) {
-    localStorage.setItem('numberOfPeople', value);
   }
 
   setShootType(value, id) {
@@ -535,6 +537,7 @@ export class BookingDatesFormComponent extends Component {
           setTimeout(function() {
             if (shoot_type) {
               document.getElementById('shootType').value = shoot_type;
+              localStorage.setItem('shootType', shoot_type);
             }
           }, 400);
 
@@ -546,6 +549,10 @@ export class BookingDatesFormComponent extends Component {
               startDate: start_date,
               endDate: end_date
             };
+          }
+
+          if (start_date && this.hasNotChangedDates) {
+            this.minimumDate = start_date;
           }
 
           return (
@@ -883,6 +890,7 @@ export class BookingDatesFormComponent extends Component {
                   onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
                   id="expiryDate" // PropTypes.string.isRequired,
                   onClose={(date) => this.setExpiryDate(date)}
+                  isOutsideRange={(day) => day.isBefore(this.minimumDate)}
                 />
 
 
