@@ -64,28 +64,109 @@ export class BookingDatesFormComponent extends Component {
   // In case you add more fields to the form, make sure you add
   // the values here to the bookingData object.
   handleOnChange(formValues) {
-    // console.log(formValues);
-    // console.log(formValues.active);
-    // console.log("15 Plus");
-
-
     const { startDate, endDate } =
       formValues.values && formValues.values.bookingDates ? formValues.values.bookingDates : {};
     const hasCleaningFee = this.props.cleaningFee;
     const hasParkingFee = this.props.parkingFee;
     const hasSecurityFee = this.props.securityFee;
-    const hasOvertimeFee = this.props.overtimeFee;
-
-    console.log(hasSecurityFee);
-
+    var hasOvertimeFee = false;
     var hasLargeShootFee = false;
+    var arrivalOvertimeHours = 0
+    var departureOvertimeHours = 0;
+    var totalOvertimeHours = 0;
+    // Calculate overtime from arrival time
+    if (formValues.active == "arrivalTime" && formValues.values.arrivalTime && this.props.overtimeFee) {
+      var arrTime = formValues.values.arrivalTime;
+      localStorage.setItem('arrivalTime', arrTime);
+
+      var arrivalOvertime = 0;
+      var overTimeAm = 0;
+      var overTimePm = 0;
+
+      if (arrTime.includes("AM")) {
+        var selectedTimeAm = arrTime.replace("AM", "").split(":", 2)[0];
+        // console.log(selectedTime);
+        if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+          overTimeAm = Math.abs(9 - selectedTimeAm)
+        }
+
+        if (selectedTimeAm == 12) {
+          overTimeAm = 9;
+        }
+
+      }
+
+      if (arrTime.includes("PM")) {
+        var selectedTimePm = arrTime.replace("PM", "").split(":", 2)[0];
+        // console.log(selectedTime);
+        if (selectedTimePm > 5) {
+          overTimeAm = Math.abs(selectedTimePm - 5)
+        }
+
+      }
+
+      arrivalOvertime = Math.abs(overTimeAm + overTimePm)
+
+      arrivalOvertimeHours = arrivalOvertime;
+      localStorage.setItem('arrivalOvertime', arrivalOvertime);
+      console.log(arrivalOvertime);
+    }
+
+    console.log(formValues.active);
+
+    // Calculate overtime from arrival time
+    if (formValues.active == "departureTime" && formValues.values.departureTime && this.props.overtimeFee) {
+      var depTime = formValues.values.departureTime;
+      localStorage.setItem('arrivalTime', depTime);
+
+      var departureOvertime = 0;
+      var overTimeAm = 0;
+      var overTimePm = 0;
+
+      if (depTime.includes("AM")) {
+        var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
+        // console.log(selectedTime);
+        if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+          overTimeAm = Math.abs(9 - selectedTimeAm)
+        }
+
+        if (selectedTimeAm == 12) {
+          overTimeAm = 9;
+        }
+
+      }
+
+      if (depTime.includes("PM")) {
+        var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
+        // console.log(selectedTime);
+        if (selectedTimePm > 5) {
+          overTimeAm = Math.abs(selectedTimePm - 5)
+        }
+
+      }
+      departureOvertime = Math.abs(overTimeAm + overTimePm)
+      departureOvertimeHours = departureOvertime;
+
+      localStorage.setItem('departureOvertime', departureOvertime);
+
+      console.log(departureOvertime);
+    }
+
+    totalOvertimeHours = Math.abs(Number(localStorage.getItem('departureOvertime')) + Number(localStorage.getItem('arrivalOvertime')));
+
+    localStorage.setItem('totalOvertimeHours', totalOvertimeHours);
+
+    if (totalOvertimeHours > 0) {
+      hasOvertimeFee = this.props.overtimeFee;
+    }
 
     if (this.props.largeShootFee) {
-      if (formValues.active == "numberOfPeople" && String(formValues.values.numberOfPeople) == "15 plus") {
-        localStorage.setItem('numberOfPeople', "15 plus");
-        hasLargeShootFee = this.props.largeShootFee;
-      } else if (formValues.active == "numberOfPeople" && String(formValues.values.numberOfPeople) !== "15 plus") {
+      if (formValues.active == "numberOfPeople") {
         localStorage.setItem('numberOfPeople', formValues.values.numberOfPeople);
+      }
+
+      if ((formValues.active == "numberOfPeople" && formValues.values.numberOfPeople == "15 plus") || localStorage.getItem('numberOfPeople') == "15 plus") {
+        hasLargeShootFee = this.props.largeShootFee;
       }
     }
 
@@ -101,70 +182,13 @@ export class BookingDatesFormComponent extends Component {
     }
   }
 
-  setArrivalTime(value, id) {
-    localStorage.setItem('arrivalTime', value);
-    var arrivalOvertime = 0;
-    var overTimeAm = 0;
-    var overTimePm = 0;
-
-    if (value.includes("AM")) {
-      var selectedTimeAm = value.replace("AM", "").split(":", 2)[0];
-      // console.log(selectedTime);
-      if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-        overTimeAm = Math.abs(9 - selectedTimeAm)
-      }
-
-      if (selectedTimeAm == 12) {
-        overTimeAm = 9;
-      }
-
+  componentDidMount() {
+    if (!localStorage.getItem('departureOvertime')) {
+      localStorage.setItem('departureOvertime', 0);
     }
-
-    if (value.includes("PM")) {
-      var selectedTimePm = value.replace("PM", "").split(":", 2)[0];
-      // console.log(selectedTime);
-      if (selectedTimePm > 5) {
-        overTimeAm = Math.abs(selectedTimePm - 5)
-      }
-
+    if (!localStorage.getItem('arrivalOvertime')) {
+      localStorage.setItem('arrivalOvertime', 0);
     }
-
-    arrivalOvertime = Math.abs(overTimeAm + overTimePm)
-
-    console.log(arrivalOvertime);
-  }
-
-  setDepartureTime(value, id) {
-    localStorage.setItem('departureTime', value);
-    var departureOvertime = 0;
-    var overTimeAm = 0;
-    var overTimePm = 0;
-
-    if (value.includes("AM")) {
-      var selectedTimeAm = value.replace("AM", "").split(":", 2)[0];
-      // console.log(selectedTime);
-      if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-        overTimeAm = Math.abs(9 - selectedTimeAm)
-      }
-
-      if (selectedTimeAm == 12) {
-        overTimeAm = 9;
-      }
-
-    }
-
-    if (value.includes("PM")) {
-      var selectedTimePm = value.replace("PM", "").split(":", 2)[0];
-      // console.log(selectedTime);
-      if (selectedTimePm > 5) {
-        overTimeAm = Math.abs(selectedTimePm - 5)
-      }
-
-    }
-
-    departureOvertime = Math.abs(overTimeAm + overTimePm)
-
-    console.log(departureOvertime);
 
   }
 
@@ -505,19 +529,6 @@ export class BookingDatesFormComponent extends Component {
             if (shoot_type) {
               document.getElementById('shootType').value = shoot_type;
             }
-
-            if (people && localStorage.getItem('numberOfPeople') === null) {
-              document.getElementById('numberOfPeople').value = people;
-              localStorage.setItem('numberOfPeople', people);
-            }
-
-            if (arrival_time) {
-              document.getElementById('arrivalTime').value = arrival_time;
-            }
-
-            if (departure_time) {
-              document.getElementById('departureTime').value = departure_time;
-            }
           }, 400);
 
 
@@ -642,8 +653,9 @@ export class BookingDatesFormComponent extends Component {
               <h2>Additional Information</h2>
               <div className="additional-details">
               <label htmlFor="arrivalTime">Arrival Time</label>
-              <select id="arrivalTime" name="arrival-time"
-                onChange={e => this.setArrivalTime(e.target.value)}
+                <FieldSelect
+                  id="arrivalTime"
+                  name="arrivalTime"
                 >
                 <option disabled selected value="">
                   Pick a time
@@ -696,10 +708,13 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </select>
+              </FieldSelect>
 
               <label htmlFor="departureTime">Departure Time</label>
-              <select id="departureTime" name="departure-time" onChange={e => this.setDepartureTime(e.target.value)}>
+              <FieldSelect
+                id="departureTime"
+                name="departureTime"
+              >
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -751,7 +766,7 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </select>
+              </FieldSelect>
 
               <label htmlFor="shootType">Type of Shoot</label>
               <select id="shootType" name="shootType" onChange={e => this.setShootType(e.target.value)}>

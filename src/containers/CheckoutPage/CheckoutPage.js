@@ -203,6 +203,12 @@ export class CheckoutPageComponent extends Component {
         hasLargeShootFee = true;
       }
 
+      var hasOvertimeFee = false;
+
+      if (localStorage.getItem('totalOvertimeHours') > 0 && pageData.listing.attributes.publicData.overtimeFee) {
+        hasOvertimeFee = true;
+      }
+
       fetchSpeculatedTransaction(
         {
           listingId,
@@ -212,7 +218,7 @@ export class CheckoutPageComponent extends Component {
           hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
           hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
           hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
-          hasOvertimeFee: pageData.listing.attributes.publicData.overtimeFee,
+          hasOvertimeFee: hasOvertimeFee,
           hasLargeShootFee: hasLargeShootFee,
         },
         transactionId

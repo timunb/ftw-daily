@@ -108,9 +108,99 @@ export class ListingPageComponent extends Component {
       const type = query.get('type');
       var element = document.getElementById("bookButton");
 
+      const arrival_time = query.get('arrival_time');
+      const departure_time = query.get('departure_time');
+      const people = query.get('people');
+
+
       if (type && type === 'booking') {
         if(typeof(element) != 'undefined' && element != null) {
           element.click();
+        }
+
+        if (people) {
+          document.getElementById('numberOfPeople').value = people;
+          localStorage.setItem('numberOfPeople', people);
+        }
+
+        if (arrival_time) {
+          document.getElementById('arrivalTime').value = arrival_time;
+          localStorage.setItem('arrivalTime', arrival_time);
+
+          var arrTime = arrival_time;
+          localStorage.setItem('arrivalTime', arrTime);
+
+          var arrivalOvertime = 0;
+          var overTimeAm = 0;
+          var overTimePm = 0;
+
+          if (arrTime.includes("AM")) {
+            var selectedTimeAm = arrTime.replace("AM", "").split(":", 2)[0];
+            // console.log(selectedTime);
+            if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+              overTimeAm = Math.abs(9 - selectedTimeAm)
+            }
+
+            if (selectedTimeAm == 12) {
+              overTimeAm = 9;
+            }
+
+          }
+
+          if (arrTime.includes("PM")) {
+            var selectedTimePm = arrTime.replace("PM", "").split(":", 2)[0];
+            // console.log(selectedTime);
+            if (selectedTimePm > 5) {
+              overTimeAm = Math.abs(selectedTimePm - 5)
+            }
+
+          }
+
+          arrivalOvertime = Math.abs(overTimeAm + overTimePm)
+
+          localStorage.setItem('arrivalOvertime', arrivalOvertime);
+
+        }
+
+        if (departure_time) {
+          document.getElementById('departureTime').value = departure_time;
+          localStorage.setItem('departureTime', departure_time);
+
+          var depTime = departure_time;
+          localStorage.setItem('arrivalTime', depTime);
+
+          var departureOvertime = 0;
+          var overTimeAm = 0;
+          var overTimePm = 0;
+
+          if (depTime.includes("AM")) {
+            var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
+            // console.log(selectedTime);
+            if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+              overTimeAm = Math.abs(9 - selectedTimeAm)
+            }
+
+            if (selectedTimeAm == 12) {
+              overTimeAm = 9;
+            }
+
+          }
+
+          if (depTime.includes("PM")) {
+            var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
+            // console.log(selectedTime);
+            if (selectedTimePm > 5) {
+              overTimeAm = Math.abs(selectedTimePm - 5)
+            }
+
+          }
+          departureOvertime = Math.abs(overTimeAm + overTimePm)
+
+          localStorage.setItem('departureOvertime', departureOvertime);
+        }
+
+        if (departure_time && arrival_time) {
+          localStorage.setItem('totalOvertimeHours', arrivalOvertime + departureOvertime);
         }
       }
     }, 1000);
