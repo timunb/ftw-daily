@@ -303,7 +303,7 @@
 }
 .legendBlockedColor {
   composes: legendColor;
-  background-color: var(--ManageAvailabilityCalendar_blockedColorHover);
+  background-color: var(--ManageAvailabilityCalendar_blockedColor);
 }
 
 .legendText {
