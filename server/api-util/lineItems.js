@@ -7,6 +7,9 @@ const { Money } = types;
 const bookingUnitType = 'line-item/day';
 const PROVIDER_COMMISSION_PERCENTAGE = -10;
 
+// console.log(localStorage.getItem('totalOvertimeHours'));
+// console.log(parseInt(localStorage.getItem('totalOvertimeHours')));
+
 /** Returns collection of lineItems (max 50)
  *
  * Each line items has following fields:
@@ -29,7 +32,7 @@ const PROVIDER_COMMISSION_PERCENTAGE = -10;
  */
 exports.transactionLineItems = (listing, bookingData) => {
   const unitPrice = listing.attributes.price;
-  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee } = bookingData;
+  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours } = bookingData;
 
   /**
    * If you want to use pre-defined component and translations for printing the lineItems base price for booking,
@@ -144,13 +147,15 @@ exports.transactionLineItems = (listing, bookingData) => {
       ]
     : [];
 
+
+
     const overtimeFeePrice = hasOvertimeFee ? resolveOvertimeFeePrice(listing) : null;
     const overtimeFee = overtimeFeePrice
      ? [
          {
            code: 'line-item/overtime-fee',
            unitPrice: overtimeFeePrice,
-           quantity: 1,
+           quantity: bookingOvertimeHours,
            includeFor: ['customer', 'provider'],
          },
        ]

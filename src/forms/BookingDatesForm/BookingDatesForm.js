@@ -77,6 +77,7 @@ export class BookingDatesFormComponent extends Component {
     var arrivalOvertimeHours = 0
     var departureOvertimeHours = 0;
     var totalOvertimeHours = 0;
+    var bookingOvertimeHours = localStorage.getItem('totalOvertimeHours');
 
     this.minimumDate = startDate;
 
@@ -181,7 +182,7 @@ export class BookingDatesFormComponent extends Component {
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.hasNotChangedDates = false;
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours },
         listingId,
         isOwnListing,
       });
