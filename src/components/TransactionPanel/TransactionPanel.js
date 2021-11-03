@@ -59,6 +59,7 @@ const displayNames = (currentUser, currentProvider, currentCustomer, intl) => {
 
   let otherUserDisplayName = '';
   let otherUserDisplayNameString = '';
+
   const currentUserIsCustomer =
     currentUser.id && currentCustomer.id && currentUser.id.uuid === currentCustomer.id.uuid;
   const currentUserIsProvider =
@@ -351,6 +352,27 @@ export class TransactionPanelComponent extends Component {
 
     const classes = classNames(rootClassName || css.root, className);
 
+    const currentUserIsCustomer =
+      currentUser.id && currentCustomer.id && currentUser.id.uuid === currentCustomer.id.uuid;
+    const currentUserIsProvider =
+      currentUser.id && currentProvider.id && currentUser.id.uuid === currentProvider.id.uuid;
+
+    var customMessage = "";
+    var customMessage2 = "";
+
+    if (currentUserIsCustomer) {
+      customMessage = "If this location owner is happy to proceed with booking your shoot, simply click 'book now' on their location page and fill in the details as agreed per your discussion. The owner will then receive the booking request and confirm in order to start the payment process.";
+
+      customMessage2 = "Once payment is made your shoot will be officially booked in.";
+    }
+
+    if (currentUserIsProvider) {
+      customMessage = "If you are happy to proceed with booking this shoot, instruct the booker to click 'book now' on your location page and fill in the details as agreed per your discussion. You will then then receive their booking request and will need to confirm it in order to start the payment process.";
+
+      customMessage2 = "Once payment is made this shoot will be officially booked in.";
+    }
+    console.log(currentUserIsCustomer);
+    console.log(currentUserIsProvider);
     return (
       <div className={classes}>
         <div className={css.container}>
@@ -424,8 +446,12 @@ export class TransactionPanelComponent extends Component {
               />
             ) : (
               <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
-            )}
 
+            )}
+            <br />
+            <div>{customMessage}</div>
+            <br />
+            <div>{customMessage2}</div>
             {stateData.showSaleButtons ? (
               <div className={css.mobileActionButtons}>{saleButtons}</div>
             ) : null}
