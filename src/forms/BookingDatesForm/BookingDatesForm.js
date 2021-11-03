@@ -63,21 +63,19 @@ export class BookingDatesFormComponent extends Component {
   // lineItems from FTW backend for the EstimatedTransactionMaybe
   // In case you add more fields to the form, make sure you add
   // the values here to the bookingData object.
-  handleOnChange(formValues, cleaningFee) {
+  handleOnChange(formValues, cleaningFee, largeShootFee) {
     const { startDate, endDate } =
       formValues.values && formValues.values.bookingDates ? formValues.values.bookingDates : {};
     const hasCleaningFee = this.props.cleaningFee;
     const hasParkingFee = this.props.parkingFee;
     const hasSecurityFee = this.props.securityFee;
-    const hasLargeShootFee = this.props.largeShootFee;
-    //
-    // console.log(localStorage.getItem('numberOfPeople'));
-    //
-    // var hasLargeShootFee = false;
-    //
-    // if (localStorage.getItem('numberOfPeople') == "15+" && this.props.largeShootFee) {
-    //   hasLargeShootFee = this.props.largeShootFee;
-    // }
+
+    var hasLargeShootFee = false;
+
+    if (localStorage.getItem('numberOfPeople') === "15 plus" && this.props.largeShootFee) {
+      hasLargeShootFee = this.props.largeShootFee;
+      console.log('has large shoot fee');
+    }
 
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
@@ -93,10 +91,69 @@ export class BookingDatesFormComponent extends Component {
 
   setArrivalTime(value, id) {
     localStorage.setItem('arrivalTime', value);
+    var arrivalOvertime = 0;
+    var overTimeAm = 0;
+    var overTimePm = 0;
+
+    if (value.includes("AM")) {
+      var selectedTimeAm = value.replace("AM", "").split(":", 2)[0];
+      // console.log(selectedTime);
+      if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+        overTimeAm = Math.abs(9 - selectedTimeAm)
+      }
+
+      if (selectedTimeAm == 12) {
+        overTimeAm = 9;
+      }
+
+    }
+
+    if (value.includes("PM")) {
+      var selectedTimePm = value.replace("PM", "").split(":", 2)[0];
+      // console.log(selectedTime);
+      if (selectedTimePm > 5) {
+        overTimeAm = Math.abs(selectedTimePm - 5)
+      }
+
+    }
+
+    arrivalOvertime = Math.abs(overTimeAm + overTimePm)
+
+    console.log(arrivalOvertime);
   }
 
   setDepartureTime(value, id) {
     localStorage.setItem('departureTime', value);
+    var departureOvertime = 0;
+    var overTimeAm = 0;
+    var overTimePm = 0;
+
+    if (value.includes("AM")) {
+      var selectedTimeAm = value.replace("AM", "").split(":", 2)[0];
+      // console.log(selectedTime);
+      if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+        overTimeAm = Math.abs(9 - selectedTimeAm)
+      }
+
+      if (selectedTimeAm == 12) {
+        overTimeAm = 9;
+      }
+
+    }
+
+    if (value.includes("PM")) {
+      var selectedTimePm = value.replace("PM", "").split(":", 2)[0];
+      // console.log(selectedTime);
+      if (selectedTimePm > 5) {
+        overTimeAm = Math.abs(selectedTimePm - 5)
+      }
+
+    }
+
+    departureOvertime = Math.abs(overTimeAm + overTimePm)
+
+    console.log(departureOvertime);
+
   }
 
   setNumberOfPeople(value, id) {
@@ -173,6 +230,10 @@ export class BookingDatesFormComponent extends Component {
   render() {
     const { rootClassName, queryParamNames, initialValues, className, price: unitPrice, ...rest } = this.props;
     const classes = classNames(rootClassName || css.root, className);
+
+    if (localStorage.getItem('numberOfPeople') === null) {
+      localStorage.removeItem('numberOfPeople');
+    }
 
     if (!unitPrice) {
       return (
@@ -416,8 +477,9 @@ export class BookingDatesFormComponent extends Component {
               document.getElementById('shootType').value = shoot_type;
             }
 
-            if (people) {
+            if (people && localStorage.getItem('numberOfPeople') === null) {
               document.getElementById('numberOfPeople').value = people;
+              localStorage.setItem('numberOfPeople', people);
             }
 
             if (arrival_time) {
@@ -427,7 +489,7 @@ export class BookingDatesFormComponent extends Component {
             if (departure_time) {
               document.getElementById('departureTime').value = departure_time;
             }
-          }, 1000);
+          }, 400);
 
 
           var queryDates = null;
@@ -443,11 +505,12 @@ export class BookingDatesFormComponent extends Component {
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
               <FormSpy
-                subscription={{ values: true }}
+                
                 onChange={values => {
                   this.handleOnChange(values);
                 }}
               />
+              <input type="text" value={this.state.value} onChange={this.handleChange} />
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
@@ -492,7 +555,9 @@ export class BookingDatesFormComponent extends Component {
               <h2>Additional Information</h2>
               <div className="additional-details">
               <label htmlFor="arrivalTime">Arrival Time</label>
-              <select id="arrivalTime" name="arrival-time" onChange={e => this.setArrivalTime(e.target.value)}>
+              <select id="arrivalTime" name="arrival-time"
+                onChange={e => this.setArrivalTime(e.target.value)}
+                >
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -651,7 +716,7 @@ export class BookingDatesFormComponent extends Component {
                 <option value="14">
                   14
                 </option>
-                <option value="15+">
+                <option value="15 plus">
                   15+
                 </option>
               </select>

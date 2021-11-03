@@ -197,6 +197,12 @@ export class CheckoutPageComponent extends Component {
       // NOTE: if unit type is line-item/units, quantity needs to be added.
       // The way to pass it to checkout page is through pageData.bookingData
 
+      var hasLargeShootFee = false;
+
+      if (localStorage.getItem('numberOfPeople') === "15 plus" && pageData.listing.attributes.publicData.largeShootFee) {
+        hasLargeShootFee = true;
+      }
+
       fetchSpeculatedTransaction(
         {
           listingId,
@@ -206,7 +212,7 @@ export class CheckoutPageComponent extends Component {
           hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
           hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
           hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
-          hasLargeShootFee: pageData.listing.attributes.publicData.largeShootFee,
+          hasLargeShootFee: hasLargeShootFee,
         },
         transactionId
       );
