@@ -63,7 +63,12 @@ export class BookingDatesFormComponent extends Component {
   // lineItems from FTW backend for the EstimatedTransactionMaybe
   // In case you add more fields to the form, make sure you add
   // the values here to the bookingData object.
-  handleOnChange(formValues, cleaningFee, largeShootFee) {
+  handleOnChange(formValues) {
+    // console.log(formValues);
+    // console.log(formValues.active);
+    // console.log("15 Plus");
+
+
     const { startDate, endDate } =
       formValues.values && formValues.values.bookingDates ? formValues.values.bookingDates : {};
     const hasCleaningFee = this.props.cleaningFee;
@@ -72,9 +77,13 @@ export class BookingDatesFormComponent extends Component {
 
     var hasLargeShootFee = false;
 
-    if (localStorage.getItem('numberOfPeople') === "15 plus" && this.props.largeShootFee) {
-      hasLargeShootFee = this.props.largeShootFee;
-      console.log('has large shoot fee');
+    if (this.props.largeShootFee) {
+      if (formValues.active == "numberOfPeople" && String(formValues.values.numberOfPeople) == "15 plus") {
+        localStorage.setItem('numberOfPeople', "15 plus");
+        hasLargeShootFee = this.props.largeShootFee;
+      } else if (formValues.active == "numberOfPeople" && String(formValues.values.numberOfPeople) !== "15 plus") {
+        localStorage.setItem('numberOfPeople', formValues.values.numberOfPeople);
+      }
     }
 
     const listingId = this.props.listingId;
@@ -505,12 +514,10 @@ export class BookingDatesFormComponent extends Component {
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
               <FormSpy
-                
                 onChange={values => {
                   this.handleOnChange(values);
                 }}
               />
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
@@ -533,6 +540,65 @@ export class BookingDatesFormComponent extends Component {
                 )}
                 disabled={fetchLineItemsInProgress}
               />
+
+              <label htmlFor="numberOfPeople">Number of People</label>
+
+              <FieldSelect
+                id="numberOfPeople"
+                name="numberOfPeople"
+              >
+                <option disabled selected value="">
+                  Pick a number
+                </option>
+                <option value="1">
+                  1
+                </option>
+                <option value="2">
+                  2
+                </option>
+                <option value="3">
+                  3
+                </option>
+                <option value="4">
+                  4
+                </option>
+                <option value="5">
+                  5
+                </option>
+                <option value="6">
+                  6
+                </option>
+
+                <option value="7">
+                  7
+                </option>
+                <option value="8">
+                  8
+                </option>
+                <option value="9">
+                  9
+                </option>
+                <option value="10">
+                  10
+                </option>
+                <option value="11">
+                  11
+                </option>
+                <option value="12">
+                  12
+                </option>
+                <option value="13">
+                  13
+                </option>
+                <option value="14">
+                  14
+                </option>
+                <option value="15 plus">
+                  15+
+                </option>
+
+              </FieldSelect>
+              
               {additionalFeesMaybe}
               {parkingFeeMaybe}
               {cleaningFeeMaybe}
@@ -663,61 +729,6 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="10:30 PM">10:30 PM
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
-                </option>
-              </select>
-
-
-
-              <label htmlFor="numberOfPeople">Number of People</label>
-              <select id="numberOfPeople" name="numberOfPeople" onChange={e => this.setNumberOfPeople(e.target.value)}>
-                <option disabled selected value="">
-                  Pick a number
-                </option>
-                <option value="1">
-                  1
-                </option>
-                <option value="2">
-                  2
-                </option>
-                <option value="3">
-                  3
-                </option>
-                <option value="4">
-                  4
-                </option>
-                <option value="5">
-                  5
-                </option>
-                <option value="6">
-                  6
-                </option>
-
-                <option value="7">
-                  7
-                </option>
-                <option value="8">
-                  8
-                </option>
-                <option value="9">
-                  9
-                </option>
-                <option value="10">
-                  10
-                </option>
-                <option value="11">
-                  11
-                </option>
-                <option value="12">
-                  12
-                </option>
-                <option value="13">
-                  13
-                </option>
-                <option value="14">
-                  14
-                </option>
-                <option value="15 plus">
-                  15+
                 </option>
               </select>
 
