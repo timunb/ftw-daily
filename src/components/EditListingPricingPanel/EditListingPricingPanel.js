@@ -35,13 +35,15 @@ const EditListingPricingPanel = props => {
   const parkingFee = publicData && publicData.parkingFee ? publicData.parkingFee : null;
   const securityFee = publicData && publicData.securityFee ? publicData.securityFee : null;
   const largeShootFee = publicData && publicData.largeShootFee ? publicData.largeShootFee : null;
+  const overtimeFee = publicData && publicData.overtimeFee ? publicData.overtimeFee : null;
 
   const cleaningFeeAsMoney = cleaningFee ? new Money(cleaningFee.amount, cleaningFee.currency) : null;
   const parkingFeeAsMoney = parkingFee ? new Money(parkingFee.amount, parkingFee.currency) : null;
   const securityFeeAsMoney = securityFee ? new Money(securityFee.amount, securityFee.currency) : null;
   const largeShootFeeAsMoney = largeShootFee ? new Money(largeShootFee.amount, largeShootFee.currency) : null;
+  const overtimeFeeAsMoney = overtimeFee ? new Money(overtimeFee.amount, overtimeFee.currency) : null;
 
-  const initialValues = { price, cleaningFee: cleaningFeeAsMoney, parkingFee: parkingFeeAsMoney, securityFee: securityFeeAsMoney, largeShootFee: largeShootFeeAsMoney };
+  const initialValues = { price, cleaningFee: cleaningFeeAsMoney, parkingFee: parkingFeeAsMoney, securityFee: securityFeeAsMoney, largeShootFee: largeShootFeeAsMoney, overtimeFee: overtimeFeeAsMoney };
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -59,8 +61,8 @@ const EditListingPricingPanel = props => {
       className={css.form}
       initialValues={initialValues}
       onSubmit={values => {
-        const { price, parkingFee = null, cleaningFee = null, securityFee = null, largeShootFee = null } = values;
-        console.log(cleaningFee);
+        const { price, parkingFee = null, cleaningFee = null, securityFee = null, largeShootFee = null, overtimeFee = null } = values;
+        
         const updatedValues = {
           price,
           publicData: {
@@ -68,6 +70,7 @@ const EditListingPricingPanel = props => {
             parkingFee: parkingFee ? { amount: parkingFee.amount, currency: parkingFee.currency } : null,
             securityFee: securityFee ? { amount: securityFee.amount, currency: securityFee.currency } : null,
             largeShootFee: largeShootFee ? { amount: largeShootFee.amount, currency: largeShootFee.currency } : null,
+            overtimeFee: largeShootFee ? { amount: overtimeFee.amount, currency: overtimeFee.currency } : null,
           },
         };
         onSubmit(updatedValues);

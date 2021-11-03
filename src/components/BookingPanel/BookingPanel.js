@@ -102,6 +102,12 @@ const BookingPanel = props => {
       ? listing.attributes.publicData.largeShootFee
       : null;
 
+  const overtimeFee =
+    listing.attributes.publicData &&
+    listing.attributes.publicData.overtimeFee
+      ? listing.attributes.publicData.overtimeFee
+      : null;
+
   const subTitleText = !!subTitle
     ? subTitle
     : showClosedListingHelpText
@@ -163,6 +169,7 @@ const BookingPanel = props => {
             cleaningFee={cleaningFee}
             securityFee={securityFee}
             largeShootFee={largeShootFee}
+            overtimeFee={overtimeFee}
           />
         ) : null}
       </ModalInMobile>

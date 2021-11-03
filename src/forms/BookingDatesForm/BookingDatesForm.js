@@ -74,6 +74,9 @@ export class BookingDatesFormComponent extends Component {
     const hasCleaningFee = this.props.cleaningFee;
     const hasParkingFee = this.props.parkingFee;
     const hasSecurityFee = this.props.securityFee;
+    const hasOvertimeFee = this.props.overtimeFee;
+
+    console.log(hasSecurityFee);
 
     var hasLargeShootFee = false;
 
@@ -91,7 +94,7 @@ export class BookingDatesFormComponent extends Component {
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee },
         listingId,
         isOwnListing,
       });
@@ -288,6 +291,7 @@ export class BookingDatesFormComponent extends Component {
             cleaningFee,
             securityFee,
             largeShootFee,
+            overtimeFee,
           } = fieldRenderProps;
 
           const formattedParkingFee = parkingFee
@@ -311,6 +315,13 @@ export class BookingDatesFormComponent extends Component {
               )
             : null;
 
+            const formattedOvertimeFee = overtimeFee
+              ? formatMoney(
+                  intl,
+                  new Money(overtimeFee.amount, overtimeFee.currency)
+                )
+              : null;
+
           const formattedLargeShootFee = largeShootFee
             ? formatMoney(
                 intl,
@@ -333,12 +344,17 @@ export class BookingDatesFormComponent extends Component {
             { fee: formattedSecurityFee }
           );
 
+          const overtimeFeeLabel = intl.formatMessage(
+            { id: 'BookingDatesForm.overtimeFeeLabel' },
+            { fee: formattedOvertimeFee }
+          );
+
           const largeShootFeeLabel = intl.formatMessage(
             { id: 'BookingDatesForm.largeShootFeeLabel' },
             { fee: formattedLargeShootFee }
           );
 
-          const additionalFeesMaybe = parkingFee || cleaningFee || securityFee || largeShootFee? (
+          const additionalFeesMaybe = parkingFee || cleaningFee || securityFee || overtimeFee || largeShootFee? (
             <h2>Additional Fees:</h2>
           ) : null;
 
@@ -352,6 +368,10 @@ export class BookingDatesFormComponent extends Component {
 
           const securityFeeMaybe = securityFee ? (
             <div>{securityFeeLabel}</div>
+          ) : null;
+
+          const overtimeFeeMaybe = overtimeFee ? (
+            <div>{overtimeFeeLabel}</div>
           ) : null;
 
           const largeShootFeeMaybe = largeShootFee ? (
@@ -598,12 +618,13 @@ export class BookingDatesFormComponent extends Component {
                 </option>
 
               </FieldSelect>
-              
+
               {additionalFeesMaybe}
               {parkingFeeMaybe}
               {cleaningFeeMaybe}
               {securityFeeMaybe}
               {largeShootFeeMaybe}
+              {overtimeFeeMaybe}
               {bookingInfoMaybe}
               {loadingSpinnerMaybe}
               {bookingInfoErrorMaybe}

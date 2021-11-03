@@ -212,6 +212,7 @@ export class CheckoutPageComponent extends Component {
           hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
           hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
           hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
+          hasOvertimeFee: pageData.listing.attributes.publicData.overtimeFee,
           hasLargeShootFee: hasLargeShootFee,
         },
         transactionId
@@ -398,6 +399,7 @@ export class CheckoutPageComponent extends Component {
       hasCleaningFee: pageData.listing.attributes.publicData.cleaningFee,
       hasParkingFee: pageData.listing.attributes.publicData.parkingFee,
       hasSecurityFee: pageData.listing.attributes.publicData.securityFee,
+      hasOvertimeFee: pageData.listing.attributes.publicData.overtimeFee,
       hasLargeShootFee: pageData.listing.attributes.publicData.largeShootFee,
       protectedData: {
         arrivalTime: localStorage.getItem("arrivalTime"),

@@ -140,6 +140,16 @@ export const EditListingPricingFormComponent = props => (
             currencyConfig={config.currencyConfig}
           />
 
+          <FieldCurrencyInput
+            id="overtimeFee"
+            name="overtimeFee"
+            className={css.overtimeFeeInput}
+            autoFocus
+            label="Overtime Fee (per hour) before 9am and after 5pm"
+            placeholder="Enter your overtime fee if applicable"
+            currencyConfig={config.currencyConfig}
+          />
+
           <Button
             className={css.submitButton}
             type="submit"
