@@ -3,13 +3,12 @@ import { array, arrayOf, bool, func, shape, string, oneOf } from 'prop-types';
 import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 import config from '../../config';
 import routeConfiguration from '../../routeConfiguration';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { LISTING_STATE_PENDING_APPROVAL, LISTING_STATE_CLOSED, LOCATION_TYPE_ENQUIRY, LOCATION_TYPE_BOOKING, propTypes } from '../../util/types';
 import { types as sdkTypes } from '../../util/sdkLoader';
-import { useLocation } from 'react-router-dom';
 import {
   LISTING_PAGE_DRAFT_VARIANT,
   LISTING_PAGE_PENDING_APPROVAL_VARIANT,
@@ -100,7 +99,22 @@ export class ListingPageComponent extends Component {
     this.showOfBookingType = this.showOfBookingType.bind(this);
   }
 
+  componentDidMount() {
+    const query = new URLSearchParams(
+      this.props.location.search
+    );
 
+    setTimeout(function() {
+      const type = query.get('type');
+      var element = document.getElementById("bookButton");
+
+      if (type && type === 'booking') {
+        if(typeof(element) != 'undefined' && element != null) {
+          element.click();
+        }
+      }
+    }, 1000);
+  }
 
   showOfEnquiryType() {
     this.setState({

@@ -4,7 +4,6 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import classNames from 'classnames';
 import { intlShape, injectIntl } from '../../util/reactIntl';
 import { Form, LocationAutocompleteInput } from '../../components';
-import { useLocation } from 'react-router-dom';
 import css from './TopbarSearchForm.module.css';
 
 const identity = v => v;
@@ -42,20 +41,6 @@ class TopbarSearchFormComponent extends Component {
 
           // Allow form submit only when the place has changed
           const preventFormSubmit = e => e.preventDefault();
-
-          const queryParams = new URLSearchParams(useLocation().search);
-
-          setTimeout(function() {
-            const type = queryParams.get('type');
-            var element = document.getElementById("bookButton");
-
-            if (type && type === 'booking') {
-              if(typeof(element) != 'undefined' && element != null) {
-                console.log('this is a booking');
-                element.click();
-              }
-            }
-          }, 1500);
 
           return (
             <Form
