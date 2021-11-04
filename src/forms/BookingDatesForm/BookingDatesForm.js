@@ -623,10 +623,10 @@ export class BookingDatesFormComponent extends Component {
                 format={identity}
                 timeSlots={timeSlots}
                 useMobileMargins
-                // validate={composeValidators(
-                //   required(requiredMessage),
-                //   bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
-                // )}
+                validate={composeValidators(
+                  required(requiredMessage),
+                  bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
+                )}
                 disabled={fetchLineItemsInProgress}
               />
 
