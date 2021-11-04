@@ -156,7 +156,7 @@ export class ListingPageComponent extends Component {
 
           }
 
-          arrivalOvertime = Math.abs(overTimeAm + overTimePm)
+          arrivalOvertime = Math.abs(overTimeAm + overTimePm);
 
           localStorage.setItem('arrivalOvertime', arrivalOvertime);
 
@@ -167,17 +167,19 @@ export class ListingPageComponent extends Component {
           localStorage.setItem('departureTime', departure_time);
 
           var depTime = departure_time;
-          localStorage.setItem('arrivalTime', depTime);
+          localStorage.setItem('departureTime', depTime);
 
           var departureOvertime = 0;
           var overTimeAm = 0;
           var overTimePm = 0;
 
           if (depTime.includes("AM")) {
+
             var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
-            // console.log(selectedTime);
+
             if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-              overTimeAm = Math.abs(9 - selectedTimeAm)
+              overTimeAm = Math.abs(selectedTimeAm - localStorage.getItem('arrivalTime').replace("AM", "").split(":", 2)[0]);
+              arrivalOvertime = 0;
             }
 
             if (selectedTimeAm == 12) {
@@ -188,14 +190,13 @@ export class ListingPageComponent extends Component {
 
           if (depTime.includes("PM")) {
             var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
-            // console.log(selectedTime);
+
             if (selectedTimePm > 5) {
               overTimeAm = Math.abs(selectedTimePm - 5)
             }
 
           }
-          departureOvertime = Math.abs(overTimeAm + overTimePm)
-
+          departureOvertime = Math.abs(overTimeAm + overTimePm);
           localStorage.setItem('departureOvertime', departureOvertime);
         }
 

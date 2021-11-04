@@ -112,7 +112,9 @@ export class BookingDatesFormComponent extends Component {
 
       }
 
-      arrivalOvertime = Math.abs(overTimeAm + overTimePm)
+      arrivalOvertime = Math.abs(overTimeAm + overTimePm);
+
+      console.log(arrivalOvertime);
 
       arrivalOvertimeHours = arrivalOvertime;
       localStorage.setItem('arrivalOvertime', arrivalOvertime);
@@ -123,7 +125,7 @@ export class BookingDatesFormComponent extends Component {
     // Calculate overtime from arrival time
     if (formValues.active == "departureTime" && formValues.values.departureTime && this.props.overtimeFee) {
       var depTime = formValues.values.departureTime;
-      localStorage.setItem('arrivalTime', depTime);
+      localStorage.setItem('departureTime', depTime);
 
       var departureOvertime = 0;
       var overTimeAm = 0;
@@ -131,12 +133,15 @@ export class BookingDatesFormComponent extends Component {
 
       if (depTime.includes("AM")) {
         var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
-        // console.log(selectedTime);
+
         if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-          overTimeAm = Math.abs(9 - selectedTimeAm)
+
+          overTimeAm = Math.abs(selectedTimeAm - localStorage.getItem('arrivalTime').replace("AM", "").split(":", 2)[0]);
+          arrivalOvertime = 0;
         }
 
         if (selectedTimeAm == 12) {
+          console.log('adding 9');
           overTimeAm = 9;
         }
 
@@ -152,6 +157,8 @@ export class BookingDatesFormComponent extends Component {
       }
       departureOvertime = Math.abs(overTimeAm + overTimePm)
       departureOvertimeHours = departureOvertime;
+
+      console.log(departureOvertime);
 
       localStorage.setItem('departureOvertime', departureOvertime);
 
@@ -210,8 +217,29 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('arrivalOvertime', 0);
   }
 
-  componentDidMount() {
-    // this.handleOnChange(values);
+  componentDidMount(values) {
+    // console.log('hello');
+    // console.log(this.props.initialDates);
+    // // this.handleOnChange(values);
+    // const { startDate, endDate } =
+    //   this.props && this.props.initialDates ? this.props.initialDates : {};
+    // const hasCleaningFee = this.props.cleaningFee;
+    // const hasParkingFee = this.props.parkingFee;
+    // const hasSecurityFee = this.props.securityFee;
+    // var hasOvertimeFee = false;
+    // var hasLargeShootFee = false;
+    // var arrivalOvertimeHours = 0
+    // var departureOvertimeHours = 0;
+    // var totalOvertimeHours = 0;
+    // var bookingOvertimeHours = localStorage.getItem('totalOvertimeHours');
+    // const listingId = this.props.listingId;
+    // const isOwnListing = this.props.isOwnListing;
+    //
+    // this.props.onFetchTransactionLineItems({
+    //   bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours },
+    //   listingId,
+    //   isOwnListing,
+    // });
   }
 
   setShootType(value, id) {
@@ -588,10 +616,10 @@ export class BookingDatesFormComponent extends Component {
                 format={identity}
                 timeSlots={timeSlots}
                 useMobileMargins
-                validate={composeValidators(
-                  required(requiredMessage),
-                  bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
-                )}
+                // validate={composeValidators(
+                //   required(requiredMessage),
+                //   bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
+                // )}
                 disabled={fetchLineItemsInProgress}
               />
 
