@@ -150,12 +150,12 @@ export class BookingDatesFormComponent extends Component {
       if (depTime.includes("PM")) {
         var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
         // console.log(selectedTime);
-        if (selectedTimePm > 5) {
-          overTimeAm = Math.abs(selectedTimePm - 5)
+        if (selectedTimePm > 6) {
+          overTimeAm = Math.abs(selectedTimePm - 6);
         }
 
       }
-      departureOvertime = Math.abs(overTimeAm + overTimePm)
+      departureOvertime = Math.abs(overTimeAm + overTimePm);
       departureOvertimeHours = departureOvertime;
 
       console.log(departureOvertime);

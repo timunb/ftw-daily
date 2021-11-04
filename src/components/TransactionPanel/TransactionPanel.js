@@ -367,7 +367,7 @@ export class TransactionPanelComponent extends Component {
     }
 
     if (currentUserIsProvider) {
-      customMessage = "If you are happy to proceed with booking this shoot, instruct the booker to click 'book now' on your location page and fill in the details as agreed per your discussion. You will then then receive their booking request and will need to confirm it in order to start the payment process.";
+      customMessage = "If you are happy to proceed with booking this shoot, please confirm all the details on the right side of the page, read the Terms and Conditions and click the 'accept' button at the bottom.";
 
       customMessage2 = "Once payment is made this shoot will be officially booked in.";
     }
@@ -507,7 +507,7 @@ export class TransactionPanelComponent extends Component {
                   <li>Policy Provider: {protectedData.insuranceProvider}</li>
                   <li>Policy Provider Contact Details: {protectedData.insuranceProviderContact}</li>
                   <li>Expiry Date: {protectedData.expiryDate}</li>
-                  <li>Value of PLI: {protectedData.liabilityValue}</li>
+                  <li>Value of PLI (£): {protectedData.liabilityValue}</li>
                 </ul>
 
                 <h2>Additional Information</h2>

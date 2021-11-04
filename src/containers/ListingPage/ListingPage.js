@@ -191,8 +191,8 @@ export class ListingPageComponent extends Component {
           if (depTime.includes("PM")) {
             var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
 
-            if (selectedTimePm > 5) {
-              overTimeAm = Math.abs(selectedTimePm - 5)
+            if (selectedTimePm > 6) {
+              overTimeAm = Math.abs(selectedTimePm - 6);
             }
 
           }
