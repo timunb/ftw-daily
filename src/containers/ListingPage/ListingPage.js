@@ -126,82 +126,11 @@ export class ListingPageComponent extends Component {
         if (arrival_time) {
           document.getElementById('arrivalTime').value = arrival_time;
           localStorage.setItem('arrivalTime', arrival_time);
-
-          var arrTime = arrival_time;
-          localStorage.setItem('arrivalTime', arrTime);
-
-          var arrivalOvertime = 0;
-          var overTimeAm = 0;
-          var overTimePm = 0;
-
-          if (arrTime.includes("AM")) {
-            var selectedTimeAm = arrTime.replace("AM", "").split(":", 2)[0];
-            // console.log(selectedTime);
-            if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-              overTimeAm = Math.abs(9 - selectedTimeAm)
-            }
-
-            if (selectedTimeAm == 12) {
-              overTimeAm = 9;
-            }
-
-          }
-
-          if (arrTime.includes("PM")) {
-            var selectedTimePm = arrTime.replace("PM", "").split(":", 2)[0];
-            // console.log(selectedTime);
-            if (selectedTimePm > 5) {
-              overTimeAm = Math.abs(selectedTimePm - 5)
-            }
-
-          }
-
-          arrivalOvertime = Math.abs(overTimeAm + overTimePm);
-
-          localStorage.setItem('arrivalOvertime', arrivalOvertime);
-
         }
 
         if (departure_time) {
           document.getElementById('departureTime').value = departure_time;
           localStorage.setItem('departureTime', departure_time);
-
-          var depTime = departure_time;
-          localStorage.setItem('departureTime', depTime);
-
-          var departureOvertime = 0;
-          var overTimeAm = 0;
-          var overTimePm = 0;
-
-          if (depTime.includes("AM")) {
-
-            var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
-
-            if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-              overTimeAm = Math.abs(selectedTimeAm - localStorage.getItem('arrivalTime').replace("AM", "").split(":", 2)[0]);
-              arrivalOvertime = 0;
-            }
-
-            if (selectedTimeAm == 12) {
-              overTimeAm = 9;
-            }
-
-          }
-
-          if (depTime.includes("PM")) {
-            var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
-
-            if (selectedTimePm > 6) {
-              overTimeAm = Math.abs(selectedTimePm - 6);
-            }
-
-          }
-          departureOvertime = Math.abs(overTimeAm + overTimePm);
-          localStorage.setItem('departureOvertime', departureOvertime);
-        }
-
-        if (departure_time && arrival_time) {
-          localStorage.setItem('totalOvertimeHours', arrivalOvertime + departureOvertime);
         }
       }
     }, 1000);
@@ -287,7 +216,7 @@ export class ListingPageComponent extends Component {
     const listingId = new UUID(params.id);
     const { message } = values;
     const protectedData = {
-      arrivalTime: "9am-10am none duck",
+      arrivalTime: "9am-10am",
       pliConfirmed: true
     };
 
@@ -335,7 +264,7 @@ export class ListingPageComponent extends Component {
     const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
     const isDraftVariant = rawParams.variant === LISTING_PAGE_DRAFT_VARIANT;
     const protectedData = {
-      arrivalTime: "9am-10am none duck",
+      arrivalTime: "9am-10am",
       pliConfirmed: true
     };
     const currentListing =

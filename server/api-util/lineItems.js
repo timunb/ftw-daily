@@ -32,7 +32,7 @@ const PROVIDER_COMMISSION_PERCENTAGE = -10;
  */
 exports.transactionLineItems = (listing, bookingData) => {
   const unitPrice = listing.attributes.price;
-  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours } = bookingData;
+  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee } = bookingData;
 
   /**
    * If you want to use pre-defined component and translations for printing the lineItems base price for booking,
@@ -155,7 +155,7 @@ exports.transactionLineItems = (listing, bookingData) => {
          {
            code: 'line-item/overtime-fee',
            unitPrice: overtimeFeePrice,
-           quantity: bookingOvertimeHours,
+           quantity: 0,
            includeFor: ['customer', 'provider'],
          },
        ]

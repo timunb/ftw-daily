@@ -77,101 +77,100 @@ export class BookingDatesFormComponent extends Component {
     var arrivalOvertimeHours = 0
     var departureOvertimeHours = 0;
     var totalOvertimeHours = 0;
-    var bookingOvertimeHours = localStorage.getItem('totalOvertimeHours');
 
     this.minimumDate = startDate;
 
     // Calculate overtime from arrival time
-    if (formValues.active == "arrivalTime" && formValues.values.arrivalTime && this.props.overtimeFee) {
-      var arrTime = formValues.values.arrivalTime;
-      localStorage.setItem('arrivalTime', arrTime);
-
-      var arrivalOvertime = 0;
-      var overTimeAm = 0;
-      var overTimePm = 0;
-
-      if (arrTime.includes("AM")) {
-        var selectedTimeAm = arrTime.replace("AM", "").split(":", 2)[0];
-        // console.log(selectedTime);
-        if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-          overTimeAm = Math.abs(9 - selectedTimeAm)
-        }
-
-        if (selectedTimeAm == 12) {
-          overTimeAm = 9;
-        }
-
-      }
-
-      if (arrTime.includes("PM")) {
-        var selectedTimePm = arrTime.replace("PM", "").split(":", 2)[0];
-        // console.log(selectedTime);
-        if (selectedTimePm > 5) {
-          overTimeAm = Math.abs(selectedTimePm - 5)
-        }
-
-      }
-
-      arrivalOvertime = Math.abs(overTimeAm + overTimePm);
-
-      console.log(arrivalOvertime);
-
-      arrivalOvertimeHours = arrivalOvertime;
-      localStorage.setItem('arrivalOvertime', arrivalOvertime);
-      console.log(arrivalOvertime);
-    }
-
-
-    // Calculate overtime from arrival time
-    if (formValues.active == "departureTime" && formValues.values.departureTime && this.props.overtimeFee) {
-      var depTime = formValues.values.departureTime;
-      localStorage.setItem('departureTime', depTime);
-
-      var departureOvertime = 0;
-      var overTimeAm = 0;
-      var overTimePm = 0;
-
-      if (depTime.includes("AM")) {
-        var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
-
-        if (selectedTimeAm < 9 && selectedTimeAm != 12) {
-
-          overTimeAm = Math.abs(selectedTimeAm - localStorage.getItem('arrivalTime').replace("AM", "").split(":", 2)[0]);
-          arrivalOvertime = 0;
-        }
-
-        if (selectedTimeAm == 12) {
-          console.log('adding 9');
-          overTimeAm = 9;
-        }
-
-      }
-
-      if (depTime.includes("PM")) {
-        var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
-        // console.log(selectedTime);
-        if (selectedTimePm > 6) {
-          overTimeAm = Math.abs(selectedTimePm - 6);
-        }
-
-      }
-      departureOvertime = Math.abs(overTimeAm + overTimePm);
-      departureOvertimeHours = departureOvertime;
-
-      console.log(departureOvertime);
-
-      localStorage.setItem('departureOvertime', departureOvertime);
-
-      console.log(departureOvertime);
-    }
-
-    totalOvertimeHours = Math.abs(Number(localStorage.getItem('departureOvertime')) + Number(localStorage.getItem('arrivalOvertime')));
-
-    localStorage.setItem('totalOvertimeHours', totalOvertimeHours);
-
-    if (totalOvertimeHours > 0) {
-      hasOvertimeFee = this.props.overtimeFee;
-    }
+    // if (formValues.active == "arrivalTime" && formValues.values.arrivalTime && this.props.overtimeFee) {
+    //   var arrTime = formValues.values.arrivalTime;
+    //   localStorage.setItem('arrivalTime', arrTime);
+    //
+    //   var arrivalOvertime = 0;
+    //   var overTimeAm = 0;
+    //   var overTimePm = 0;
+    //
+    //   if (arrTime.includes("AM")) {
+    //     var selectedTimeAm = arrTime.replace("AM", "").split(":", 2)[0];
+    //     // console.log(selectedTime);
+    //     if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+    //       overTimeAm = Math.abs(9 - selectedTimeAm)
+    //     }
+    //
+    //     if (selectedTimeAm == 12) {
+    //       overTimeAm = 9;
+    //     }
+    //
+    //   }
+    //
+    //   if (arrTime.includes("PM")) {
+    //     var selectedTimePm = arrTime.replace("PM", "").split(":", 2)[0];
+    //     // console.log(selectedTime);
+    //     if (selectedTimePm > 5) {
+    //       overTimeAm = Math.abs(selectedTimePm - 5)
+    //     }
+    //
+    //   }
+    //
+    //   arrivalOvertime = Math.abs(overTimeAm + overTimePm);
+    //
+    //   console.log(arrivalOvertime);
+    //
+    //   arrivalOvertimeHours = arrivalOvertime;
+    //   localStorage.setItem('arrivalOvertime', arrivalOvertime);
+    //   console.log(arrivalOvertime);
+    // }
+    //
+    //
+    // // Calculate overtime from arrival time
+    // if (formValues.active == "departureTime" && formValues.values.departureTime && this.props.overtimeFee) {
+    //   var depTime = formValues.values.departureTime;
+    //   localStorage.setItem('departureTime', depTime);
+    //
+    //   var departureOvertime = 0;
+    //   var overTimeAm = 0;
+    //   var overTimePm = 0;
+    //
+    //   if (depTime.includes("AM")) {
+    //     var selectedTimeAm = depTime.replace("AM", "").split(":", 2)[0];
+    //
+    //     if (selectedTimeAm < 9 && selectedTimeAm != 12) {
+    //
+    //       overTimeAm = Math.abs(selectedTimeAm - localStorage.getItem('arrivalTime').replace("AM", "").split(":", 2)[0]);
+    //       arrivalOvertime = 0;
+    //     }
+    //
+    //     if (selectedTimeAm == 12) {
+    //       console.log('adding 9');
+    //       overTimeAm = 9;
+    //     }
+    //
+    //   }
+    //
+    //   if (depTime.includes("PM")) {
+    //     var selectedTimePm = depTime.replace("PM", "").split(":", 2)[0];
+    //     // console.log(selectedTime);
+    //     if (selectedTimePm > 6) {
+    //       overTimeAm = Math.abs(selectedTimePm - 6);
+    //     }
+    //
+    //   }
+    //   departureOvertime = Math.abs(overTimeAm + overTimePm);
+    //   departureOvertimeHours = departureOvertime;
+    //
+    //   console.log(departureOvertime);
+    //
+    //   localStorage.setItem('departureOvertime', departureOvertime);
+    //
+    //   console.log(departureOvertime);
+    // }
+    //
+    // totalOvertimeHours = Math.abs(Number(localStorage.getItem('departureOvertime')) + Number(localStorage.getItem('arrivalOvertime')));
+    //
+    // localStorage.setItem('totalOvertimeHours', totalOvertimeHours);
+    //
+    // if (totalOvertimeHours > 0) {
+    //   hasOvertimeFee = this.props.overtimeFee;
+    // }
 
     if (this.props.largeShootFee) {
       if (formValues.active == "numberOfPeople") {
@@ -189,7 +188,7 @@ export class BookingDatesFormComponent extends Component {
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {
       this.hasNotChangedDates = false;
       this.props.onFetchTransactionLineItems({
-        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours },
+        bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee },
         listingId,
         isOwnListing,
       });
@@ -213,8 +212,8 @@ export class BookingDatesFormComponent extends Component {
     localStorage.removeItem('departureTime');
     localStorage.removeItem('insuranceProvider');
     localStorage.removeItem('contactNumber');
-    localStorage.setItem('departureOvertime', 0);
-    localStorage.setItem('arrivalOvertime', 0);
+    // localStorage.setItem('departureOvertime', 0);
+    // localStorage.setItem('arrivalOvertime', 0);
   }
 
   componentDidMount(values) {
@@ -240,6 +239,14 @@ export class BookingDatesFormComponent extends Component {
     //   listingId,
     //   isOwnListing,
     // });
+  }
+
+  setArrivalTime(value, id) {
+    localStorage.setItem('arrivalTime', value);
+  }
+
+  setDepartureTime(value, id) {
+    localStorage.setItem('departureTime', value);
   }
 
   setShootType(value, id) {
@@ -704,10 +711,8 @@ export class BookingDatesFormComponent extends Component {
               <h2>Additional Information</h2>
               <div className="additional-details">
               <label htmlFor="arrivalTime">Arrival Time</label>
-                <FieldSelect
-                  id="arrivalTime"
-                  name="arrivalTime"
-                >
+              <select id="arrivalTime" name="arrival-time"
+              onChange={e => this.setArrivalTime(e.target.value)}>
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -759,13 +764,10 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </FieldSelect>
+              </select>
 
               <label htmlFor="departureTime">Departure Time</label>
-              <FieldSelect
-                id="departureTime"
-                name="departureTime"
-              >
+              <select id="departureTime" name="departure-time" onChange={e => this.setDepartureTime(e.target.value)}>
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -817,7 +819,7 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </FieldSelect>
+              </select>
 
               <label htmlFor="shootType">Type of Shoot</label>
               <select id="shootType" name="shootType" onChange={e => this.setShootType(e.target.value)}>
