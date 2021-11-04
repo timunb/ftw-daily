@@ -193,17 +193,25 @@ export class BookingDatesFormComponent extends Component {
     this.hasNotChangedDates = true;
     localStorage.removeItem('numberOfPeople');
     localStorage.removeItem('shootType');
+    localStorage.removeItem('totalOvertimeHours');
+    localStorage.removeItem('departureTime');
+    localStorage.removeItem('companyAddress');
+    localStorage.removeItem('pliConfirmed');
+    localStorage.removeItem('policyNumber');
+    localStorage.removeItem('expiryDate');
+    localStorage.removeItem('insuranceProviderContact');
+    localStorage.removeItem('liabilityValue');
+    localStorage.removeItem('companyName');
+    localStorage.removeItem('arrivalTime');
+    localStorage.removeItem('departureTime');
+    localStorage.removeItem('insuranceProvider');
+    localStorage.removeItem('contactNumber');
+    localStorage.setItem('departureOvertime', 0);
+    localStorage.setItem('arrivalOvertime', 0);
   }
 
   componentDidMount() {
-
-    if (!localStorage.getItem('departureOvertime')) {
-      localStorage.setItem('departureOvertime', 0);
-    }
-    if (!localStorage.getItem('arrivalOvertime')) {
-      localStorage.setItem('arrivalOvertime', 0);
-    }
-
+    // this.handleOnChange(values);
   }
 
   setShootType(value, id) {
