@@ -173,13 +173,11 @@ export class BookingDatesFormComponent extends Component {
     // }
 
     if (this.props.largeShootFee) {
-
-      if (formValues.active == "numberOfPeople") {
-        localStorage.setItem('numberOfPeople', formValues.values.numberOfPeople);
-      }
-
-      if (formValues.active == "numberOfPeople" && formValues.values.numberOfPeople == "15 plus") {
+      if (formValues.numberOfPeople === "15 plus") {
         hasLargeShootFee = this.props.largeShootFee;
+        localStorage.setItem('numberOfPeople', formValues.numberOfPeople);
+      } else {
+        hasLargeShootFee = false;
       }
     }
 
@@ -619,9 +617,16 @@ export class BookingDatesFormComponent extends Component {
               <FormSpy
                 subscription={{ values: true, modified: true }}
                 onChange={change => {
+                  console.log(change);
                   if(change.modified.bookingDates){
-                    this.handleOnChange(change.values);
-                }}}
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.numberOfPeople){
+                      this.handleOnChange(change.values);
+                  }
+
+              }}
               />
 
               <FieldDateRangeInput
