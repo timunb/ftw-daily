@@ -11,6 +11,7 @@ import { parse, stringify } from '../../util/urlHelpers';
 import config from '../../config';
 import { ModalInMobile, Button, FieldCheckbox } from '../../components';
 import { BookingDatesForm } from '../../forms';
+import moment from 'moment';
 
 import css from './BookingPanel.module.css';
 
@@ -69,6 +70,9 @@ const BookingPanel = props => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
+    startDate,
+    endDate,
+    numberOfPeople,
   } = props;
 
   const price = listing.attributes.price;
@@ -114,6 +118,8 @@ const BookingPanel = props => {
     ? intl.formatMessage({ id: 'BookingPanel.subTitleClosedListing' })
     : null;
 
+  const overtimeHours = localStorage.getItem('totalOvertimeHours');
+
   const isNightly = unitType === LINE_ITEM_NIGHT;
   const isDaily = unitType === LINE_ITEM_DAY;
 
@@ -125,6 +131,22 @@ const BookingPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const titleClasses = classNames(titleClassName || css.bookingTitle);
+
+  var setFromDate = new Date();
+  var setToDate = new Date();
+
+  // console.log(startDate);
+  // console.log(endDate);
+  // console.log(moment());
+
+
+  if (startDate) {
+    setFromDate = new Date(startDate);
+  }
+
+  if (endDate) {
+    setToDate = new Date(endDate)
+  }
 
   return (
     <div className={classes}>
@@ -170,6 +192,8 @@ const BookingPanel = props => {
             securityFee={securityFee}
             largeShootFee={largeShootFee}
             overtimeFee={overtimeFee}
+            initialDates={{ startDate: setFromDate, endDate:  setToDate}}
+            peopleNumber={numberOfPeople}
           />
         ) : null}
       </ModalInMobile>
@@ -231,6 +255,7 @@ BookingPanel.propTypes = {
   lineItems: array,
   fetchLineItemsInProgress: bool.isRequired,
   fetchLineItemsError: propTypes.error,
+  numberOfPeople: bool,
 
   // from withRouter
   history: shape({

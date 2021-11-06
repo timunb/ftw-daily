@@ -104,6 +104,10 @@ export class ListingPageComponent extends Component {
       this.props.location.search
     );
 
+    this.start_date = query.get('start_date');
+    this.end_date = query.get('end_date');
+    this.number_of_people = query.get('people');
+
     setTimeout(function() {
       const type = query.get('type');
       var element = document.getElementById("bookButton");
@@ -116,11 +120,6 @@ export class ListingPageComponent extends Component {
       if (type && type === 'booking') {
         if(typeof(element) != 'undefined' && element != null) {
           element.click();
-        }
-
-        if (people) {
-          document.getElementById('numberOfPeople').value = people;
-          localStorage.setItem('numberOfPeople', people);
         }
 
         if (arrival_time) {
@@ -531,6 +530,9 @@ export class ListingPageComponent extends Component {
                   lineItems={lineItems}
                   fetchLineItemsInProgress={fetchLineItemsInProgress}
                   fetchLineItemsError={fetchLineItemsError}
+                  startDate={this.start_date}
+                  endDate={this.end_date}
+                  numberOfPeople={this.number_of_people}
                 />
               )}
             </div>

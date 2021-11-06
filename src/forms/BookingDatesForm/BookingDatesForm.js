@@ -32,7 +32,7 @@ export class BookingDatesFormComponent extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.onFocusedInputChange = this.onFocusedInputChange.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.storeField = this.storeField.bind(this);
+    this.fetchLineItems = this.fetchLineItems.bind(this);
   }
 
   // Function that can be passed to nested components
@@ -67,8 +67,8 @@ export class BookingDatesFormComponent extends Component {
   // In case you add more fields to the form, make sure you add
   // the values here to the bookingData object.
   handleOnChange(formValues) {
-    const { startDate, endDate } =
-      formValues.values && formValues.values.bookingDates ? formValues.values.bookingDates : {};
+    const { startDate, endDate } = formValues && formValues.bookingDates ? formValues.bookingDates : {};
+      this.fetchLineItems({ startDate, endDate });
     const hasCleaningFee = this.props.cleaningFee;
     const hasParkingFee = this.props.parkingFee;
     const hasSecurityFee = this.props.securityFee;
@@ -173,11 +173,12 @@ export class BookingDatesFormComponent extends Component {
     // }
 
     if (this.props.largeShootFee) {
+
       if (formValues.active == "numberOfPeople") {
         localStorage.setItem('numberOfPeople', formValues.values.numberOfPeople);
       }
 
-      if ((formValues.active == "numberOfPeople" && formValues.values.numberOfPeople == "15 plus") || localStorage.getItem('numberOfPeople') == "15 plus") {
+      if (formValues.active == "numberOfPeople" && formValues.values.numberOfPeople == "15 plus") {
         hasLargeShootFee = this.props.largeShootFee;
       }
     }
@@ -191,6 +192,26 @@ export class BookingDatesFormComponent extends Component {
         bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee },
         listingId,
         isOwnListing,
+      });
+    }
+  }
+
+  fetchLineItems(params) {
+    const { startDate, endDate } = params;
+    const listingId = this.props.listingId;
+    const isOwnListing = this.props.isOwnListing;
+    const hasCleaningFee = this.props.cleaningFee;
+    const hasParkingFee = this.props.parkingFee;
+    const hasSecurityFee = this.props.securityFee;
+    var hasLargeShootFee = false;
+
+    if (this.props.largeShootFee && this.props.peopleNumber == "15 plus") {
+      hasLargeShootFee = this.props.largeShootFee;
+    }
+
+    if (startDate && endDate && !this.props.fetchLineItemsInProgress) {    this.props.onFetchTransactionLineItems({ bookingData: {startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee},
+  listingId,
+  isOwnListing,
       });
     }
   }
@@ -216,29 +237,10 @@ export class BookingDatesFormComponent extends Component {
     // localStorage.setItem('arrivalOvertime', 0);
   }
 
-  componentDidMount(values) {
-    // console.log('hello');
-    // console.log(this.props.initialDates);
-    // // this.handleOnChange(values);
-    // const { startDate, endDate } =
-    //   this.props && this.props.initialDates ? this.props.initialDates : {};
-    // const hasCleaningFee = this.props.cleaningFee;
-    // const hasParkingFee = this.props.parkingFee;
-    // const hasSecurityFee = this.props.securityFee;
-    // var hasOvertimeFee = false;
-    // var hasLargeShootFee = false;
-    // var arrivalOvertimeHours = 0
-    // var departureOvertimeHours = 0;
-    // var totalOvertimeHours = 0;
-    // var bookingOvertimeHours = localStorage.getItem('totalOvertimeHours');
-    // const listingId = this.props.listingId;
-    // const isOwnListing = this.props.isOwnListing;
-    //
-    // this.props.onFetchTransactionLineItems({
-    //   bookingData: { startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee, bookingOvertimeHours },
-    //   listingId,
-    //   isOwnListing,
-    // });
+  componentDidMount() {
+    this.fetchLineItems(this.props.initialDates);
+
+    localStorage.setItem('numberOfPeople', this.props.peopleNumber);
   }
 
   setArrivalTime(value, id) {
@@ -320,9 +322,9 @@ export class BookingDatesFormComponent extends Component {
     const { rootClassName, queryParamNames, initialValues, className, price: unitPrice, ...rest } = this.props;
     const classes = classNames(rootClassName || css.root, className);
 
-    if (localStorage.getItem('numberOfPeople') === null) {
-      localStorage.removeItem('numberOfPeople');
-    }
+    // if (localStorage.getItem('numberOfPeople') === null) {
+    //   localStorage.removeItem('numberOfPeople');
+    // }
 
     if (!unitPrice) {
       return (
@@ -342,6 +344,8 @@ export class BookingDatesFormComponent extends Component {
         </div>
       );
     }
+
+
 
     return (
       <FinalForm
@@ -369,7 +373,13 @@ export class BookingDatesFormComponent extends Component {
             securityFee,
             largeShootFee,
             overtimeFee,
+            peopleNumber,
+            initialDates,
+            form: formApi,
+            pristine,
           } = fieldRenderProps;
+
+
 
           const formattedParkingFee = parkingFee
             ? formatMoney(
@@ -492,10 +502,10 @@ export class BookingDatesFormComponent extends Component {
               : 'dates';
           };
 
-          const initialDates =
-            initialValues && initialValues[datesQueryParamName]
-              ? parseValue(initialValues[datesQueryParamName])
-              : { dates: null };
+          // const initialDates =
+          //   initialValues && initialValues[datesQueryParamName]
+          //     ? parseValue(initialValues[datesQueryParamName])
+          //     : { dates: null };
 
           const bookingData =
             startDate && endDate
@@ -599,18 +609,25 @@ export class BookingDatesFormComponent extends Component {
             this.minimumDate = start_date;
           }
 
+          if (pristine && typeof startDate === 'undefined' && typeof endDate === 'undefined' && initialDates?.startDate && initialDates?.endDate) {
+            formApi.change('bookingDates', initialDates);
+          }
+
           return (
             <Form onSubmit={handleSubmit} className={classes} enforcePagePreloadFor="CheckoutPage">
               {timeSlotsError}
               <FormSpy
-                onChange={values => {
-                  this.handleOnChange(values);
-                }}
+                subscription={{ values: true, modified: true }}
+                onChange={change => {
+                  if(change.modified.bookingDates){
+                    this.handleOnChange(change.values);
+                }}}
               />
+
               <FieldDateRangeInput
                 className={css.bookingDates}
                 name="bookingDates"
-                initialDates={queryDates}
+                // initialDates={queryDates}
                 unitType={unitType}
                 startDateId={`${formId}.bookingStartDate`}
                 startDateLabel={bookingStartLabel}
