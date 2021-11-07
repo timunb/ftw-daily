@@ -71,7 +71,7 @@
   "BookingDatesForm.parkingFeeLabel": "Parking fee: {fee}",
   "BookingDatesForm.cleaningFeeLabel": "Cleaning fee: {fee}",
   "BookingDatesForm.securityFeeLabel": "Security fee: {fee}",
-  "BookingDatesForm.overtimeFeeLabel": "Overtime fee (per hour before 9am and after 6pm): {fee}",
+  "BookingDatesForm.overtimeFeeLabel": "Overtime fee - How much you will be charged per hour (post shoot) if a shoot runs past agreed booking time: {fee}",
   "BookingDatesForm.largeShootFeeLabel": "Large Shoot (15+ crew) fee: {fee}",
   "BookingDatesForm.bookingEndTitle": "End date",
   "BookingDatesForm.bookingStartTitle": "Start date",

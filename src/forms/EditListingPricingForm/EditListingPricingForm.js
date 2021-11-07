@@ -105,7 +105,7 @@ export const EditListingPricingFormComponent = props => (
             name="parkingFee"
             className={css.parkingFeeInput}
             autoFocus
-            label="Parking Fee"
+            label="Parking:﻿ Fees for parking permits and spaces etc"
             placeholder="Enter your parking fee if applicable"
             currencyConfig={config.currencyConfig}
           />
@@ -115,7 +115,7 @@ export const EditListingPricingFormComponent = props => (
             name="cleaningFee"
             className={css.cleaningFeeInput}
             autoFocus
-            label="Cleaning Fee"
+            label="Cleaning: ﻿Pre/post-shoot cleaning fees"
             placeholder="Enter your cleaning fee if applicable"
             currencyConfig={config.currencyConfig}
           />
@@ -125,7 +125,7 @@ export const EditListingPricingFormComponent = props => (
             name="securityFee"
             className={css.securityFeeInput}
             autoFocus
-            label="Security Fee"
+            label="Security: ﻿Fees if your location is required to hire security﻿"
             placeholder="Enter your security fee if applicable"
             currencyConfig={config.currencyConfig}
           />
@@ -135,7 +135,7 @@ export const EditListingPricingFormComponent = props => (
             name="largeShootFee"
             className={css.largeShootFeeInput}
             autoFocus
-            label="Large Shoot Fee (Above 15 crew)"
+            label="Large Shoot Fee (Above 15 crew): If a shoot has a large crew or the production is complex/has a high impact on your location."
             placeholder="Enter your large shoot fee if applicable"
             currencyConfig={config.currencyConfig}
           />
@@ -145,7 +145,7 @@ export const EditListingPricingFormComponent = props => (
             name="overtimeFee"
             className={css.overtimeFeeInput}
             autoFocus
-            label="Overtime Fee (per hour) before 9am and after 6pm"
+            label="Overtime fee: How much you charge per hour (post shoot) if a shoot runs past agreed booking time"
             placeholder="Enter your overtime fee if applicable"
             currencyConfig={config.currencyConfig}
           />
