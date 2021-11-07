@@ -205,6 +205,8 @@ export class BookingDatesFormComponent extends Component {
 
     if (this.props.largeShootFee && this.props.peopleNumber == "15 plus") {
       hasLargeShootFee = this.props.largeShootFee;
+    } else {
+      hasLargeShootFee = false;
     }
 
     if (startDate && endDate && !this.props.fetchLineItemsInProgress) {    this.props.onFetchTransactionLineItems({ bookingData: {startDate, endDate, hasCleaningFee, hasParkingFee, hasSecurityFee, hasLargeShootFee},

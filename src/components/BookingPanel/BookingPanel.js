@@ -132,8 +132,14 @@ const BookingPanel = props => {
   const classes = classNames(rootClassName || css.root, className);
   const titleClasses = classNames(titleClassName || css.bookingTitle);
 
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   var setFromDate = new Date();
-  var setToDate = new Date();
+  var setToDate = tomorrow;
+
+
 
   // console.log(startDate);
   // console.log(endDate);
@@ -145,7 +151,10 @@ const BookingPanel = props => {
   }
 
   if (endDate) {
-    setToDate = new Date(endDate)
+    const setTomorrow = new Date(endDate);
+    setTomorrow.setDate(setTomorrow.getDate() + 1);
+    console.log(setTomorrow)
+    setToDate = setTomorrow;
   }
 
   return (
