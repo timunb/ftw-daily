@@ -285,6 +285,7 @@ export class TransactionPanelComponent extends Component {
     };
     const stateData = stateDataFn(currentTransaction);
 
+
     const deletedListingTitle = intl.formatMessage({
       id: 'TransactionPanel.deletedListingTitle',
     });
@@ -360,13 +361,15 @@ export class TransactionPanelComponent extends Component {
     var customMessage = "";
     var customMessage2 = "";
 
-    if (currentUserIsCustomer) {
+    console.log(stateData.headingState);
+
+    if (currentUserIsCustomer && (stateData.headingState == 'requested' || stateData.headingState == 'enquired')) {
       customMessage = "If this location owner is happy to proceed with booking your shoot, simply click 'book now' on their location page and fill in the details as agreed per your discussion. The owner will then receive the booking request and confirm in order to start the payment process.";
 
       customMessage2 = "Once payment is made your shoot will be officially booked in.";
     }
 
-    if (currentUserIsProvider) {
+    if (currentUserIsProvider && stateData.headingState == 'requested') {
       customMessage = "If you are happy to proceed with booking this shoot, please confirm all the details on the right side of the page, read the Terms and Conditions and click the 'accept' button at the bottom.";
 
       customMessage2 = "Once payment is made this shoot will be officially booked in.";
