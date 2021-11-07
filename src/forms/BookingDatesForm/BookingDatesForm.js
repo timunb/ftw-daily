@@ -619,7 +619,6 @@ export class BookingDatesFormComponent extends Component {
               <FormSpy
                 subscription={{ values: true, modified: true }}
                 onChange={change => {
-                  console.log(change);
                   if(change.modified.bookingDates){
                       this.handleOnChange(change.values);
                   }
@@ -659,6 +658,7 @@ export class BookingDatesFormComponent extends Component {
               <FieldSelect
                 id="numberOfPeople"
                 name="numberOfPeople"
+                defaultValue={this.props.peopleNumber}
               >
                 <option disabled selected value="">
                   Pick a number

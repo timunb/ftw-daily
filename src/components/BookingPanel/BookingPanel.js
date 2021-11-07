@@ -139,13 +139,6 @@ const BookingPanel = props => {
   var setFromDate = new Date();
   var setToDate = tomorrow;
 
-
-
-  // console.log(startDate);
-  // console.log(endDate);
-  // console.log(moment());
-
-
   if (startDate) {
     setFromDate = new Date(startDate);
   }
@@ -153,7 +146,6 @@ const BookingPanel = props => {
   if (endDate) {
     const setTomorrow = new Date(endDate);
     setTomorrow.setDate(setTomorrow.getDate() + 1);
-    console.log(setTomorrow)
     setToDate = setTomorrow;
   }
 
