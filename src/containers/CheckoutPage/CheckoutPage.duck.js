@@ -179,7 +179,6 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
     hasParkingFee: orderParams.hasParkingFee,
     hasSecurityFee: orderParams.hasSecurityFee,
     hasLargeShootFee: orderParams.hasLargeShootFee,
-    hasOvertimeFee: orderParams.hasOvertimeFee,
   };
 
   const bodyParams = isTransition
@@ -321,7 +320,6 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
     hasParkingFee: orderParams.hasParkingFee,
     hasSecurityFee: orderParams.hasSecurityFee,
     hasLargeShootFee: orderParams.hasLargeShootFee,
-    hasOvertimeFee: orderParams.hasOvertimeFee,
   };
 
   const params = {

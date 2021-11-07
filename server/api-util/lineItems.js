@@ -7,9 +7,6 @@ const { Money } = types;
 const bookingUnitType = 'line-item/day';
 const PROVIDER_COMMISSION_PERCENTAGE = -10;
 
-// console.log(localStorage.getItem('totalOvertimeHours'));
-// console.log(parseInt(localStorage.getItem('totalOvertimeHours')));
-
 /** Returns collection of lineItems (max 50)
  *
  * Each line items has following fields:
@@ -32,7 +29,7 @@ const PROVIDER_COMMISSION_PERCENTAGE = -10;
  */
 exports.transactionLineItems = (listing, bookingData) => {
   const unitPrice = listing.attributes.price;
-  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee, hasOvertimeFee } = bookingData;
+  const { startDate, endDate, hasParkingFee, hasCleaningFee, hasSecurityFee, hasLargeShootFee } = bookingData;
 
   /**
    * If you want to use pre-defined component and translations for printing the lineItems base price for booking,
@@ -87,17 +84,6 @@ exports.transactionLineItems = (listing, bookingData) => {
     return null;
   };
 
-  const resolveOvertimeFeePrice = listing => {
-    const publicData = listing.attributes.publicData;
-    const overtimeFee = publicData && publicData.overtimeFee;
-    const { amount, currency } = overtimeFee;
-
-    if (amount && currency) {
-      return new Money(amount, currency);
-    }
-
-    return null;
-  };
 
   const resolveSecurityFeePrice = listing => {
     const publicData = listing.attributes.publicData;
@@ -148,19 +134,6 @@ exports.transactionLineItems = (listing, bookingData) => {
     : [];
 
 
-
-    const overtimeFeePrice = hasOvertimeFee ? resolveOvertimeFeePrice(listing) : null;
-    const overtimeFee = overtimeFeePrice
-     ? [
-         {
-           code: 'line-item/overtime-fee',
-           unitPrice: overtimeFeePrice,
-           quantity: 0,
-           includeFor: ['customer', 'provider'],
-         },
-       ]
-     : [];
-
    const securityFeePrice = hasSecurityFee ? resolveSecurityFeePrice(listing) : null;
    const securityFee = securityFeePrice
     ? [
@@ -176,12 +149,12 @@ exports.transactionLineItems = (listing, bookingData) => {
 
   const providerCommission = {
     code: 'line-item/provider-commission',
-    unitPrice: calculateTotalFromLineItems([booking, ...parkingFee, ...cleaningFee, ...securityFee, ...largeShootFee, ...overtimeFee]),
+    unitPrice: calculateTotalFromLineItems([booking, ...parkingFee, ...cleaningFee, ...securityFee, ...largeShootFee]),
     percentage: PROVIDER_COMMISSION_PERCENTAGE,
     includeFor: ['provider'],
   };
 
-  const lineItems = [booking, ...parkingFee, ...cleaningFee, ...securityFee, ...largeShootFee, ...overtimeFee, providerCommission];
+  const lineItems = [booking, ...parkingFee, ...cleaningFee, ...securityFee, ...largeShootFee, providerCommission];
 
   return lineItems;
 };
