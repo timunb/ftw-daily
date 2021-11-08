@@ -122,6 +122,10 @@ export class ListingPageComponent extends Component {
           element.click();
         }
 
+        // if (people) {
+        //   document.getElementById('numberOfPeople').value = people;
+        // }
+
         if (arrival_time) {
           document.getElementById('arrivalTime').value = arrival_time;
           localStorage.setItem('arrivalTime', arrival_time);
@@ -474,78 +478,137 @@ export class ListingPageComponent extends Component {
       },
     ];
 
-    return (
-      <Page
-        title={schemaTitle}
-        scrollingDisabled={scrollingDisabled}
-        author={authorDisplayName}
-        contentType="website"
-        description={description}
-        facebookImages={facebookImages}
-        twitterImages={twitterImages}
-        schema={{
-          '@context': 'http://schema.org',
-          '@type': 'ItemPage',
-          description: description,
-          name: schemaTitle,
-          image: schemaImages,
-        }}
-      >
-        <LayoutSingleColumn className={css.pageRoot}>
-          <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
-          <LayoutWrapperMain>
-            <div>
+    if (price.amount != 0) {
+      return (
+        <Page
+          title={schemaTitle}
+          scrollingDisabled={scrollingDisabled}
+          author={authorDisplayName}
+          contentType="website"
+          description={description}
+          facebookImages={facebookImages}
+          twitterImages={twitterImages}
+          schema={{
+            '@context': 'http://schema.org',
+            '@type': 'ItemPage',
+            description: description,
+            name: schemaTitle,
+            image: schemaImages,
+          }}
+        >
+          <LayoutSingleColumn className={css.pageRoot}>
+            <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
+            <LayoutWrapperMain>
+              <div>
 
-            <div className={css.contentContainer}>
-              <ButtonTabNavHorizontal className="booking-page-tabs" tabs={desktopTypeTabs} />
+              <div className={css.contentContainer}>
+                <ButtonTabNavHorizontal className="booking-page-tabs" tabs={desktopTypeTabs} />
 
-              {this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY ? (
-                <SectionHostMaybe
-                  title={title}
-                  listing={currentListing}
-                  authorDisplayName={authorDisplayName}
-                  onContactUser={this.onContactUser}
-                  isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
-                  onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
-                  sendEnquiryError={sendEnquiryError}
-                  sendEnquiryInProgress={sendEnquiryInProgress}
-                  onSubmitEnquiry={this.onSubmitEnquiry}
-                  currentUser={currentUser}
-                  onManageDisableScrolling={onManageDisableScrolling}
-                />
-              ) : (
-                <BookingPanel
-                  className={css.bookingPanel}
-                  listing={currentListing}
-                  isOwnListing={isOwnListing}
-                  unitType={unitType}
-                  onSubmit={handleBookingSubmit}
-                  title={bookingTitle}
-                  subTitle={bookingSubTitle}
-                  authorDisplayName={authorDisplayName}
-                  onManageDisableScrolling={onManageDisableScrolling}
-                  timeSlots={timeSlots}
-                  fetchTimeSlotsError={fetchTimeSlotsError}
-                  onFetchTransactionLineItems={onFetchTransactionLineItems}
-                  lineItems={lineItems}
-                  fetchLineItemsInProgress={fetchLineItemsInProgress}
-                  fetchLineItemsError={fetchLineItemsError}
-                  startDate={this.start_date}
-                  endDate={this.end_date}
-                  numberOfPeople={this.number_of_people}
-                />
-              )}
-            </div>
+                {this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY ? (
+                  <SectionHostMaybe
+                    title={title}
+                    listing={currentListing}
+                    authorDisplayName={authorDisplayName}
+                    onContactUser={this.onContactUser}
+                    isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
+                    onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
+                    sendEnquiryError={sendEnquiryError}
+                    sendEnquiryInProgress={sendEnquiryInProgress}
+                    onSubmitEnquiry={this.onSubmitEnquiry}
+                    currentUser={currentUser}
+                    onManageDisableScrolling={onManageDisableScrolling}
+                  />
+                ) : (
+                  <BookingPanel
+                    className={css.bookingPanel}
+                    listing={currentListing}
+                    isOwnListing={isOwnListing}
+                    unitType={unitType}
+                    onSubmit={handleBookingSubmit}
+                    title={bookingTitle}
+                    subTitle={bookingSubTitle}
+                    authorDisplayName={authorDisplayName}
+                    onManageDisableScrolling={onManageDisableScrolling}
+                    timeSlots={timeSlots}
+                    fetchTimeSlotsError={fetchTimeSlotsError}
+                    onFetchTransactionLineItems={onFetchTransactionLineItems}
+                    lineItems={lineItems}
+                    fetchLineItemsInProgress={fetchLineItemsInProgress}
+                    fetchLineItemsError={fetchLineItemsError}
+                    startDate={this.start_date}
+                    endDate={this.end_date}
+                    numberOfPeople={this.number_of_people}
+                  />
+                )}
+              </div>
 
 
-            </div>
-          </LayoutWrapperMain>
-          <LayoutWrapperFooter>
-            <Footer />
-          </LayoutWrapperFooter>
-        </LayoutSingleColumn>
-      </Page>
-    );
+              </div>
+            </LayoutWrapperMain>
+            <LayoutWrapperFooter>
+              <Footer />
+            </LayoutWrapperFooter>
+          </LayoutSingleColumn>
+        </Page>
+      );
+    } else {
+      console.log('show no price');
+      return (
+        <Page
+          title={schemaTitle}
+          scrollingDisabled={scrollingDisabled}
+          author={authorDisplayName}
+          contentType="website"
+          description={description}
+          facebookImages={facebookImages}
+          twitterImages={twitterImages}
+          schema={{
+            '@context': 'http://schema.org',
+            '@type': 'ItemPage',
+            description: description,
+            name: schemaTitle,
+            image: schemaImages,
+          }}
+        >
+          <LayoutSingleColumn className={css.pageRoot}>
+            <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
+            <LayoutWrapperMain>
+              <div>
+
+              <div className={css.contentContainer}>
+                <ButtonTabNavHorizontal className="booking-page-tabs" tabs={desktopTypeTabs} />
+
+                {this.state.showEnquiryType === LOCATION_TYPE_ENQUIRY ? (
+                  <SectionHostMaybe
+                    title={title}
+                    listing={currentListing}
+                    authorDisplayName={authorDisplayName}
+                    onContactUser={this.onContactUser}
+                    isEnquiryModalOpen={isAuthenticated && this.state.enquiryModalOpen}
+                    onCloseEnquiryModal={() => this.setState({ enquiryModalOpen: false })}
+                    sendEnquiryError={sendEnquiryError}
+                    sendEnquiryInProgress={sendEnquiryInProgress}
+                    onSubmitEnquiry={this.onSubmitEnquiry}
+                    currentUser={currentUser}
+                    onManageDisableScrolling={onManageDisableScrolling}
+                  />
+                ) : (
+                  <div>This location does not currently have a price set so can not take bookings</div>
+                )}
+              </div>
+
+
+              </div>
+            </LayoutWrapperMain>
+            <LayoutWrapperFooter>
+              <Footer />
+            </LayoutWrapperFooter>
+          </LayoutSingleColumn>
+        </Page>
+      );
+    }
+
+
   }
 }
 
