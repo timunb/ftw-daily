@@ -361,8 +361,6 @@ export class TransactionPanelComponent extends Component {
     var customMessage = "";
     var customMessage2 = "";
 
-    console.log(stateData.headingState);
-
     if (currentUserIsCustomer && (stateData.headingState == 'requested' || stateData.headingState == 'enquired')) {
       customMessage = "If this location owner is happy to proceed with booking your shoot, simply click 'book now' on their location page and fill in the details as agreed per your discussion. The owner will then receive the booking request and confirm in order to start the payment process.";
 
@@ -376,6 +374,14 @@ export class TransactionPanelComponent extends Component {
     }
     console.log(currentUserIsCustomer);
     console.log(currentUserIsProvider);
+
+    if (price.amount != 0) {
+      this.showBooking = true;
+    } else {
+      this.showBooking = false;
+    }
+
+
     return (
       <div className={classes}>
         <div className={css.container}>
@@ -459,7 +465,7 @@ export class TransactionPanelComponent extends Component {
               <div className={css.mobileActionButtons}>{saleButtons}</div>
             ) : null}
           </div>
-
+          {this.showBooking === true &&
           <div className={css.asideDesktop}>
             <div className={css.detailCard}>
               <DetailCardImage
@@ -559,6 +565,7 @@ export class TransactionPanelComponent extends Component {
               </div>
             </div>
           </div>
+           }
         </div>
         <ReviewModal
           id="ReviewOrderModal"
