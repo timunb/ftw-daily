@@ -134,7 +134,9 @@ const TopbarDesktop = props => {
 
   return (
     <nav className={classes}>
-      <a className="TopbarDesktop_logoLink__GcD1t" href="https://film-locations.co.uk"><img className="TopbarDesktop_logo__3GzUZ" src="/static/media/fl-logo.74500edc.png" alt="Film Locations" /></a>
+      <a className="TopbarDesktop_logoLink__GcD1t" href="https://film-locations.co.uk">
+      <Logo format="desktop" className={css.logo} />
+      </a>
       {search}
 
       {inboxLink}
