@@ -90,7 +90,8 @@ const Footer = props => {
             </div>
             <div className={css.infoLinks}>
               <h3 className="woohoo">About Us</h3>
-              <nav className="footer-nav--pages"><ul id="menu-about-1" className="nav"><li className="menu-item menu-how-it-works"><a href="https://www.film-locations.co.uk/how-it-works/">How It Works</a></li><li className="menu-item menu-pricing"><a href="https://www.film-locations.co.uk/pricing/">Pricing</a></li></ul></nav>
+              <nav className="footer-nav--pages"><ul id="menu-about-1" className="nav"><li className="menu-item menu-how-it-works"><a href="https://www.film-locations.co.uk/how-it-works/">How It Works</a></li>
+              </ul></nav>
             </div>
           </div>
           <div className={css.copyrightAndTermsMobile}>

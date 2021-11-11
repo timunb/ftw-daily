@@ -62,7 +62,7 @@ const EditListingPricingPanel = props => {
       initialValues={initialValues}
       onSubmit={values => {
         const { price, parkingFee = null, cleaningFee = null, securityFee = null, largeShootFee = null, overtimeFee = null } = values;
-        
+
         const updatedValues = {
           price,
           publicData: {
@@ -70,12 +70,11 @@ const EditListingPricingPanel = props => {
             parkingFee: parkingFee ? { amount: parkingFee.amount, currency: parkingFee.currency } : null,
             securityFee: securityFee ? { amount: securityFee.amount, currency: securityFee.currency } : null,
             largeShootFee: largeShootFee ? { amount: largeShootFee.amount, currency: largeShootFee.currency } : null,
-            overtimeFee: largeShootFee ? { amount: overtimeFee.amount, currency: overtimeFee.currency } : null,
+            overtimeFee: overtimeFee ? { amount: overtimeFee.amount, currency: overtimeFee.currency } : null,
           },
         };
         onSubmit(updatedValues);
 
-        console.log(updatedValues);
       }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
