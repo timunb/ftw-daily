@@ -218,6 +218,8 @@ export class BookingDatesFormComponent extends Component {
 
   componentWillMount() {
     this.hasNotChangedDates = true;
+    this.hasConfirmedPli = false;
+    this.hasConfirmedTerms = false;
     localStorage.removeItem('numberOfPeople');
     localStorage.removeItem('shootType');
     localStorage.removeItem('totalOvertimeHours');
@@ -293,28 +295,43 @@ export class BookingDatesFormComponent extends Component {
 
   confirmPli(name) {
     const state = name.target.value;
-    const element = document.getElementById('pliFields')
+    const element = document.getElementById('pliFields');
+    const submitElement = document.getElementById('formSubmit');
+
 
     if (state === true) {
       element.classList.add('show');
       localStorage.setItem('pliConfirmed', 'Yes');
+      this.hasConfirmedPli = true;
+
+      if (this.hasConfirmedTerms) {
+        submitElement.removeAttribute("disabled");
+      }
     } else {
-      element.classList.remove('show')
+      element.classList.remove('show');
       localStorage.setItem('pliConfirmed', 'No');
+      this.hasConfirmedPli = false;
+      submitElement.disabled = true;
     }
   }
 
   confirmTerms(name) {
     const state = name.target.value;
-    const element = document.getElementById('formSubmit')
+    const element = document.getElementById('formSubmit');
 
     if (state === true) {
-      element.removeAttribute("disabled");
       localStorage.setItem('termsConfirmed', 'Yes');
+      this.hasConfirmedTerms = true;
+
+      if (this.hasConfirmedPli) {
+        element.removeAttribute("disabled");
+      }
     } else {
-      element.disabled = true;
       localStorage.setItem('termsConfirmed', 'No');
+      this.hasConfirmedTerms = false;
+      element.disabled = true;
     }
+
   }
 
 
