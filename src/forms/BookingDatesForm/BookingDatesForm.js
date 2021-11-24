@@ -493,6 +493,9 @@ export class BookingDatesFormComponent extends Component {
           const requiredMessage = intl.formatMessage({
             id: 'BookingDatesForm.requiredDate',
           });
+          const requiredMessagePeople = intl.formatMessage({
+            id: 'BookingDatesForm.requiredPeople',
+          });
           const startDateErrorMessage = intl.formatMessage({
             id: 'FieldDateRangeInput.invalidStartDate',
           });
@@ -676,6 +679,10 @@ export class BookingDatesFormComponent extends Component {
                 id="numberOfPeople"
                 name="numberOfPeople"
                 defaultValue={this.props.peopleNumber}
+                validate={composeValidators(
+                  required(requiredMessagePeople)
+                )}
+
               >
                 <option disabled selected value="">
                   Pick a number

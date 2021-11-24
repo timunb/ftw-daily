@@ -9,6 +9,7 @@ import {
   autocompleteSearchRequired,
   autocompletePlaceSelected,
   composeValidators,
+  required,
 } from '../../util/validators';
 import { Form, LocationAutocompleteInputField, Button, FieldTextInput } from '../../components';
 
@@ -44,6 +45,10 @@ export const EditListingLocationFormComponent = props => (
       });
       const addressNotRecognizedMessage = intl.formatMessage({
         id: 'EditListingLocationForm.addressNotRecognized',
+      });
+
+      const noAddressMessage = intl.formatMessage({
+        id: 'EditListingLocationForm.noAddress',
       });
 
       const optionalText = intl.formatMessage({
@@ -106,6 +111,9 @@ export const EditListingLocationFormComponent = props => (
             id="building"
             label={buildingMessage}
             placeholder={buildingPlaceholderMessage}
+            validate={composeValidators(
+              required(noAddressMessage)
+            )}
           />
 
           <Button
