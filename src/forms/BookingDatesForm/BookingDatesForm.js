@@ -11,7 +11,7 @@ import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
 import { types as sdkTypes } from '../../util/sdkLoader';
-import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect } from '../../components';
+import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldCheckbox, FieldTextInput, FieldSelect, FieldDateInput  } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
 import { useLocation } from 'react-router-dom';
 import css from './BookingDatesForm.module.css';
@@ -181,6 +181,17 @@ export class BookingDatesFormComponent extends Component {
       }
     }
 
+    localStorage.setItem('insuranceProvider', formValues.insuranceProvider);
+    localStorage.setItem('insuranceProviderContact', formValues.insuranceProviderContact);
+    localStorage.setItem('policyNumber', formValues.policyNumber);
+    localStorage.setItem('liabilityValue', formValues.liabilityValue);
+    localStorage.setItem('arrivalTime', formValues.arrivalTime);
+    localStorage.setItem('departureTime', formValues.departureTime);
+    localStorage.setItem('shootType', formValues.shootType);
+    localStorage.setItem('contactNumber', formValues.contactNumber);
+    localStorage.setItem('companyName', formValues.companyName);
+    localStorage.setItem('companyAddress', formValues.companyAddress);
+
     const listingId = this.props.listingId;
     const isOwnListing = this.props.isOwnListing;
 
@@ -243,6 +254,11 @@ export class BookingDatesFormComponent extends Component {
     this.fetchLineItems(this.props.initialDates);
 
     localStorage.setItem('numberOfPeople', this.props.peopleNumber);
+    localStorage.setItem('arrivalTime', this.props.defaultArrival);
+    localStorage.setItem('departureTime', this.props.defaultDeparture);
+    localStorage.setItem('shootType', this.props.defaultShootType);
+    localStorage.setItem('companyName', this.props.defaultCompany);
+    localStorage.setItem('companyAddress', this.props.defaultCompanyAddress);
   }
 
   setArrivalTime(value, id) {
@@ -269,13 +285,13 @@ export class BookingDatesFormComponent extends Component {
     localStorage.setItem('policyNumber', value);
   }
 
-  setExpiryDate(startingDate) {
-    setTimeout(function() {
-      var newExpiryDate = document.getElementById("expiryDate").value;
-      localStorage.setItem('expiryDate', newExpiryDate);
-    }, 200);
-
-  }
+  // setExpiryDate(startingDate) {
+  //   setTimeout(function() {
+  //     var newExpiryDate = document.getElementById("expiryDate").value;
+  //     localStorage.setItem('expiryDate', newExpiryDate);
+  //   }, 200);
+  //
+  // }
 
   setLiabilityValue(value, id) {
     localStorage.setItem('liabilityValue', value);
@@ -392,6 +408,9 @@ export class BookingDatesFormComponent extends Component {
             overtimeFee,
             peopleNumber,
             initialDates,
+            defaultArrival,
+            defaultDeparture,
+            defaultShootType,
             form: formApi,
             pristine,
           } = fieldRenderProps;
@@ -495,6 +514,9 @@ export class BookingDatesFormComponent extends Component {
           });
           const requiredMessagePeople = intl.formatMessage({
             id: 'BookingDatesForm.requiredPeople',
+          });
+          const requiredField = intl.formatMessage({
+            id: 'BookingDatesForm.requiredField',
           });
           const startDateErrorMessage = intl.formatMessage({
             id: 'FieldDateRangeInput.invalidStartDate',
@@ -608,12 +630,12 @@ export class BookingDatesFormComponent extends Component {
             defaultCompanyAddress = company_address;
           }
 
-          setTimeout(function() {
-            if (shoot_type) {
-              document.getElementById('shootType').value = shoot_type;
-              localStorage.setItem('shootType', shoot_type);
-            }
-          }, 400);
+          // setTimeout(function() {
+          //   if (shoot_type) {
+          //     document.getElementById('shootType').value = shoot_type;
+          //     localStorage.setItem('shootType', shoot_type);
+          //   }
+          // }, 400);
 
 
           var queryDates = null;
@@ -645,6 +667,52 @@ export class BookingDatesFormComponent extends Component {
 
                   if(change.modified.numberOfPeople){
                       this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.insuranceProvider){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.insuranceProviderContact){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.policyNumber){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.liabilityValue){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.arrivalTime){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.departureTime){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.shootType){
+                      this.handleOnChange(change.values);
+                  }
+
+                  if(change.modified.contactNumber){
+                    // console.log()
+                    localStorage.setItem('contactNumber', change.values.contactNumber);
+                  }
+
+                  if(change.modified.companyName){
+                    localStorage.setItem('companyName', change.values.companyName);
+                  }
+
+                  if(change.modified.companyAddress){
+                    localStorage.setItem('companyAddress', change.values.companyAddress);
+                  }
+
+                  if(change.modified.expiryDate){
+                    console.log(change.values.expiryDate);
+                    localStorage.setItem('expiryDate', change.values.expiryDate.date);
                   }
 
               }}
@@ -759,8 +827,15 @@ export class BookingDatesFormComponent extends Component {
               <h2>Additional Information</h2>
               <div className="additional-details">
               <label htmlFor="arrivalTime">Arrival Time</label>
-              <select id="arrivalTime" name="arrival-time"
-              onChange={e => this.setArrivalTime(e.target.value)}>
+              <FieldSelect
+                id="arrivalTime"
+                name="arrivalTime"
+                defaultValue={this.props.defaultArrival}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
+
+              >
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -812,10 +887,18 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </select>
+              </FieldSelect>
 
               <label htmlFor="departureTime">Departure Time</label>
-              <select id="departureTime" name="departure-time" onChange={e => this.setDepartureTime(e.target.value)}>
+              <FieldSelect
+                id="departureTime"
+                name="departureTime"
+                defaultValue={this.props.defaultDeparture}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
+
+              >
                 <option disabled selected value="">
                   Pick a time
                 </option>
@@ -867,10 +950,18 @@ export class BookingDatesFormComponent extends Component {
                 </option><option value="11:00 PM">11:00 PM
                 </option><option value="11:30 PM">11:30 PM
                 </option>
-              </select>
+              </FieldSelect>
 
               <label htmlFor="shootType">Type of Shoot</label>
-              <select id="shootType" name="shootType" onChange={e => this.setShootType(e.target.value)}>
+              <FieldSelect
+                id="shootType"
+                name="shootType"
+                defaultValue={this.props.defaultShootType}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
+
+              >
               <option disabled selected value="">
                 Pick a type
               </option>
@@ -887,33 +978,42 @@ export class BookingDatesFormComponent extends Component {
                 Event
               </option>
 
-              </select>
+              </FieldSelect>
 
               <label htmlFor="contactNumber">Contact Number</label>
-              <input
-                id="contactNumber"
+
+              <FieldTextInput
                 type="text"
-                value={this.state.name}
+                name="contactNumber"
+                id="contactNumber"
                 defaultValue={defaultContact}
-                onChange={e => this.setContactNumber(e.target.value)}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
               />
 
               <label htmlFor="companyName">Company Name</label>
-              <input
-                id="companyName"
+
+              <FieldTextInput
                 type="text"
-                value={this.state.name}
+                name="companyName"
+                id="companyName"
                 defaultValue={defaultCompany}
-                onChange={e => this.setCompanyName(e.target.value)}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
               />
 
+
               <label htmlFor="companyAddress">Company Address</label>
-              <input
-                id="companyAddress"
+              <FieldTextInput
                 type="text"
-                value={this.state.name}
+                name="companyAddress"
+                id="companyAddress"
                 defaultValue={defaultCompanyAddress}
-                onChange={e => this.setCompanyAddress(e.target.value)}
+                validate={composeValidators(
+                  required(requiredField)
+                )}
               />
 
               </div>
@@ -945,49 +1045,55 @@ export class BookingDatesFormComponent extends Component {
 
               <div id="pliFields" className="pli-fields">
                 <label htmlFor="insuranceProvider">Insurance Provider name:</label>
-                <input
-                  id="insuranceProvider"
+                <FieldTextInput
                   type="text"
-                  value={this.state.name}
-                  onChange={e => this.setInsuranceProvider(e.target.value)}
+                  name="insuranceProvider"
+                  id="insuranceProvider"
+                  validate={composeValidators(
+                    required(requiredField)
+                  )}
                 />
 
                 <label htmlFor="insuranceProvider">Insurance Provider Contact Details:</label>
-                <input
-                  id="insuranceProviderContact"
+                <FieldTextInput
                   type="text"
-                  value={this.state.name}
-                  onChange={e => this.setInsuranceProviderContact(e.target.value)}
+                  name="insuranceProviderContact"
+                  id="insuranceProviderContact"
+                  validate={composeValidators(
+                    required(requiredField)
+                  )}
                 />
 
                 <label htmlFor="policyNumber">Policy Number:</label>
-                <input
-                  id="policyNumber"
+                <FieldTextInput
                   type="text"
-                  value={this.state.name}
-                  onChange={e => this.setPolicyNumber(e.target.value)}
+                  name="policyNumber"
+                  id="policyNumber"
+                  validate={composeValidators(
+                    required(requiredField)
+                  )}
                 />
 
                 <label htmlFor="expiryDate">Expiry date:</label>
 
-                <SingleDatePicker
-                  date={this.state.date} // momentPropTypes.momentObj or null
-                  onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-                  focused={this.state.focused} // PropTypes.bool
-                  onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                <FieldDateInput
                   id="expiryDate" // PropTypes.string.isRequired,
-                  onClose={(date) => this.setExpiryDate(date)}
+                  name="expiryDate"
+                  placeholderText=" "
                   isOutsideRange={(day) => day.isBefore(this.minimumDate)}
+                  validate={composeValidators(
+                    required(requiredField)
+                  )}
                 />
 
-
-
                 <label htmlFor="liabilityValue">Value of public liability:</label>
-                <input
-                  id="liabilityValue"
+                <FieldTextInput
                   type="text"
-                  value={this.state.name}
-                  onChange={e => this.setLiabilityValue(e.target.value)}
+                  name="liabilityValue"
+                  id="liabilityValue"
+                  validate={composeValidators(
+                    required(requiredField)
+                  )}
                 />
               </div>
 

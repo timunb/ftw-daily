@@ -107,6 +107,11 @@ export class ListingPageComponent extends Component {
     this.start_date = query.get('start_date');
     this.end_date = query.get('end_date');
     this.number_of_people = query.get('people');
+    this.arrival_time = query.get('arrival_time');
+    this.departure_time = query.get('departure_time');
+    this.shoot_type = query.get('shoot_type');
+    this.company_name = query.get('company_name');
+    this.company_address = query.get('company_address');
 
     setTimeout(function() {
       const type = query.get('type');
@@ -115,6 +120,9 @@ export class ListingPageComponent extends Component {
       const arrival_time = query.get('arrival_time');
       const departure_time = query.get('departure_time');
       const people = query.get('people');
+      const shoot_type = query.get('shoot_type');
+      const company_name = query.get('company_name');
+      const company_address = query.get('company_address');
 
 
       if (type && type === 'booking') {
@@ -538,6 +546,11 @@ export class ListingPageComponent extends Component {
                     startDate={this.start_date}
                     endDate={this.end_date}
                     numberOfPeople={this.number_of_people}
+                    defaultArrival={this.arrival_time}
+                    defaultDeparture={this.departure_time}
+                    defaultShootType={this.shoot_type}
+                    defaultCompany={this.company_name}
+                    defaultCompanyAddress={this.company_address}
                   />
                 )}
               </div>

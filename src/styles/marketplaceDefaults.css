@@ -348,3 +348,8 @@ textarea {
   display: block;
   margin: 10px 0;
 }
+
+.DateInput_inputRoot__TkZ_w {
+  z-index: 999;
+  position: relative;
+}

@@ -73,6 +73,11 @@ const BookingPanel = props => {
     startDate,
     endDate,
     numberOfPeople,
+    defaultArrival,
+    defaultDeparture,
+    defaultShootType,
+    defaultCompany,
+    defaultCompanyAddress,
   } = props;
 
   const price = listing.attributes.price;
@@ -195,6 +200,11 @@ const BookingPanel = props => {
             overtimeFee={overtimeFee}
             initialDates={{ startDate: setFromDate, endDate:  setToDate}}
             peopleNumber={numberOfPeople}
+            defaultArrival={defaultArrival}
+            defaultDeparture={defaultDeparture}
+            defaultShootType={defaultShootType}
+            defaultCompany={defaultCompany}
+            defaultCompanyAddress={defaultCompanyAddress}
           />
         ) : null}
       </ModalInMobile>
@@ -257,7 +267,11 @@ BookingPanel.propTypes = {
   fetchLineItemsInProgress: bool.isRequired,
   fetchLineItemsError: propTypes.error,
   numberOfPeople: bool,
-
+  defaultArrival: string,
+  defaultDeparture: string,
+  defaultShootType: string,
+  defaultCompany: string,
+  defaultCompanyAddress: string,
   // from withRouter
   history: shape({
     push: func.isRequired,

@@ -5,6 +5,11 @@
   flex-direction: column;
 }
 
+.DateInput_inputRoot__TkZ_w {
+  z-index: 999;
+  position: relative;
+}
+
 .bookingDates {
   flex-shrink: 0;
   margin-bottom: 38px;
