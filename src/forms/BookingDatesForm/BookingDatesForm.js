@@ -175,10 +175,10 @@ export class BookingDatesFormComponent extends Component {
     if (this.props.largeShootFee) {
       if (formValues.numberOfPeople === "15 plus") {
         hasLargeShootFee = this.props.largeShootFee;
-        localStorage.setItem('numberOfPeople', formValues.numberOfPeople);
       } else {
         hasLargeShootFee = false;
       }
+      localStorage.setItem('numberOfPeople', formValues.numberOfPeople);
     }
 
     localStorage.setItem('insuranceProvider', formValues.insuranceProvider);
