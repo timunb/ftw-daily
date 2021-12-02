@@ -101,6 +101,12 @@ class ContactDetailsFormComponent extends Component {
           });
           const emailValid = validators.emailFormatValid(emailInvalidMessage);
 
+          //phone
+          const phoneRequiredMessage = intl.formatMessage({
+            id: 'ContactDetailsForm.phoneRequired',
+          });
+          const phoneRequired = validators.required(phoneRequiredMessage);
+
           const tooManyVerificationRequests = isTooManyEmailVerificationRequestsError(
             sendVerificationEmailError
           );
@@ -323,6 +329,7 @@ class ContactDetailsFormComponent extends Component {
                   id={formId ? `${formId}.phoneNumber` : 'phoneNumber'}
                   label={phoneLabel}
                   placeholder={phonePlaceholder}
+                  validate={phoneRequired}
                 />
               </div>
 

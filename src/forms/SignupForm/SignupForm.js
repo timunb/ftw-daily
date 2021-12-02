@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
-import { Form, PrimaryButton, FieldTextInput, FieldSelect } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, FieldSelect, FieldPhoneNumberInput } from '../../components';
 
 import css from './SignupForm.module.css';
 
@@ -125,7 +125,20 @@ const SignupFormComponent = props => (
       const lastNameRequiredMessage = intl.formatMessage({
         id: 'SignupForm.lastNameRequired',
       });
+
+      // phoneNumber
+      const phoneLabel = intl.formatMessage({
+        id: 'SignupForm.phoneLabel',
+      });
+      const phonePlaceholder = intl.formatMessage({
+        id: 'SignupForm.phonePlaceholder',
+      });
+      const phoneNumberRequiredMessage = intl.formatMessage({
+        id: 'SignupForm.phoneNumberRequired',
+      });
+
       const lastNameRequired = validators.required(lastNameRequiredMessage);
+      const phoneRequired = validators.required(phoneNumberRequiredMessage);
 
       const classes = classNames(rootClassName || css.root, className);
       const submitInProgress = inProgress;
@@ -184,6 +197,16 @@ const SignupFormComponent = props => (
                 validate={lastNameRequired}
               />
             </div>
+
+            <FieldPhoneNumberInput
+              className={css.password}
+              name="phoneNumber"
+              id={formId ? `${formId}.phoneNumber` : 'phoneNumber'}
+              label={phoneLabel}
+              placeholder={phonePlaceholder}
+              validate={phoneRequired}
+            />
+
             <FieldTextInput
               className={css.password}
               type="password"
