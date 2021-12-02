@@ -83,6 +83,7 @@ const EditListingPricingPanel = props => {
       updated={panelUpdated}
       updateInProgress={updateInProgress}
       fetchErrors={errors}
+      currentListing={currentListing}
     />
   ) : (
     <div className={css.priceCurrencyInvalid}>
