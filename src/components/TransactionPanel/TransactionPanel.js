@@ -362,9 +362,7 @@ export class TransactionPanelComponent extends Component {
     var customMessage2 = "";
 
     if (currentUserIsCustomer && (stateData.headingState == 'requested' || stateData.headingState == 'enquired')) {
-      customMessage = "If this location owner is happy to proceed with booking your shoot, simply click 'book now' on their location page and fill in the details as agreed per your discussion. The owner will then receive the booking request and confirm in order to start the payment process.";
-
-      customMessage2 = "Once payment is made your shoot will be officially booked in.";
+      customMessage = "If you wish to proceed with booking this shoot, simply click the 'Request to book' button in the booking form on this page. Make sure all your shoot details are correct and as agreed with the owner.";
     }
 
     if (currentUserIsProvider && stateData.headingState == 'requested') {
