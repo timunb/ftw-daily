@@ -100,6 +100,8 @@ export class ListingPageComponent extends Component {
   }
 
   componentDidMount() {
+
+    console.log(this.props);
     const query = new URLSearchParams(
       this.props.location.search
     );
@@ -237,7 +239,7 @@ export class ListingPageComponent extends Component {
 
         // Redirect to OrderDetailsPage
         history.push(
-          createResourceLocatorString('OrderDetailsPage', routes, { id: txId.uuid }, {})
+          createResourceLocatorString('OrderDetailsPage', routes, { id: txId.uuid }, {}) + history.location.search
         );
       })
       .catch(() => {
