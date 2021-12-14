@@ -15,6 +15,7 @@ import { txIsPaymentPending } from '../../util/transaction';
 import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { isScrollingDisabled, manageDisableScrolling } from '../../ducks/UI.duck';
 import { initializeCardPaymentData } from '../../ducks/stripe.duck.js';
+import { useLocation } from 'react-router-dom';
 import {
   NamedRedirect,
   TransactionPanel,
@@ -82,6 +83,19 @@ export const TransactionPageComponent = props => {
     fetchLineItemsInProgress,
     fetchLineItemsError,
   } = props;
+
+  const queryParams = new URLSearchParams(useLocation().search);
+  const start_date = queryParams.get('start_date');
+  const end_date = queryParams.get('end_date');
+
+  const arrival_time = queryParams.get('arrival_time');
+  const departure_time = queryParams.get('departure_time');
+  const people = queryParams.get('people');
+  const shoot_type = queryParams.get('shoot_type');
+  const company_name = queryParams.get('company_name');
+  const company_address = queryParams.get('company_address');
+  const contact_number = queryParams.get('contact_number');
+
 
   const currentTransaction = ensureTransaction(transaction);
   const currentListing = ensureListing(currentTransaction.listing);
@@ -253,6 +267,14 @@ export const TransactionPageComponent = props => {
       fetchLineItemsInProgress={fetchLineItemsInProgress}
       fetchLineItemsError={fetchLineItemsError}
       protectedData={currentTransaction.attributes.protectedData}
+      startDate={start_date}
+      endDate={end_date}
+      numberOfPeople={people}
+      defaultArrival={arrival_time}
+      defaultDeparture={departure_time}
+      defaultShootType={shoot_type}
+      defaultCompany={company_name}
+      defaultCompanyAddress={company_address}
     />
   ) : (
     loadingOrFailedFetching

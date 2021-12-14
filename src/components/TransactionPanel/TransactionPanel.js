@@ -210,6 +210,15 @@ export class TransactionPanelComponent extends Component {
       protectedData,
       fetchLineItemsInProgress,
       fetchLineItemsError,
+      queryParams,
+      startDate,
+      endDate,
+      numberOfPeople,
+      defaultArrival,
+      defaultDeparture,
+      defaultShootType,
+      defaultCompany,
+      defaultCompanyAddress,
     } = this.props;
 
     const currentTransaction = ensureTransaction(transaction);
@@ -370,8 +379,6 @@ export class TransactionPanelComponent extends Component {
 
       customMessage2 = "Once payment is made this shoot will be officially booked in.";
     }
-    console.log(currentUserIsCustomer);
-    console.log(currentUserIsProvider);
 
     if (price.amount != 0) {
       this.showBooking = true;
@@ -499,6 +506,14 @@ export class TransactionPanelComponent extends Component {
                   lineItems={lineItems}
                   fetchLineItemsInProgress={fetchLineItemsInProgress}
                   fetchLineItemsError={fetchLineItemsError}
+                  startDate={startDate}
+                  endDate={endDate}
+                  numberOfPeople={numberOfPeople}
+                  defaultArrival={defaultArrival}
+                  defaultDeparture={defaultDeparture}
+                  defaultShootType={defaultShootType}
+                  defaultCompany={defaultCompany}
+                  defaultCompanyAddress={defaultCompanyAddress}
                 />
               ) : null}
               <BreakdownMaybe
