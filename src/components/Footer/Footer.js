@@ -8,6 +8,7 @@ import {
   IconSocialMediaFacebook,
   IconSocialMediaInstagram,
   IconSocialMediaTwitter,
+  IconSocialMediaLinkedIn,
   Logo,
   ExternalLink,
   NamedLink,
@@ -16,12 +17,13 @@ import {
 import css from './Footer.module.css';
 
 const renderSocialMediaLinks = intl => {
-  const { siteFacebookPage, siteInstagramPage, siteTwitterHandle } = config;
+  const { siteFacebookPage, siteInstagramPage, siteTwitterHandle, siteLinkedInPage } = config;
   const siteTwitterPage = twitterPageURL(siteTwitterHandle);
 
   const goToFb = intl.formatMessage({ id: 'Footer.goToFacebook' });
   const goToInsta = intl.formatMessage({ id: 'Footer.goToInstagram' });
   const goToTwitter = intl.formatMessage({ id: 'Footer.goToTwitter' });
+  const goToLinkedIn = intl.formatMessage({ id: 'Footer.goToLinkedIn' });
 
   const fbLink = siteFacebookPage ? (
     <ExternalLink key="linkToFacebook" href={siteFacebookPage} className={css.icon} title={goToFb}>
@@ -40,6 +42,17 @@ const renderSocialMediaLinks = intl => {
     </ExternalLink>
   ) : null;
 
+  const linkedInLink = siteLinkedInPage ? (
+    <ExternalLink
+      key="linkToLinkedIn"
+      href={siteLinkedInPage}
+      className={css.icon}
+      title={goToLinkedIn}
+    >
+      <IconSocialMediaLinkedIn />
+    </ExternalLink>
+  ) : null;
+
   const instragramLink = siteInstagramPage ? (
     <ExternalLink
       key="linkToInstagram"
@@ -50,7 +63,7 @@ const renderSocialMediaLinks = intl => {
       <IconSocialMediaInstagram />
     </ExternalLink>
   ) : null;
-  return [fbLink, twitterLink, instragramLink].filter(v => v != null);
+  return [fbLink, twitterLink, linkedInLink, instragramLink].filter(v => v != null);
 };
 
 const Footer = props => {
@@ -62,6 +75,7 @@ const Footer = props => {
     <div className={classes}>
       <div className={css.topBorderWrapper}>
         <div className={css.content}>
+          <div className={css.someLiksMobile}>{socialMediaLinks}</div>
           <div className={css.links}>
             <div className={css.organization} id="organization">
               <NamedLink name="LandingPage" className={css.logoLink}>

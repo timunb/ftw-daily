@@ -57,10 +57,6 @@
 /* Mobile only social media links */
 .someLiksMobile {
   margin-bottom: 24px;
-
-  @media (--viewportMedium) {
-    display: none;
-  }
 }
 
 .icon {

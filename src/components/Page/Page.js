@@ -145,6 +145,7 @@ class PageComponent extends Component {
     const facebookPage = config.siteFacebookPage;
     const twitterPage = twitterPageURL(config.siteTwitterHandle);
     const instagramPage = config.siteInstagramPage;
+    const linkedInPage = config.siteLinkedInPage;
     const sameOrganizationAs = [facebookPage, twitterPage, instagramPage].filter(v => v != null);
 
     // Schema for search engines (helps them to understand what this page is about)
