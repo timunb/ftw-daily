@@ -375,7 +375,7 @@ export class TransactionPanelComponent extends Component {
     }
 
     if (currentUserIsProvider && stateData.headingState == 'requested') {
-      customMessage = "If you are happy to proceed with booking this shoot, please confirm all the details on the right side of the page, read the Terms and Conditions and click the 'accept' button at the bottom.";
+      customMessage = "If you are happy to proceed with booking this shoot, please confirm all the details are correct, read the Terms and Conditions and click the 'accept' button at the bottom.";
 
       customMessage2 = "Once payment is made this shoot will be officially booked in.";
     }
