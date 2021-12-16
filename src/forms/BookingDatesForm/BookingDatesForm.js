@@ -803,17 +803,17 @@ export class BookingDatesFormComponent extends Component {
                 </option>
 
               </FieldSelect>
-
-              {additionalFeesMaybe}
-              {parkingFeeMaybe}
-              {cleaningFeeMaybe}
-              {securityFeeMaybe}
-              {largeShootFeeMaybe}
-              {overtimeFeeMaybe}
-              {bookingInfoMaybe}
-              {loadingSpinnerMaybe}
-              {bookingInfoErrorMaybe}
-
+              <div className={css.priceBreakdownWrapper}>
+                {additionalFeesMaybe}
+                {parkingFeeMaybe}
+                {cleaningFeeMaybe}
+                {securityFeeMaybe}
+                {largeShootFeeMaybe}
+                {overtimeFeeMaybe}
+                {bookingInfoMaybe}
+                {loadingSpinnerMaybe}
+                {bookingInfoErrorMaybe}
+              </div>
               <p className={css.smallPrint}>
                 <FormattedMessage
                   id={
