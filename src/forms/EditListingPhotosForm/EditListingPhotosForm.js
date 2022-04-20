@@ -158,16 +158,22 @@ export class EditListingPhotosFormComponent extends Component {
                   type="file"
                   disabled={imageUploadRequested}
                 >
+
+
+
                   {fieldprops => {
                     const { accept, input, label, disabled: fieldDisabled } = fieldprops;
                     const { name, type } = input;
                     const onChange = e => {
-                      const file = e.target.files[0];
+                     const files = e.target.files;
+                     for (let file of files) {
                       form.change(`addImage`, file);
                       form.blur(`addImage`);
                       onImageUploadHandler(file);
+                     }
                     };
-                    const inputProps = { accept, id: name, name, onChange, type };
+
+                    const inputProps = { accept, id: name, name, onChange, type, multiple: true };
                     return (
                       <div className={css.addImageWrapper}>
                         <div className={css.aspectRatioWrapper}>
