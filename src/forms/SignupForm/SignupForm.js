@@ -242,7 +242,10 @@ const SignupFormComponent = props => (
 
           <div className={css.bottomWrapper}>
             <p className={css.bottomWrapperText}>
-              <span class="SignupForm_termsText__1vEFM"><span>By signing up you accept the <span class="SignupForm_termsLink__3yzaD" role="button" tabindex="0"><a href="https://www.film-locations.co.uk/terms/" target="_blank">terms and conditions</a></span></span></span>
+              <span class="SignupForm_termsText__1vEFM"><span>By signing up you accept the <span class="SignupForm_termsLink__3yzaD" role="button" tabindex="0"><a href="https://www.film-locations.co.uk/owner-terms-and-conditions/" target="_blank">Booker terms and conditions</a></span></span></span>
+            </p>
+            <p className={css.bottomWrapperText}>
+              <span class="SignupForm_termsText__1vEFM"><span>By signing up you accept the <span class="SignupForm_termsLink__3yzaD" role="button" tabindex="0"><a href="https://www.film-locations.co.uk//producer-terms-and-conditions/" target="_blank">Owner terms and conditions</a></span></span></span>
             </p>
             <div class="g-recaptcha" data-sitekey="6LdiajscAAAAAB2_yYK6tRuKHAzCotiXeQnPOhSx
 "></div>
